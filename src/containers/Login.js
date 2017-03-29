@@ -20,10 +20,10 @@ export default class RepoPage extends Component {
 
 LoginFunction(){
    var data = {
-               login  : $(".username").val(),
+               username  : $(".username").val(),
                password  : $(".password").val()
            };
-       $.post(urlPath+"api/login",data).done((res) => {
+       $.get(urlPath+"api/login?username="+data.username+"&password="+data.password).done((res) => {
            console.log("lead...........");
            console.log(res);
              browserHistory.push('/articleGrid');
