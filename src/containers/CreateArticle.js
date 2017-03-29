@@ -13,6 +13,7 @@ const rows = [];
 var options = [];
 var catId = "0";
 var htmlBody = "";
+var urlPath = "http://localhost:9000/";
  
 const rowGetter = rowNumber => rows[rowNumber];
 
@@ -55,7 +56,7 @@ handleEditorChange = (e) => {
 getOptions(input, callback) {
   setTimeout(function() {
 
-     $.get("http://localhost:9000/api/categories").done((res) => {
+     $.get(urlPath+"api/categories").done((res) => {
       console.log(res);
        this.categories = res;
       for(var i=0;i<this.categories.length;i++){
@@ -86,7 +87,7 @@ saveArticle(){
            };
 
            console.log("data----",data);
-           $.post("http://localhost:9000/api/article/save",data).done((res) => {
+           $.post(urlPath+"api/article/save",data).done((res) => {
            console.log("lead...........");
            // this.setState();
           
@@ -153,6 +154,7 @@ BackPage(){
                </div>
             </div>
 
+            
             <div className="form-group col-md-12">
                <div className="col-md-12">
                       <label>Html Body :</label>

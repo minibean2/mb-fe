@@ -8,7 +8,7 @@ import ReactDataGrid from 'react-data-grid';
 const columns = [];
 columns = [{ key: '_id', name: 'ID' }, { key: 'articleName', name: 'ArticleName' },{ key: 'description', name: 'Description' }];
 const rows = [];
- 
+ var urlPath = "http://localhost:9000/";
 const rowGetter = rowNumber => rows[rowNumber];
 
 export default class RepoPage extends Component {
@@ -28,7 +28,7 @@ createArticle(){
 
 getAllArticale(){
 
-  $.get("http://localhost:9000/api/articles").done((res) => {
+  $.get(urlPath+"api/articles").done((res) => {
            console.log("lead...........");
            console.log(res.res);
            

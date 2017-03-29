@@ -5,7 +5,7 @@ var Slider = require('react-slick');
 var $ = require ('jquery');
 //var InfiniteScroll = require('react-infinite-scroll-component');
 
-
+ var urlPath = "http://localhost:9000/";
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
  const margin = {
          margin: 0
@@ -91,13 +91,13 @@ export default class RepoPage extends Component {
           this.count = 0;
     if(value == "All articles"){
 
-         $.get("http://localhost:9000/api/articles").done((res) => {
+         $.get(urlPath+"api/articles").done((res) => {
            this.res = res.res;
            this.generateDivs();
         }); 
     }else{
           
-        $.get("http://localhost:9000/api/article/category/"+value).done((res) => {
+        $.get(urlPath+"api/article/category/"+value).done((res) => {
           console.log(res);
          
           this.state = {divs: divs};
@@ -111,7 +111,19 @@ export default class RepoPage extends Component {
 
     }
 
-  
+  showBody(value){
+  console.log(value);
+   if(value != null && value != ""){
+    
+      return(
+      <div dangerouslySetInnerHTML={{__html: value}}></div>
+    )
+
+   }
+    
+
+}
+
 
 
 
@@ -129,7 +141,7 @@ console.log("hiii");
           console.log(this.count);
             let moreDivs = [];
             console.log(this.count);
-           $.get("http://localhost:9000/api/article?articleId="+this.articleId).done((res) => {
+           $.get(urlPath+"api/article?articleId="+this.articleId).done((res) => {
              console.log(res);
 
               
@@ -155,7 +167,7 @@ console.log("hiii");
 
                                             
                                               <div>
-                                                  <a href="abcd.com">
+                                                  <a>
                                                       <span>{res.res.description}</span>
                                                   </a>
                                                   <h6>
@@ -170,7 +182,9 @@ console.log("hiii");
                                       </ul>
                                       <span></span>
                           </div>
-
+                           <div className="col-md-12 col-sm-12" style={{"textAlign" : "center"}}>
+                                {this.showBody(res.res.body)}
+                           </div>
                              
                                       
                                 </div>

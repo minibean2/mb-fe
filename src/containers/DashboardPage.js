@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 var Slider = require('react-slick');
 var $ = require ('jquery');
 //var InfiniteScroll = require('react-infinite-scroll-component');
-
+var urlPath = "http://localhost:9000/";
 
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
  const margin = {
@@ -55,7 +55,7 @@ export default class UserPage extends Component {
     this.generateDivs = this.generateDivs.bind(this);
     this.count = 0;
      this.flag = 0;
-    $.get("http://localhost:9000/api/categories").done((res) => {
+    $.get(urlPath+"api/categories").done((res) => {
       console.log(res);
      
            this.categories = res;
@@ -94,13 +94,13 @@ export default class UserPage extends Component {
           this.count = 0;
     if(value == "All articles"){
 
-         $.get("http://192.168.1.67:9000/api/articles").done((res) => {
+         $.get(urlPath+"api/articles").done((res) => {
            this.res = res.res;
            this.generateDivs();
         }); 
     }else{
           
-        $.get("http://192.168.1.67:9000/api/article/category/"+value).done((res) => {
+        $.get(urlPath+"api/article/category/"+value).done((res) => {
           console.log(res);
           this.flag = 1;
           this.state = {divs: divs};
@@ -119,7 +119,7 @@ export default class UserPage extends Component {
           this.state = {divs: arr};
           this.count = 0;
          console.log(articleId);
-         $.get("http://192.168.1.67:9000/api/article?articleId="+articleId).done((res) => {
+         $.get(urlPath+"api/article?articleId="+articleId).done((res) => {
           console.log(res);
          
           this.state = {divs: divs};
@@ -173,14 +173,18 @@ console.log("hiii");
                                                       <span>{this.res[i].description}</span>
                                                   </a>
                                                   <h6>
-                                                      <a className="tag" href="abcd.com">Amit</a>
+                                                      <a className="tag">Amit</a>
                                                       <font className="admin-visible-field" >02/02/2017</font>
                                                       <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png"/>view</span>
                                                 
                                                   </h6>
                                                 
                                               </div>
+                                             
                                           </li>
+                                      </ul>
+                                       <ul className="allpost-wrapper">
+                                           {this.showBody(this.res[i].body)}
                                       </ul>
                                       <span></span>
                                 </div>
@@ -199,6 +203,18 @@ console.log("hiii");
   
   }
 
+showBody(value){
+  console.log(value);
+   if(value != null && value != ""){
+    
+      return(
+      <div dangerouslySetInnerHTML={{__html: value}}></div>
+    )
+
+   }
+    
+
+}
 
   generateDivs () {
 
@@ -214,7 +230,7 @@ console.log("hiii");
           console.log(this.count);
             let moreDivs = [];
             console.log(this.count);
-          $.get("http://192.168.1.67:9000/api/articles?start="+this.count+"&end=3").done((res) => {
+          $.get(urlPath+"api/articles?start="+this.count+"&end=3").done((res) => {
              console.log(res);
                 for (let i = 0; i < 6; i++) {
             console.log(res.res[i]._id);
@@ -228,14 +244,21 @@ console.log("hiii");
                                                       <span>{res.res[i].description}</span>
                                                   </a>
                                                   <h6>
-                                                      <a className="tag" href="abcd.com">Amit</a>
+                                                      <a className="tag">Amit</a>
                                                       <font className="admin-visible-field" >02/02/2017</font>
                                                       <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png"/>view</span>
                                                 
                                                   </h6>
+                                                <div>
+                                              
+                                                                                                   
+                                                </div>
                                                 
                                               </div>
                                           </li>
+                                      </ul>
+                                      <ul className="allpost-wrapper">
+                                           {this.showBody(res.res[i].body)}
                                       </ul>
                                       <span></span>
                                 </div>
@@ -255,6 +278,20 @@ console.log("hiii");
 
   
   }
+
+
+showBody(value){
+  console.log(value);
+   if(value != null && value != ""){
+    
+      return(
+      <div dangerouslySetInnerHTML={{__html: value}}></div>
+    )
+
+   }
+    
+
+}
 
   render() {
 

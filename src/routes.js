@@ -5,7 +5,8 @@ import DashboardPage from './containers/DashboardPage'
 import ArticlePage from './containers/ArticlePage'
 import ArticleDataGrid from './containers/ArticleDataGrid'
 import CreateArticle from './containers/CreateArticle'
-import Editor from './containers/Editor'
+import ImgUpload from './containers/ImgUpload'
+import Login from './containers/Login'
 
 
 
@@ -17,6 +18,7 @@ export default <Route path="/user" component={App}>
    <Route path="/article/:id" component={ArticlePage}/>
    <Route path="/articleGrid" component={ArticleDataGrid}/>
    <Route path="/createArticle" component={CreateArticle}/>
-   <Route path="/editor" component={Editor}/>
+   <Route path="/upload" component={ImgUpload}/>
+   <Route path="/login" component={Login}/>
          
 </Route>
