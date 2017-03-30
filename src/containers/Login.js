@@ -13,12 +13,16 @@ export default class RepoPage extends Component {
   constructor (props) {
     super(props);
    console.log(this.urlPath);
+    this.state = {msg: []};
    
   }
 
 
 
+
 LoginFunction(){
+  var self = this;
+
   localStorage.setItem('token', "");
    var data = {
                username  : $(".username").val(),
@@ -28,13 +32,14 @@ LoginFunction(){
            console.log("lead...........");
            console.log(res);
            localStorage.setItem('token', res.token);
-
+           $(".msgShow").toggle(false);
              browserHistory.push('/articleGrid');
               location.reload();
           
         }).fail((res) =>{
           console.log(res);
           console.log(res.responseText);
+         $(".msgShow").toggle(true);
         }); 
       
   console.log(data);
@@ -43,8 +48,9 @@ LoginFunction(){
 
 
 
-  render() {
 
+  render() {
+    
 
     return (
       
@@ -79,7 +85,10 @@ LoginFunction(){
                </div>
             </div>
              <div className="form-group col-md-12" style={{"textAlign" : "right"}}>
+              <label className="msgShow" style={{"display" : "none","color":"red"}}>invalid username and password</label>
                 <button className="btn btn-primary" onClick={this.LoginFunction}>LogIn</button>
+             
+             
            </div>
               </div>
              </div> 
