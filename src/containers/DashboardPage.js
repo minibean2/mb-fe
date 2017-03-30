@@ -44,7 +44,7 @@ const data = [];
 
 
 
-export default class UserPage extends Component {
+export default class DashboardPage extends Component {
  
 
 

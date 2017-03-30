@@ -9,6 +9,9 @@ const columns = [];
 columns = [{ key: '_id', name: 'ID' }, { key: 'articleName', name: 'ArticleName' },{ key: 'description', name: 'Description' }];
 const rows = [];
  var urlPath = "http://localhost:9000/";
+var config = {
+  headers: {'Authorization': localStorage.getItem('token')}
+};
 const rowGetter = rowNumber => rows[rowNumber];
 
 export default class RepoPage extends Component {

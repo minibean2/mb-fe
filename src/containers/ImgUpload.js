@@ -6,6 +6,8 @@ var $ = require ('jquery');
  
 var urlPath = "http://localhost:9000/";
 const rows = [];
+//this.htmlCategories = [];
+const urlList = [];
 var componentConfig = {
     iconFiletypes: ['.jpg', '.png', '.gif'],
     showFiletypeIcon: true,
@@ -24,7 +26,36 @@ var djsConfig = { addRemoveLinks: true }
         console.log('Wooooow!');
     }
 ];
-var eventHandlers = {
+
+export default class ImgUpload extends Component {
+ 
+  constructor (props) {
+    super(props); 
+    this.state = {file: '',imagePreviewUrl: ''};
+
+   
+  }
+
+  urlListTag(){
+    this.htmlCategories = [];
+    let menu = [];
+        for(let i=0;i < urlList.length;i++){
+            menu.push(<a className="col-md-12" style={{"font-size" : "17px"}}>{urlList[i]}</a>);
+        }
+         setTimeout(() => {
+              this.htmlCategories = menu;
+            }, 500);
+            
+        
+      
+  }
+
+
+  render() {
+
+let menu = [];
+
+    const eventHandlers = {
     // This one receives the dropzone object as the first parameter
     // and can be used to additional work with the dropzone.js
     // object
@@ -44,8 +75,17 @@ var eventHandlers = {
     processing: null,
     uploadprogress: null,
     sending: null,
-    success: null,
-    complete: null,
+    success: (file, response) => {
+            console.log(response);
+            urlList.push(response.url);
+            console.log(urlList);
+            menu = [];
+              for(let i=0;i < urlList.length;i++){
+                   menu.push(<a className="col-md-12" style={{"font-size" : "17px"}}>{urlList[i]}</a>);
+              }
+              console.log(menu);
+          },
+    complete: (data) => console.log(data),
     canceled: null,
     maxfilesreached: null,
     maxfilesexceeded: null,
@@ -63,16 +103,8 @@ var eventHandlers = {
     queuecomplete: null
 }
 
-export default class ImgUpload extends Component {
- 
-  constructor (props) {
-    super(props); 
-    this.state = {file: '',imagePreviewUrl: ''};
-   
-  }
 
 
-  render() {
 
     return (
       
@@ -96,7 +128,9 @@ export default class ImgUpload extends Component {
                        djsConfig={djsConfig} />,
             </div>
             <hr></hr>
-           
+           <div className="form-group col-md-12">
+                  {menu}
+           </div>
             
            
               </div>

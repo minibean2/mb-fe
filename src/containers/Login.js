@@ -19,6 +19,7 @@ export default class RepoPage extends Component {
 
 
 LoginFunction(){
+  localStorage.setItem('token', "");
    var data = {
                username  : $(".username").val(),
                password  : $(".password").val()
@@ -26,12 +27,18 @@ LoginFunction(){
        $.get(urlPath+"api/login?username="+data.username+"&password="+data.password).done((res) => {
            console.log("lead...........");
            console.log(res);
+           localStorage.setItem('token', res.token);
+
              browserHistory.push('/articleGrid');
               location.reload();
           
+        }).fail((res) =>{
+          console.log(res);
+          console.log(res.responseText);
         }); 
       
   console.log(data);
+ //   browserHistory.push('/articleGrid');
 }
 
 

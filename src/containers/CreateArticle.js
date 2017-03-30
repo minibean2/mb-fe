@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link,browserHistory } from 'react-router'
 var Select = require('react-select');
+import Dropdown from 'react-dropdown'
 //import InfiniteScroll from 'react-infinite-scroll-component';
 //var Slider = require('react-slick');
 import TinyMCE from 'react-tinymce';
@@ -13,6 +14,7 @@ const rows = [];
 var options = [];
 var catId = "0";
 var htmlBody = "";
+const defaultOption = "";
 var urlPath = "http://localhost:9000/";
  
 const rowGetter = rowNumber => rows[rowNumber];
@@ -21,7 +23,15 @@ export default class RepoPage extends Component {
  
   constructor (props) {
     super(props);
-   
+     $.get(urlPath+"api/categories").done((res) => {
+      console.log(res);
+       this.categories = res;
+      for(var i=0;i<this.categories.length;i++){
+                options.push({"value":this.categories[i]._id,"label":this.categories[i].name});
+            }
+            const defaultOption = options[0];
+            this.setState();
+       });     
    
   }
 
@@ -53,31 +63,12 @@ handleEditorChange = (e) => {
     }
 
 
-getOptions(input, callback) {
-  setTimeout(function() {
-
-     $.get(urlPath+"api/categories").done((res) => {
-      console.log(res);
-       this.categories = res;
-      for(var i=0;i<this.categories.length;i++){
-                options.push({"value":this.categories[i]._id,"label":this.categories[i].name});
-            }
-         
-       
-          callback(null, {
-           
-    
-      options: options,
-     
-      complete: true
-    });
-       
-     });
-    
-  }, 500);
-};
 
 saveArticle(){
+   if(catId == "0"){
+      catId = options[0].value;
+  }
+  
    var data = {
                articleName  : $(".articleName").val(),
                description  : $(".description").val(),
@@ -101,13 +92,6 @@ BackPage(){
 
   render() {
 
-/*tinymce.init({
-  selector: "textarea",  // change this value according to your HTML
-  plugins: "paste",
-  menubar: "edit",
-  toolbar: "paste",
-  paste_data_images: true
-});*/
 
     return (
       
@@ -146,11 +130,10 @@ BackPage(){
                     <label>Categorie :</label>
                </div>
                <div className="col-md-8">
-                   <Select.Async className="categorie" 
-    name="form-field-name" 
-    onChange={this.logChange}
-    loadOptions={this.getOptions}
-/>
+         
+               
+                <Dropdown options={options} onChange={this.logChange} value={defaultOption} />
+
                </div>
             </div>
 
@@ -163,7 +146,8 @@ BackPage(){
                  
                      <TinyMCE
         content="<p>This is the initial content of the editor</p>"
-        config={{ 
+        config={{
+        height: "400", 
           paste_data_images: true,
            plugins: [
               "autolink link image lists print preview",
