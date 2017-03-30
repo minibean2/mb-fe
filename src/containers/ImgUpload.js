@@ -31,30 +31,28 @@ export default class ImgUpload extends Component {
  
   constructor (props) {
     super(props); 
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {file: '',imagePreviewUrl: '', menu: []};
 
    
   }
 
   urlListTag(){
+    var mi = this;
+   
     this.htmlCategories = [];
     let menu = [];
         for(let i=0;i < urlList.length;i++){
-            menu.push(<a className="col-md-12" style={{"font-size" : "17px"}}>{urlList[i]}</a>);
+            menu.push(<a className="col-md-12" style={{"font-size" : "17px"}}>{urlPath + urlList[i].substring(1, urlList[i].length)}</a>);
         }
-         setTimeout(() => {
-              this.htmlCategories = menu;
-            }, 500);
-            
         
-      
+         mi.setState({menu: menu});
   }
 
 
   render() {
 
 let menu = [];
-
+let mi = this;
     const eventHandlers = {
     // This one receives the dropzone object as the first parameter
     // and can be used to additional work with the dropzone.js
@@ -79,11 +77,8 @@ let menu = [];
             console.log(response);
             urlList.push(response.url);
             console.log(urlList);
-            menu = [];
-              for(let i=0;i < urlList.length;i++){
-                   menu.push(<a className="col-md-12" style={{"font-size" : "17px"}}>{urlList[i]}</a>);
-              }
-              console.log(menu);
+            this.urlListTag();
+           
           },
     complete: (data) => console.log(data),
     canceled: null,
@@ -129,8 +124,8 @@ let menu = [];
             </div>
             <hr></hr>
            <div className="form-group col-md-12">
-                  {menu}
-           </div>
+                  {this.state.menu}
+           </div> 
             
            
               </div>

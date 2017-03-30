@@ -68,10 +68,11 @@ saveArticle(){
    if(catId == "0"){
       catId = options[0].value;
   }
-  
+
    var data = {
                articleName  : $(".articleName").val(),
                description  : $(".description").val(),
+               imageURL : $(".imgUrl").val(),
                body  : htmlBody,
                categorie : catId
               
@@ -123,6 +124,14 @@ BackPage(){
                </div>
                <div className="col-md-8">
                     <input type="text" className="form-control description col-md-8" name="description"/>
+               </div>
+            </div>
+             <div className="form-group  col-md-12">
+               <div className="col-md-4">
+                    <label>Img Url :</label>
+               </div>
+               <div className="col-md-8">
+                    <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>
                </div>
             </div>
             <div className="form-group  col-md-12">
