@@ -70,21 +70,20 @@ saveArticle(){
   }
 
    var data = {
-               articleName  : $(".articleName").val(),
-               description  : $(".description").val(),
-               imageURL : $(".imgUrl").val(),
-               body  : htmlBody,
-               CategoryId : catId
-              
-           };
+       articleName  : $(".articleName").val(),
+       description  : $(".description").val(),
+       imageURL : $(".imgUrl").val(),
+       body  : htmlBody,
+       categoryId : catId,
+       created_date: new Date()
+   };
 
-           console.log("data----",data);
-           $.post(urlPath+"api/article/save",data).done((res) => {
-           console.log("lead...........");
-           browserHistory.push('/articleGrid');
-           // this.setState();
-          
-        }); 
+   console.log("data----",data);
+   $.post(urlPath+"api/article/save",data).done((res) => {
+       console.log("lead...........");
+       browserHistory.push('/articleGrid');
+       // this.setState();
+   });
 }
 
 BackPage(){
