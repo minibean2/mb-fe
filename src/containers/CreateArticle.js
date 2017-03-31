@@ -74,13 +74,14 @@ saveArticle(){
                description  : $(".description").val(),
                imageURL : $(".imgUrl").val(),
                body  : htmlBody,
-               categorie : catId
+               CategoryId : catId
               
            };
 
            console.log("data----",data);
            $.post(urlPath+"api/article/save",data).done((res) => {
            console.log("lead...........");
+           browserHistory.push('/articleGrid');
            // this.setState();
           
         }); 
@@ -128,7 +129,7 @@ BackPage(){
             </div>
              <div className="form-group  col-md-12">
                <div className="col-md-4">
-                    <label>Img Url :</label>
+                    <label>Thumbnail Image :</label>
                </div>
                <div className="col-md-8">
                     <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>

@@ -94,10 +94,12 @@ export default class DashboardPage extends Component {
           this.count = 0;
     if(value == "All articles"){
 
-         $.get(urlPath+"api/articles").done((res) => {
-           this.res = res.res;
+        // $.get(urlPath+"api/articles").done((res) => {
+          // this.res = res.res;
+          this.state = {divs: []};
+          this.count = 0;
            this.generateDivs();
-        }); 
+        //}); 
     }else{
           
         $.get(urlPath+"api/article/category/"+value).done((res) => {
@@ -165,7 +167,7 @@ console.log("hiii");
            // console.log(res.res[i]._id);
             //var id = res.res[i]._id;
               moreDivs.push(
-               <div><div className="general-box"><ul className="allpost-wrapper"><li><a href="abcd.com"><img src="../lib/images/article/cat_5.jpg"/></a>
+               <div><div className="general-box"><ul className="allpost-wrapper"><li><a href="abcd.com"><img src={this.res[i].imageURL}/></a>
                                             <h4 style={getColor}><Link to={'/article/'+this.res[i]._id}>{this.res[i].articleName}</Link></h4>
                                            
                                               <div>
@@ -236,7 +238,7 @@ console.log("hiii");
             console.log(res.res[i]._id);
             //var id = res.res[i]._id;
               moreDivs.push(
-               <div><div className="general-box"><ul className="allpost-wrapper"><li><a href="abcd.com"><img src="../lib/images/article/cat_5.jpg"/></a>
+               <div><div className="general-box"><ul className="allpost-wrapper"><li><a href="abcd.com"><img src={res.res[i].imageURL}/></a>
                                             <h4 style={getColor}><Link to={'/article/'+res.res[i]._id}>{res.res[i].articleName}</Link></h4>
                                            
                                               <div>
