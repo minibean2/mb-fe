@@ -22,7 +22,6 @@ const setWidth = {
 }
 const setColorFont = {
     color: "Yellow",
-
 }
 const setHeight = {
     height: 100,
@@ -41,7 +40,6 @@ const marginLeft = {
 
 const divs = [];
 const data = [];
-
 
 export default class DashboardPage extends Component {
 

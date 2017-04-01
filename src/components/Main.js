@@ -1,10 +1,5 @@
 import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
-import InfiniteScroll from 'react-infinite-scroll-component';
-var Slider = require('react-slick');
-var $ = require('jquery');
-//var InfiniteScroll = require('react-infinite-scroll-component');
-
 
 export default class Main extends Component {
 
@@ -50,9 +45,7 @@ export default class Main extends Component {
         let userMessage;
         if (this.page == "login") {
             userMessage = (
-                <span>
-         
-        </span>
+                <span></span>
             )
         } else if (this.page == "articleGrid" || this.page == "createArticle") {
             userMessage = (
@@ -98,12 +91,10 @@ export default class Main extends Component {
             )
         }
 
-
         return (
             <div>
                 {userMessage}
             </div>
-
         )
     }
 }
