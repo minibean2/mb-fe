@@ -25,7 +25,6 @@ const setColorFont = {
 }
 const setHeight = {
     height: 100,
-
 }
 const width500 = {
     width: 500
@@ -33,7 +32,6 @@ const width500 = {
 const getColor = {
     color: "red"
 }
-
 const marginLeft = {
     marginLeft: 10
 }
@@ -50,6 +48,10 @@ export default class DashboardPage extends Component {
         this.generateDivs = this.generateDivs.bind(this);
         this.count = 0;
         this.flag = 0;
+
+        this.pageSize = 5;
+        this.scrollThreshold = 0.5;
+
         $.get(urlPath + "api/categories").done((res) => {
             console.log(res);
 
@@ -85,7 +87,6 @@ export default class DashboardPage extends Component {
         this.state = {divs: arr};
         this.count = 0;
         if (value == "All articles") {
-
             // $.get(urlPath+"api/articles").done((res) => {
             // this.res = res.res;
             this.state = {divs: []};
@@ -93,7 +94,6 @@ export default class DashboardPage extends Component {
             this.generateDivs();
             //});
         } else {
-
             $.get(urlPath + "api/article/category/" + value).done((res) => {
                 console.log(res);
                 this.flag = 1;
@@ -116,7 +116,6 @@ export default class DashboardPage extends Component {
             console.log(res);
 
             this.state = {divs: divs};
-            console.log("mmmmm9999000");
             arr.push(res.res);
             console.log(arr);
             this.res = arr;
@@ -127,7 +126,6 @@ export default class DashboardPage extends Component {
     }
 
     categoriesFunction() {
-        console.log(",.,.,.,.,");
         console.log(this.categories);
         let menu = [];
         for (let i = 0; i < this.categories.length; i++) {
@@ -140,17 +138,10 @@ export default class DashboardPage extends Component {
     }
 
     generateCatDivs() {
-
-        console.log("hiii");
-
-        console.log("sccessssss");
-
         console.log(this.state.divs);
         console.log(this.count);
-        let moreDivs = [];
-        console.log(this.count);
 
-        //  console.log(res);
+        let moreDivs = [];
         for (let i = 0; i < this.res.length; i++) {
             // console.log(res.res[i]._id);
             //var id = res.res[i]._id;
@@ -161,7 +152,6 @@ export default class DashboardPage extends Component {
                             <li><a href="abcd.com"><img src={this.res[i].imageURL}/></a>
                                 <h4 style={getColor}><Link
                                     to={'/article/' + this.res[i]._id}>{this.res[i].articleName}</Link></h4>
-
                                 <div>
                                     <a>
                                         <span>{this.res[i].description}</span>
@@ -173,9 +163,7 @@ export default class DashboardPage extends Component {
                                                                                              src="view.png"/>view</span>
 
                                     </h6>
-
                                 </div>
-
                             </li>
                         </ul>
                         <ul className="allpost-wrapper">
@@ -188,7 +176,6 @@ export default class DashboardPage extends Component {
 
             this.count++;
         }
-
 
         setTimeout(() => {
             this.setState({divs: this.state.divs.concat(moreDivs)});
@@ -205,23 +192,16 @@ export default class DashboardPage extends Component {
             )
 
         }
-
-
     }
 
     generateDivs() {
 
         if (this.flag == 0) {
-
-            console.log("hiii");
-
-            console.log("sccessssss");
-
             console.log(this.state.divs);
             console.log(this.count);
+
             let moreDivs = [];
-            console.log(this.count);
-            $.get(urlPath + "api/articles?start=" + this.count + "&end=3").done((res) => {
+            $.get(urlPath + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
                     console.log(res.res[i]._id);
@@ -300,60 +280,63 @@ export default class DashboardPage extends Component {
 
         return (
 
-            <InfiniteScroll
-                next={this.generateDivs}
-                hasMore={true}
-                loader={<h4>Loading...</h4>}>
-                <div style={{"margin-top": "80px"}}>
-                    <div className="themeA-container">
-                        <div className="row">
-                            <div className="col-md-3" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box">
-                                    <a className="col-md-12" style={{"font-size": "17px"}}
-                                       onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
-                                    {this.htmlCategories}
+
+            <div style={{"margin-top": "80px"}}>
+                <div className="themeA-container">
+                    <div className="row">
+                        <div className="col-md-3" style={{"margin-top": "5px"}}>
+                            <div id="articles-slider" className="general-box">
+                                <a className="col-md-12" style={{"font-size": "17px"}}
+                                   onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
+                                {this.htmlCategories}
+                            </div>
+                        </div>
+
+                        <div className="col-md-6" style={{"margin-top": "5px"}}>
+                            <div>
+                                <div>
+                                    <div className="general-box" style={{"height": "180px", "width": "100%"}}>
+
+                                        <Slider {...settings}>
+                                            <a href="/articles#!/article/3/4">
+                                                <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
+                                            </a>
+                                            <a href="/articles#!/article/3/4">
+                                                <img style={{"width": "100%"}}
+                                                     src="../lib/images/article/cat_6.jpg"/>
+                                            </a>
+                                            <a href="/articles#!/article/3/4">
+                                                <img style={{"width": "100%"}}
+                                                     src="../lib/images/article/cat_7.jpg"/>
+                                            </a>
+                                            <a href="/articles#!/article/3/4">
+                                                <img style={{"width": "100%"}}
+                                                     src="../lib/images/article/cat_2.jpg"/>
+                                            </a>
+
+                                        </Slider>
+
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="col-md-6" style={{"margin-top": "5px"}}>
+                            <div>
                                 <div>
-                                    <div>
-                                        <div className="general-box" style={{"height": "180px", "width": "100%"}}>
-
-                                            <Slider {...settings}>
-                                                <a href="/articles#!/article/3/4">
-                                                    <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
-                                                </a>
-                                                <a href="/articles#!/article/3/4">
-                                                    <img style={{"width": "100%"}}
-                                                         src="../lib/images/article/cat_6.jpg"/>
-                                                </a>
-                                                <a href="/articles#!/article/3/4">
-                                                    <img style={{"width": "100%"}}
-                                                         src="../lib/images/article/cat_7.jpg"/>
-                                                </a>
-                                                <a href="/articles#!/article/3/4">
-                                                    <img style={{"width": "100%"}}
-                                                         src="../lib/images/article/cat_2.jpg"/>
-                                                </a>
-
-                                            </Slider>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div>
+                                    <InfiniteScroll
+                                        scrollThreshold={this.scrollThreshold}
+                                        next={this.generateDivs}
+                                        hasMore={true}
+                                        loader={<h4>Loading...</h4>}>
                                         {this.state.divs}
-                                    </div>
+                                    </InfiniteScroll>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
-            </InfiniteScroll>
+            </div>
+
         )
     }
 }

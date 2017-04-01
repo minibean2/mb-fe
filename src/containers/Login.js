@@ -7,7 +7,7 @@ var urlPath = "http://localhost:9000/";
 
 //const rowGetter = rowNumber => rows[rowNumber];
 
-export default class RepoPage extends Component {
+export default class LoginPage extends Component {
 
     constructor(props) {
         super(props);

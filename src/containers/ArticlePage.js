@@ -64,7 +64,6 @@ export default class RepoPage extends Component {
 
     }
 
-
     getDivs = () => {
         return this.divs;
     }
@@ -116,15 +115,11 @@ export default class RepoPage extends Component {
 
     generateDivs() {
 
-        console.log("hiii");
         console.log(this.articleId);
-        console.log("sccessssss");
-
-        var articleId = "58cf9ffec4ad4f09148c240b";
         console.log(this.state.divs);
         console.log(this.count);
+
         let moreDivs = [];
-        console.log(this.count);
         $.get(urlPath + "api/article?articleId=" + this.articleId).done((res) => {
             console.log(res);
 
