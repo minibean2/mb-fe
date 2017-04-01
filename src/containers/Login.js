@@ -1,114 +1,94 @@
-import React, { Component, PropTypes } from 'react'
-import { Link,browserHistory } from 'react-router'
+import React, {Component, PropTypes} from 'react'
+import {Link, browserHistory} from 'react-router'
 
-var $ = require ('jquery');
-
+var $ = require('jquery');
 
 var urlPath = "http://localhost:9000/";
- 
+
 //const rowGetter = rowNumber => rows[rowNumber];
 
 export default class RepoPage extends Component {
- 
-  constructor (props) {
-    super(props);
-   console.log(this.urlPath);
-    this.state = {msg: []};
-   
-  }
 
+    constructor(props) {
+        super(props);
+        console.log(this.urlPath);
+        this.state = {msg: []};
+    }
 
+    LoginFunction() {
+        var self = this;
 
+        localStorage.setItem('token', "");
+        var data = {
+            username: $(".username").val(),
+            password: $(".password").val()
+        };
+        $.get(urlPath + "api/login?username=" + data.username + "&password=" + data.password).done((res) => {
+            console.log("lead...........");
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            $(".msgShow").toggle(false);
+            browserHistory.push('/articleGrid');
+            location.reload();
 
-LoginFunction(){
-  var self = this;
+        }).fail((res) => {
+            console.log(res);
+            console.log(res.responseText);
+            $(".msgShow").toggle(true);
+        });
 
-  localStorage.setItem('token', "");
-   var data = {
-               username  : $(".username").val(),
-               password  : $(".password").val()
-           };
-       $.get(urlPath+"api/login?username="+data.username+"&password="+data.password).done((res) => {
-           console.log("lead...........");
-           console.log(res);
-           localStorage.setItem('token', res.token);
-           $(".msgShow").toggle(false);
-             browserHistory.push('/articleGrid');
-              location.reload();
-          
-        }).fail((res) =>{
-          console.log(res);
-          console.log(res.responseText);
-         $(".msgShow").toggle(true);
-        }); 
-      
-  console.log(data);
- //   browserHistory.push('/articleGrid');
-}
+        console.log(data);
+        //   browserHistory.push('/articleGrid');
+    }
 
+    render() {
 
+        return (
 
-
-  render() {
-    
-
-    return (
-      
-      <div style={{"margin-top":"80px"}}>
-        <div className="themeA-container">
-            <div className="row">
-            <div className="col-md-3" style={{"margin-top" : "5px"}}>
-                 
-               
+            <div style={{"margin-top": "80px"}}>
+                <div className="themeA-container">
+                    <div className="row">
+                        <div className="col-md-3" style={{"margin-top": "5px"}}>
+                        </div>
+                        <div className="col-md-6" style={{"margin-top": "5px"}}>
+                            <div className="general-box" style={{"marginTop": "100px"}}>
+                                <div className="col-md-12" style={{"textAlign": "center "}}>
+                                    <h1>LOGIN</h1>
+                                </div>
+                                <hr></hr>
+                                <div className="form-group col-md-12">
+                                    <div className="col-md-4">
+                                        <label>UserName :</label>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <input type="text" className="form-control username col-md-8" name="username"/>
+                                    </div>
+                                </div>
+                                <div className="form-group col-md-12">
+                                    <div className="col-md-4">
+                                        <label>Password :</label>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <input type="text" className="form-control password col-md-8" name="password"/>
+                                    </div>
+                                </div>
+                                <div className="form-group col-md-12" style={{"textAlign": "right"}}>
+                                    <label className="msgShow" style={{"display": "none", "color": "red"}}>invalid
+                                        username and password</label>
+                                    <button className="btn btn-primary" onClick={this.LoginFunction}>LogIn</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3" style={{"margin-top": "5px"}}>
+                        </div>
+                        <div className="col-md-12" style={{"margin-top": "5px"}}>
+                        </div>
+                    </div>
+                </div>
             </div>
-             <div className="col-md-6" style={{"margin-top" : "5px"}}>
-              <div className="general-box" style={{"marginTop" : "100px"}}>
-                     <div className="col-md-12" style={{"textAlign" : "center "}}>
-               <h1>LOGIN</h1>
 
-            </div>
-            <hr></hr>
-            <div className="form-group col-md-12">
-               <div className="col-md-4">
-                    <label>UserName :</label>
-               </div>
-               <div className="col-md-8">
-                    <input type="text" className="form-control username col-md-8" name="username"/>
-               </div>
-            </div>
-             <div className="form-group col-md-12">
-               <div className="col-md-4">
-                    <label>Password :</label>
-               </div>
-               <div className="col-md-8">
-                    <input type="text" className="form-control password col-md-8" name="password"/>
-               </div>
-            </div>
-             <div className="form-group col-md-12" style={{"textAlign" : "right"}}>
-              <label className="msgShow" style={{"display" : "none","color":"red"}}>invalid username and password</label>
-                <button className="btn btn-primary" onClick={this.LoginFunction}>LogIn</button>
-             
-             
-           </div>
-              </div>
-             </div> 
-            <div className="col-md-3" style={{"margin-top" : "5px"}}>
-                 
-               
-            </div>
-              
-            <div className="col-md-12" style={{"margin-top" : "5px"}}>
-                
-            </div>
-           
-
-           
-           </div>
-         </div>
-      </div>
-       
-    )
-  }
+        )
+    }
 }
 
 
