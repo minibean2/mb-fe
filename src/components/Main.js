@@ -81,7 +81,7 @@ export default class Main extends Component {
                     "height": "75px",
                     "width": "100%",
                     "zIndex": "1"
-                }}><Link to="/dashboard" style={{
+                }}><Link to="/" style={{
                     "float": "right",
                     "color": "white",
                     "font-size": "20px",

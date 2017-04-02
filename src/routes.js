@@ -11,7 +11,6 @@ import Login from './containers/Login'
 export default
 <Route path="/user" component={App}>
     <Route path="/" component={DashboardPage}/>
-    <Route path="/dashboard" component={DashboardPage}/>
     <Route path="/article/:id" component={ArticlePage}/>
     <Route path="/articleGrid" component={ArticleDataGrid}/>
     <Route path="/createArticle" component={CreateArticle}/>

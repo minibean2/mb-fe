@@ -46,20 +46,17 @@ export default class RepoPage extends Component {
 
     constructor(props) {
         super(props);
-        console.log(window.location.href);
         var url = window.location.href;
         var urlArr = [];
         urlArr = url.split("/");
         this.articleId = urlArr[urlArr.length - 1];
         //[url.split("/").length-1];
 
-        //console.log(this.props._routing);
         //this.props = props;
         this.state = {divs: divs};
         this.htmlCategories = [];
         this.generateDivs = this.generateDivs.bind(this);
         this.count = 0;
-        // console.log(this.props.location.pathname);
         this.generateDivs();
 
     }
@@ -78,7 +75,6 @@ export default class RepoPage extends Component {
     }
 
     categoriesClick(value) {
-        console.log(value);
         var arr = [];
         this.state = {divs: arr};
         this.count = 0;
@@ -91,8 +87,6 @@ export default class RepoPage extends Component {
         } else {
 
             $.get(urlPath + "api/article/category/" + value).done((res) => {
-                console.log(res);
-
                 this.state = {divs: divs};
                 arr = res.res;
                 this.res = arr;
@@ -103,26 +97,17 @@ export default class RepoPage extends Component {
     }
 
     showBody(value) {
-        console.log(value);
         if (value != null && value != "") {
-
             return (
                 <div dangerouslySetInnerHTML={{__html: value}}></div>
             )
-
         }
     }
 
     generateDivs() {
 
-        console.log(this.articleId);
-        console.log(this.state.divs);
-        console.log(this.count);
-
         let moreDivs = [];
         $.get(urlPath + "api/article?articleId=" + this.articleId).done((res) => {
-            console.log(res);
-
             moreDivs.push(
                 <div className="general-box">
                     <div className="col-md-12 col-sm-12" style={{"textAlign": "center"}}>

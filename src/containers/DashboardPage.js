@@ -149,9 +149,8 @@ export default class DashboardPage extends Component {
                 <div>
                     <div className="general-box">
                         <ul className="allpost-wrapper">
-                            <li><a href="abcd.com"><img src={this.res[i].imageURL}/></a>
-                                <h4 style={getColor}><Link
-                                    to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link></h4>
+                            <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageURL}/></Link>
+                                <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link></h4>
                                 <div>
                                     <h6>
                                         <a className="tag">Amit</a>
@@ -205,9 +204,8 @@ export default class DashboardPage extends Component {
                         <div>
                             <div className="general-box">
                                 <ul className="allpost-wrapper">
-                                    <li><a href="abcd.com"><img src={res.res[i].imageURL}/></a>
-                                        <h4 style={getColor}><Link
-                                            to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
+                                    <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageURL}/></Link>
+                                        <h4 style={getColor}><Link to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
                                             <h6>
                                                 <a className="tag">Amit</a>
