@@ -6,10 +6,11 @@ var $ = require('jquery');
 import ReactDataGrid from 'react-data-grid';
 
 //const columns = [];
-const columns = [{key: '_id', name: 'ID'}, {key: 'articleName', name: 'ArticleName'}, {
-    key: 'description',
-    name: 'Description'
-}];
+const columns = [
+    {key: '_id', name: 'ID'},
+    {key: 'title', name: 'Title'},
+    {key: 'preview', name: 'Preview'}
+    ];
 
 //const rows = [];
 var rows = [];

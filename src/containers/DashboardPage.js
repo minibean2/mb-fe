@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, {Component, PropTypes} from "react";
+import {Link} from "react-router";
+import InfiniteScroll from "react-infinite-scroll-component";
 var Slider = require('react-slick');
 var $ = require('jquery');
 //var InfiniteScroll = require('react-infinite-scroll-component');
@@ -151,11 +151,8 @@ export default class DashboardPage extends Component {
                         <ul className="allpost-wrapper">
                             <li><a href="abcd.com"><img src={this.res[i].imageURL}/></a>
                                 <h4 style={getColor}><Link
-                                    to={'/article/' + this.res[i]._id}>{this.res[i].articleName}</Link></h4>
+                                    to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link></h4>
                                 <div>
-                                    <a>
-                                        <span>{this.res[i].description}</span>
-                                    </a>
                                     <h6>
                                         <a className="tag">Amit</a>
                                         <font className="admin-visible-field">02/02/2017</font>
@@ -167,7 +164,7 @@ export default class DashboardPage extends Component {
                             </li>
                         </ul>
                         <ul className="allpost-wrapper">
-                            {this.showBody(this.res[i].body)}
+                            {this.showBody(this.res[i].preview)}
                         </ul>
                         <span></span>
                     </div>
@@ -184,9 +181,7 @@ export default class DashboardPage extends Component {
     }
 
     showBody(value) {
-        console.log(value);
         if (value != null && value != "") {
-
             return (
                 <div dangerouslySetInnerHTML={{__html: value}}></div>
             )
@@ -212,12 +207,8 @@ export default class DashboardPage extends Component {
                                 <ul className="allpost-wrapper">
                                     <li><a href="abcd.com"><img src={res.res[i].imageURL}/></a>
                                         <h4 style={getColor}><Link
-                                            to={'/article/' + res.res[i]._id}>{res.res[i].articleName}</Link></h4>
-
+                                            to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
-                                            <a>
-                                                <span>{res.res[i].description}</span>
-                                            </a>
                                             <h6>
                                                 <a className="tag">Amit</a>
                                                 <font className="admin-visible-field">02/02/2017</font>
@@ -234,7 +225,7 @@ export default class DashboardPage extends Component {
                                     </li>
                                 </ul>
                                 <ul className="allpost-wrapper">
-                                    {this.showBody(res.res[i].body)}
+                                    {this.showBody(res.res[i].preview)}
                                 </ul>
                                 <span></span>
                             </div>

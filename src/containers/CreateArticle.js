@@ -65,8 +65,8 @@ export default class RepoPage extends Component {
         }
 
         var data = {
-            articleName: $(".articleName").val(),
-            description: $(".description").val(),
+            title: $(".title").val(),
+            preview: $(".preview").val(),
             imageURL: $(".imgUrl").val(),
             body: htmlBody,
             categoryId: catId,
@@ -102,20 +102,20 @@ export default class RepoPage extends Component {
                                 <hr></hr>
                                 <div className="form-group col-md-12">
                                     <div className="col-md-4">
-                                        <label>Article Name</label>
+                                        <label>Title</label>
                                     </div>
                                     <div className="col-md-8">
-                                        <input type="text" className="form-control articleName col-md-8"
-                                               name="articleName"/>
+                                        <input type="text" className="form-control title col-md-8"
+                                               name="title"/>
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-12">
                                     <div className="col-md-4">
-                                        <label>Description :</label>
+                                        <label>Preview :</label>
                                     </div>
                                     <div className="col-md-8">
-                                        <input type="text" className="form-control description col-md-8"
-                                               name="description"/>
+                                        <input type="text" className="form-control preview col-md-8"
+                                               name="preview"/>
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-12">
@@ -128,7 +128,7 @@ export default class RepoPage extends Component {
                                 </div>
                                 <div className="form-group  col-md-12">
                                     <div className="col-md-4">
-                                        <label>Categorie :</label>
+                                        <label>Category :</label>
                                     </div>
                                     <div className="col-md-8">
                                         <Dropdown options={options} onChange={this.logChange} value={defaultOption}/>
@@ -142,15 +142,27 @@ export default class RepoPage extends Component {
                                     <div className="col-md-12">
 
                                         <TinyMCE
-                                            content="<p>This is the initial content of the editor</p>"
+                                            content=""
                                             config={{
+                                                selector: "textarea",
                                                 height: "400",
                                                 paste_data_images: true,
+                                                image_advtab: true,
                                                 plugins: [
-                                                    "autolink link image lists print preview",
-                                                    "emoticons template paste textcolor colorpicker textpattern"
+                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc"
                                                 ],
-                                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
+                                                toolbar1: "undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                                                toolbar2: "print preview media | forecolor backcolor emoticons | codesample",
+                                                /*
+                                                 plugins: [
+                                                 "autolink link image lists print preview",
+                                                 "emoticons template paste textcolor colorpicker textpattern"
+                                                 ],
+                                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
+                                                 */
                                                 file_picker_callback: function (callback, value, meta) {
                                                     if (meta.filetype == 'image') {
                                                         $('#upload').trigger('click');

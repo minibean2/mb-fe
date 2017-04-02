@@ -137,13 +137,9 @@ export default class RepoPage extends Component {
                     <div className="col-md-12 col-sm-12" style={{"text-align": "center"}}>
                         <ul className="allpost-wrapper">
                             <li>
-                                <h4 style={getColor}><a>{res.res.articleName}</a></h4>
+                                <h4 style={getColor}><a>{res.res.title}</a></h4>
                                 <div>
-                                    <a>
-                                        <span>{res.res.description}</span>
-                                    </a>
                                     <h6>
-
                                         <font className="admin-visible-field">02/02/2017</font>
                                         <span className="view-count" style={marginLeft}>
                                             <img className="view-icon" src="view.png"/>

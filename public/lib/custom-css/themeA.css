@@ -1917,7 +1917,7 @@ a:focus {
     display: block;
     padding: 20px 0 15px 0;
     border-top: #D8D8D8 thin solid;
-    min-height: 175px;
+    min-height: 100px;
 }
 /*.allpost-wrapper li:hover > div h4, 
 .allpost-wrapper li:hover > div h6+p{
