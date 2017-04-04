@@ -8,7 +8,8 @@ var $ = require('jquery');
 
 const rows = [];
 var options = [];
-var cat = {"value": "0", "label": ""};
+var selectedOption = {};
+var cat = {"id": "0", "name": ""};
 var htmlBody = "";
 var publishedValue = true;
 var featuredValue = true;
@@ -35,7 +36,7 @@ export default class CreateArticle extends Component {
 
     categoryChange(val) {
         console.log(val);
-        cat = val;
+        selectedOption = val;
     }
 
     handleEditorChange = (e) => {
@@ -60,26 +61,27 @@ export default class CreateArticle extends Component {
     }
 
     saveArticle() {
-        if (cat.value == "0") {
-            cat = options[0].value;
+        if (selectedOption == {}) {
+            selectedOption = options[0].value;
         }
+        cat = {"id": selectedOption.value, "name": selectedOption.label};
 
         var data = {
             title: $(".title").val(),
             preview: $(".preview").val(),
-            imageURL: $(".imgUrl").val(),
+            thumbnailUrl: $(".thumbnailUrl").val(),
+            imageUrl: $(".imgUrl").val(),
             body: htmlBody,
             category: cat,
-            categoryId: cat.value,
             featured: featuredValue,
-            published: publishedValue
+            published: publishedValue,
+            created_date: new Date()
         };
 
-        var fullDate = new Date();
-        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
-
-        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
-        data.created_date = currentDate;
+        //var fullDate = new Date();
+        //var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+        //var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        //data.created_date = currentDate;
 
         console.log("data----", data);
         $.post(configData.url + "api/article/save", data).done((res) => {
@@ -144,7 +146,15 @@ export default class CreateArticle extends Component {
                                 </div>
                                 <div className="form-group  col-md-12">
                                     <div className="col-md-4">
-                                        <label>Thumbnail Image :</label>
+                                        <label>Thumbnail Url :</label>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <input type="text" className="form-control thumbnailUrl col-md-8" name="thumbnailUrl"/>
+                                    </div>
+                                </div>
+                                <div className="form-group  col-md-12">
+                                    <div className="col-md-4">
+                                        <label>Image Url :</label>
                                     </div>
                                     <div className="col-md-8">
                                         <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>

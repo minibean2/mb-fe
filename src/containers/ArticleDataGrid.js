@@ -56,7 +56,7 @@ export default class ArticleDataGrid extends Component {
                 resizable: true
             },
             {
-                key: 'dontReading',
+                key: 'delete',
                 name: ' ',
                 width: 100,
                 resizable: true,
@@ -98,7 +98,7 @@ export default class ArticleDataGrid extends Component {
             console.log("lead...........");
             console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
-                res.res[i].categoryName = res.res[i].category.label;
+                res.res[i].categoryName = res.res[i].category.name;
             }
             rows = res.res;
             console.log(rows);

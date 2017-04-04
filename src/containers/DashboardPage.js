@@ -148,12 +148,12 @@ export default class DashboardPage extends Component {
                 <div>
                     <div className="general-box">
                         <ul className="allpost-wrapper">
-                            <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageURL}/></Link>
+                            <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl}/></Link>
                                 <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link>
                                 </h4>
                                 <div>
                                     <h6>
-                                        <a className="tag">{this.res[i].category.label}</a>
+                                        <a className="tag">{this.res[i].category.name}</a>
                                         <font className="admin-visible-field">{this.res[i].created_date}</font>
                                         <span className="view-count" style={marginLeft}><img className="view-icon"
                                                                                              src="view.png"/>view</span>
@@ -210,22 +210,18 @@ export default class DashboardPage extends Component {
                         <div>
                             <div className="general-box">
                                 <ul className="allpost-wrapper">
-                                    <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageURL}/></Link>
+                                    <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl}/></Link>
                                         <h4 style={getColor}><Link
                                             to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
                                             <h6>
-                                                <a className="tag">{res.res[i].category.label}</a>
+                                                <a className="tag">{res.res[i].category.name}</a>
                                                 <font className="admin-visible-field">{res.res[i].created_date}</font>
                                                 <span className="view-count" style={marginLeft}><img
                                                     className="view-icon" src="view.png"/>view</span>
-
                                             </h6>
                                             <div>
-
-
                                             </div>
-
                                         </div>
                                     </li>
                                 </ul>
@@ -303,7 +299,7 @@ export default class DashboardPage extends Component {
                                                     return <div style={{"position": "relative", "width": "100%"}}><a
                                                         href="#"><img key={i}
                                                                       style={{"width": "100%", "height": "180px"}}
-                                                                      src={object.imageURL}/><span style={{
+                                                                      src={object.imageUrl}/><span style={{
                                                         "position": "absolute",
                                                         "top": "147px",
                                                         "left": "0",
