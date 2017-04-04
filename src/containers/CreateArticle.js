@@ -175,14 +175,7 @@ featuredChangeChk(value){
                                   </div>  
                                 </div>
 
-               </div>
-               
-                  
-                   
-
-              
-            </div>
-
+  
            
             <div className="form-group col-md-12">
                <div className="col-md-12">
@@ -242,6 +235,9 @@ featuredChangeChk(value){
                         </div>
                     </div>
                 </div>
+                </div>
+                  
+            </div>
             </div>
 
         )
