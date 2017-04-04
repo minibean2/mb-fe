@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="887792f4-2656-4da5-ba6d-35ae8bfe3cd8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.js" afterPath="$PROJECT_DIR$/src/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/ArticleDataGrid.js" afterPath="$PROJECT_DIR$/src/containers/ArticleDataGrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/DashboardPage.js" afterPath="$PROJECT_DIR$/src/containers/DashboardPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/CreateArticle.js" afterPath="$PROJECT_DIR$/src/containers/CreateArticle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,8 +48,8 @@
       <file leaf-file-name="ArticleDataGrid.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/ArticleDataGrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="245">
+              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -60,15 +58,11 @@
       <file leaf-file-name="CreateArticle.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/CreateArticle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+            <state relative-caret-position="191">
+              <caret line="187" column="53" lean-forward="false" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
               <folding>
-                <marker date="1491297802000" expanded="true" signature="7:15" ph="..." />
-                <marker date="1491297802000" expanded="true" signature="9440:9458" ph="&lt;div/&gt;" />
-                <marker date="1491297802000" expanded="true" signature="9440:9477" ph="&lt;div/&gt;" />
-                <marker date="1491297802000" expanded="true" signature="9440:9494" ph="{...}" />
-                <marker date="1491297802000" expanded="true" signature="9440:9496" ph="{...}" />
-                <marker date="1491297802000" expanded="true" signature="9491:9494" ph="{...}" />
+                <marker date="1491300749000" expanded="true" signature="7:15" ph="..." />
+                <marker date="1491300749000" expanded="true" signature="11252:11255" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -123,18 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>articleId</find>
-      <find>end</find>
-      <find>end=</find>
-      <find>pageSize</find>
-      <find>tiny</find>
-      <find>.body</find>
-      <find>body</find>
-      <find>showBody</find>
-      <find>.desc</find>
-      <find>description</find>
-      <find>articlename</find>
-      <find>category</find>
       <find>categor</find>
       <find>abcd</find>
       <find>&lt;Link</find>
@@ -152,8 +134,23 @@
       <find>.name</find>
       <find>generateCatDivs</find>
       <find>category.name</find>
+      <find>feature</find>
+      <find>featured</find>
+      <find>setState</find>
+      <find>cat</find>
+      <find>logcha</find>
+      <find>catid</find>
+      <find>backpage</find>
+      <find>active</find>
+      <find>state</find>
+      <find>initial</find>
+      <find>initial content</find>
       <find>generateDivs</find>
+      <find>data =</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -169,13 +166,13 @@
         <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/containers/Login.js" />
         <option value="$PROJECT_DIR$/public/lib/custom-css/themeA.css" />
-        <option value="$PROJECT_DIR$/src/containers/CreateArticle.js" />
         <option value="$PROJECT_DIR$/src/containers/ArticlePage.js" />
         <option value="$PROJECT_DIR$/src/components/Main.js" />
         <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/config.js" />
         <option value="$PROJECT_DIR$/src/containers/DashboardPage.js" />
         <option value="$PROJECT_DIR$/src/containers/ArticleDataGrid.js" />
+        <option value="$PROJECT_DIR$/src/containers/CreateArticle.js" />
       </list>
     </option>
   </component>
@@ -197,7 +194,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="93" />
+    <option name="x" value="105" />
     <option name="y" value="45" />
     <option name="width" value="1329" />
     <option name="height" value="833" />
@@ -227,88 +224,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reducers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="containers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mb-fe_master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,7 +317,7 @@
       <option name="presentableId" value="Default" />
       <updated>1490878963876</updated>
       <workItem from="1490878966077" duration="10810000" />
-      <workItem from="1491136269347" duration="2375000" />
+      <workItem from="1491136269347" duration="4271000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <created>1491022790074</created>
@@ -432,14 +347,21 @@
       <option name="project" value="LOCAL" />
       <updated>1491137427353</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Bugs">
+      <created>1491299233548</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1491299233549</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13185000" />
+    <option name="totallyTimeSpent" value="15081000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="93" y="45" width="1329" height="833" extended-state="0" />
+    <frame x="105" y="45" width="1329" height="833" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2603461" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -520,12 +442,8 @@
         <state relative-caret-position="360">
           <caret line="25" column="24" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="24" />
           <folding>
-            <marker date="1491297802000" expanded="true" signature="7:15" ph="..." />
-            <marker date="1491297802000" expanded="true" signature="9440:9458" ph="&lt;div/&gt;" />
-            <marker date="1491297802000" expanded="true" signature="9440:9477" ph="&lt;div/&gt;" />
-            <marker date="1491297802000" expanded="true" signature="9440:9494" ph="{...}" />
-            <marker date="1491297802000" expanded="true" signature="9440:9496" ph="{...}" />
-            <marker date="1491297802000" expanded="true" signature="9491:9494" ph="{...}" />
+            <marker date="1491300749000" expanded="true" signature="7:15" ph="..." />
+            <marker date="1491300749000" expanded="true" signature="11252:11255" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -588,21 +506,6 @@
         <state relative-caret-position="252">
           <caret line="1916" column="19" lean-forward="true" selection-start-line="1916" selection-start-column="19" selection-end-line="1916" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/CreateArticle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-          <folding>
-            <marker date="1491297802000" expanded="true" signature="7:15" ph="..." />
-            <marker date="1491297802000" expanded="true" signature="9440:9458" ph="&lt;div/&gt;" />
-            <marker date="1491297802000" expanded="true" signature="9440:9477" ph="&lt;div/&gt;" />
-            <marker date="1491297802000" expanded="true" signature="9440:9494" ph="{...}" />
-            <marker date="1491297802000" expanded="true" signature="9440:9496" ph="{...}" />
-            <marker date="1491297802000" expanded="true" signature="9491:9494" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -683,10 +586,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-tinymce/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/CreateArticle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="187" column="53" lean-forward="false" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
+          <folding>
+            <marker date="1491300749000" expanded="true" signature="7:15" ph="..." />
+            <marker date="1491300749000" expanded="true" signature="11252:11255" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/ArticleDataGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state relative-caret-position="245">
+          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding />
         </state>
       </provider>
