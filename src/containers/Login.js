@@ -1,19 +1,16 @@
-import React, {Component, PropTypes} from 'react'
-import {Link, browserHistory} from 'react-router'
+import React, { Component, PropTypes } from 'react'
+import { Link,browserHistory } from 'react-router'
+import configData from '../config.js';
+var $ = require ('jquery');
 
-var $ = require('jquery');
 
-var urlPath = "http://localhost:9000/";
-
-//const rowGetter = rowNumber => rows[rowNumber];
-
-export default class LoginPage extends Component {
-
-    constructor(props) {
-        super(props);
-        console.log(this.urlPath);
-        this.state = {msg: []};
-    }
+export default class Login extends Component {
+ 
+  constructor (props) {
+    super(props);
+    this.state = {msg: []};
+   
+  }
 
     LoginFunction() {
         var self = this;
@@ -23,7 +20,7 @@ export default class LoginPage extends Component {
             username: $(".username").val(),
             password: $(".password").val()
         };
-        $.get(urlPath + "api/login?username=" + data.username + "&password=" + data.password).done((res) => {
+        $.get(configData.url + "api/login?username=" + data.username + "&password=" + data.password).done((res) => {
             console.log("lead...........");
             console.log(res);
             localStorage.setItem('token', res.token);

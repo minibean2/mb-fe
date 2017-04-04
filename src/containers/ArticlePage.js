@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import InfiniteScroll from 'react-infinite-scroll-component';
+import configData from '../config.js';
 var Slider = require('react-slick');
-var $ = require('jquery');
-//var InfiniteScroll = require('react-infinite-scroll-component');
+var $ = require ('jquery');
 
-var urlPath = "http://localhost:9000/";
+ 
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
 const margin = {
     margin: 0
@@ -42,7 +42,7 @@ const marginLeft = {
 const divs = [];
 const data = [];
 
-export default class RepoPage extends Component {
+export default class ArticlePage extends Component {
 
     constructor(props) {
         super(props);
@@ -50,9 +50,7 @@ export default class RepoPage extends Component {
         var urlArr = [];
         urlArr = url.split("/");
         this.articleId = urlArr[urlArr.length - 1];
-        //[url.split("/").length-1];
-
-        //this.props = props;
+       
         this.state = {divs: divs};
         this.htmlCategories = [];
         this.generateDivs = this.generateDivs.bind(this);
@@ -80,20 +78,24 @@ export default class RepoPage extends Component {
         this.count = 0;
         if (value == "All articles") {
 
-            $.get(urlPath + "api/articles").done((res) => {
-                this.res = res.res;
-                this.generateDivs();
-            });
-        } else {
+         $.get(configData.url+"api/articles").done((res) => {
+           this.res = res.res;
+           this.generateDivs();
+        }); 
+    }else{
+          
+        $.get(configData.url+"api/article/category/"+value).done((res) => {
+          console.log(res);
+         
+          this.state = {divs: divs};
+          arr = res.res;
+           this.res = arr;
+           
+          this.generateDivs();
+       }); 
+    }
+   
 
-            $.get(urlPath + "api/article/category/" + value).done((res) => {
-                this.state = {divs: divs};
-                arr = res.res;
-                this.res = arr;
-
-                this.generateDivs();
-            });
-        }
     }
 
     showBody(value) {
@@ -107,7 +109,7 @@ export default class RepoPage extends Component {
     generateDivs() {
 
         let moreDivs = [];
-        $.get(urlPath + "api/article?articleId=" + this.articleId).done((res) => {
+        $.get(configData.url + "api/article?articleId=" + this.articleId).done((res) => {
             moreDivs.push(
                 <div className="general-box">
                     <div className="col-md-12 col-sm-12" style={{"textAlign": "center"}}>
@@ -125,7 +127,7 @@ export default class RepoPage extends Component {
                                 <h4 style={getColor}><a>{res.res.title}</a></h4>
                                 <div>
                                     <h6>
-                                        <font className="admin-visible-field">02/02/2017</font>
+                                        <font className="admin-visible-field">{res.res.created_date}</font>
                                         <span className="view-count" style={marginLeft}>
                                             <img className="view-icon" src="view.png"/>
                                             View

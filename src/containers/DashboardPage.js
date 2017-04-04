@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from "react";
 import {Link} from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
+import configData from '../config.js';
 var Slider = require('react-slick');
-var $ = require('jquery');
-//var InfiniteScroll = require('react-infinite-scroll-component');
-var urlPath = "http://localhost:9000/";
+var $ = require ('jquery');
 
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
 const margin = {
@@ -39,6 +38,8 @@ const marginLeft = {
 const divs = [];
 const data = [];
 
+var imgs = [];
+var items = [];
 export default class DashboardPage extends Component {
 
     constructor() {
@@ -52,7 +53,7 @@ export default class DashboardPage extends Component {
         this.pageSize = 5;
         this.scrollThreshold = 0.5;
 
-        $.get(urlPath + "api/categories").done((res) => {
+        $.get(configData.url + "api/categories").done((res) => {
             console.log(res);
 
             this.categories = res;
@@ -75,35 +76,38 @@ export default class DashboardPage extends Component {
         return this.refs.input.value
     }
 
-    setInputValue = (val) => {
+  setInputValue = (val) => {
+   
+    this.refs.input.value = val
+  }
+  
+   categoriesClick(value) {
+    console.log(value);
+    this.flag = 0;
+     var arr = [];
+          this.state = {divs: arr,img:[]};
+          this.count = 0;
+    if(value == "All articles"){
 
-        this.refs.input.value = val
+        // $.get(configData.url+"api/articles").done((res) => {
+          // this.res = res.res;
+          this.state = {divs: []};
+          this.count = 0;
+           this.generateDivs();
+        //}); 
+    }else{
+          
+        $.get(configData.url+"api/article/category/"+value).done((res) => {
+          console.log(res);
+          this.flag = 1;
+          this.state = {divs: divs};
+          arr = res.res;
+           this.res = arr;
+           
+          this.generateCatDivs();
+       }); 
     }
-
-    categoriesClick(value) {
-        console.log(value);
-        this.flag = 0;
-        var arr = [];
-        this.state = {divs: arr};
-        this.count = 0;
-        if (value == "All articles") {
-            // $.get(urlPath+"api/articles").done((res) => {
-            // this.res = res.res;
-            this.state = {divs: []};
-            this.count = 0;
-            this.generateDivs();
-            //});
-        } else {
-            $.get(urlPath + "api/article/category/" + value).done((res) => {
-                console.log(res);
-                this.flag = 1;
-                this.state = {divs: divs};
-                arr = res.res;
-                this.res = arr;
-
-                this.generateCatDivs();
-            });
-        }
+   
 
     }
 
@@ -112,7 +116,7 @@ export default class DashboardPage extends Component {
         this.state = {divs: arr};
         this.count = 0;
         console.log(articleId);
-        $.get(urlPath + "api/article?articleId=" + articleId).done((res) => {
+        $.get(configData.url + "api/article?articleId=" + articleId).done((res) => {
             console.log(res);
 
             this.state = {divs: divs};
@@ -153,8 +157,8 @@ export default class DashboardPage extends Component {
                                 <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link></h4>
                                 <div>
                                     <h6>
-                                        <a className="tag">Amit</a>
-                                        <font className="admin-visible-field">02/02/2017</font>
+                                        <a className="tag">{this.res[i].category.label}</a>
+                                        <font className="admin-visible-field">{this.res[i].created_date}</font>
                                         <span className="view-count" style={marginLeft}><img className="view-icon"
                                                                                              src="view.png"/>view</span>
 
@@ -169,8 +173,13 @@ export default class DashboardPage extends Component {
                     </div>
                 </div>
             );
+             if(this.res[i].featured === true){
+                      items.push(this.res[i]);
 
+                    }
+                      
             this.count++;
+
         }
 
         setTimeout(() => {
@@ -189,13 +198,14 @@ export default class DashboardPage extends Component {
     }
 
     generateDivs() {
-
+	     items= [];
         if (this.flag == 0) {
             console.log(this.state.divs);
             console.log(this.count);
 
             let moreDivs = [];
-            $.get(urlPath + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
+	    let img = [];
+            $.get(configData.url + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
                     console.log(res.res[i]._id);
@@ -208,8 +218,8 @@ export default class DashboardPage extends Component {
                                         <h4 style={getColor}><Link to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
                                             <h6>
-                                                <a className="tag">Amit</a>
-                                                <font className="admin-visible-field">02/02/2017</font>
+                                                <a className="tag">{res.res[i].category.label}</a>
+                                                <font className="admin-visible-field">{res.res[i].created_date}</font>
                                                 <span className="view-count" style={marginLeft}><img
                                                     className="view-icon" src="view.png"/>view</span>
 
@@ -229,7 +239,11 @@ export default class DashboardPage extends Component {
                             </div>
                         </div>
                     );
+                    if(res.res[i].featured === true){
+                      items.push(res.res[i]);
 
+                    }
+                      
                     this.count++;
                 }
 
@@ -287,23 +301,12 @@ export default class DashboardPage extends Component {
                                     <div className="general-box" style={{"height": "180px", "width": "100%"}}>
 
                                         <Slider {...settings}>
-                                            <a href="/articles#!/article/3/4">
-                                                <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
-                                            </a>
-                                            <a href="/articles#!/article/3/4">
-                                                <img style={{"width": "100%"}}
-                                                     src="../lib/images/article/cat_6.jpg"/>
-                                            </a>
-                                            <a href="/articles#!/article/3/4">
-                                                <img style={{"width": "100%"}}
-                                                     src="../lib/images/article/cat_7.jpg"/>
-                                            </a>
-                                            <a href="/articles#!/article/3/4">
-                                                <img style={{"width": "100%"}}
-                                                     src="../lib/images/article/cat_2.jpg"/>
-                                            </a>
-
-                                        </Slider>
+                               <div>
+                                  {items.map(function(object, i) {
+                                     return <div style={{"position": "relative","width":"100%"}}><a href="#"><img key={i} style={{"width": "100%","height": "180px"}} src={object.imageURL}/><span style={{"position": "absolute","top":"147px","left":"0","width":"100%","fontSize":"20px"}}>{object.title}</span></a></div>
+                                  })}
+                               </div>
+                              </Slider>
 
                                     </div>
                                 </div>

@@ -2,8 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
 var Select = require('react-select');
 import Dropdown from 'react-dropdown'
-//import InfiniteScroll from 'react-infinite-scroll-component';
-//var Slider = require('react-slick');
+import configData from '../config.js';
 import TinyMCE from 'react-tinymce';
 var $ = require('jquery');
 //import ReactDataGrid from 'react-data-grid';
@@ -12,31 +11,36 @@ const rows = [];
 var options = [];
 var catId = "0";
 var htmlBody = "";
+var activeValue = true;
+var featuredValue = true;
 const defaultOption = "";
-var urlPath = "http://localhost:9000/";
 
+ 
 const rowGetter = rowNumber => rows[rowNumber];
 
-export default class RepoPage extends Component {
-
-    constructor(props) {
-        super(props);
-        $.get(urlPath + "api/categories").done((res) => {
-            console.log(res);
-            this.categories = res;
-            for (var i = 0; i < this.categories.length; i++) {
-                options.push({"value": this.categories[i]._id, "label": this.categories[i].name});
+export default class CreateArticle extends Component {
+ 
+  constructor (props) {
+    super(props);
+     this.state = {active: true, featured:true};
+     $.get(configData.url+"api/categories").done((res) => {
+      console.log(res);
+       this.categories = res;
+      for(var i=0;i<this.categories.length;i++){
+                options.push({"value":this.categories[i]._id,"label":this.categories[i].name});
             }
             const defaultOption = options[0];
             this.setState();
-        });
+       });     
+   
+  }
 
-    }
 
-    logChange(val) {
-        console.log(val);
-        catId = val.value;
-    }
+logChange(val) {
+  console.log(val);
+  catId = val;
+
+}
 
     handleEditorChange = (e) => {
         console.log('Content was updated:', e.target.getContent());
@@ -69,23 +73,46 @@ export default class RepoPage extends Component {
             preview: $(".preview").val(),
             imageURL: $(".imgUrl").val(),
             body: htmlBody,
-            categoryId: catId,
-            created_date: new Date()
+            category: catId,
+            categoryId:catId.value,
+            featured:featuredValue,
+            status:activeValue
         };
+var fullDate = new Date();
+var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+ 
+var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+data.created_date = currentDate;
 
-        console.log("data----", data);
-        $.post(urlPath + "api/article/save", data).done((res) => {
-            console.log("lead...........");
-            browserHistory.push('/articleGrid');
-            // this.setState();
-        });
-    }
+           console.log("data----",data);
+           $.post(configData.url+"api/article/save",data).done((res) => {
+           console.log("lead...........");
+           browserHistory.push('/articleGrid');
+         
+        }); 
+}
 
-    BackPage() {
-        browserHistory.push('/articleGrid');
-    }
+BackPage(){
+    browserHistory.push('/articleGrid');
+}
 
-    render() {
+activeChangeChk(value){
+    console.log(value);
+     this.setState({
+        active: !this.state.active      
+    })
+
+      activeValue = !this.state.active;
+}
+
+featuredChangeChk(value){
+      this.setState({
+        featured: !this.state.featured      
+    })
+      featuredValue = !this.state.featured;
+}
+
+  render() {
 
         return (
 
@@ -134,50 +161,60 @@ export default class RepoPage extends Component {
                                         <Dropdown options={options} onChange={this.logChange} value={defaultOption}/>
                                     </div>
                                 </div>
+                                <div className="form-group  col-md-12">
+                                 <div className="col-md-4">
+                                 </div>
+                                  <div className="col-md-8">
 
-                                <div className="form-group col-md-12">
-                                    <div className="col-md-12">
-                                        <label>Html Body :</label>
-                                    </div>
-                                    <div className="col-md-12">
+                                      <div  className="col-md-6">
+                                        <input type="checkbox" checked={this.state.active} onChange={this.activeChangeChk.bind(this, this.state.active)} />&nbsp;&nbsp;Active
+                                      </div>
+                                      <div  className="col-md-6">
+                                        <input type="checkbox"  checked={this.state.featured} onChange={this.featuredChangeChk.bind(this, this.state.featured)}/>&nbsp;&nbsp;Featured
+                                      </div>
+                                  </div>  
+                                </div>
 
-                                        <TinyMCE
-                                            content=""
-                                            config={{
-                                                selector: "textarea",
-                                                height: "400",
-                                                paste_data_images: true,
-                                                image_advtab: true,
-                                                plugins: [
-                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc"
-                                                ],
-                                                toolbar1: "undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-                                                toolbar2: "print preview media | forecolor backcolor emoticons | codesample",
-                                                /*
-                                                 plugins: [
-                                                 "autolink link image lists print preview",
-                                                 "emoticons template paste textcolor colorpicker textpattern"
-                                                 ],
-                                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
-                                                 */
-                                                file_picker_callback: function (callback, value, meta) {
-                                                    if (meta.filetype == 'image') {
-                                                        $('#upload').trigger('click');
-                                                        $('#upload').on('change', function () {
-                                                            var file = this.files[0];
-                                                            var reader = new FileReader();
-                                                            reader.onload = function (e) {
-                                                                callback(e.target.result, {
-                                                                    alt: ''
-                                                                });
-                                                            };
-                                                            reader.readAsDataURL(file);
-                                                        });
-                                                    }
-                                                }
+               </div>
+               
+                  
+                   
+
+              
+            </div>
+
+           
+            <div className="form-group col-md-12">
+               <div className="col-md-12">
+                      <label>Html Body :</label>
+               </div>
+               <div className="col-md-12"> 
+                 
+                     <TinyMCE
+        content="<p>This is the initial content of the editor</p>"
+        config={{
+        height: "400", 
+          paste_data_images: true,
+           plugins: [
+              "autolink link image lists print preview",
+              "emoticons template paste textcolor colorpicker textpattern"
+          ],
+          toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
+           file_picker_callback: function(callback, value, meta) {
+            if (meta.filetype == 'image') {
+              $('#upload').trigger('click');
+              $('#upload').on('change', function() {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  callback(e.target.result, {
+                    alt: ''
+                  });
+                };
+                reader.readAsDataURL(file);
+              });
+            }
+          }
 
                                             }}
 
@@ -198,8 +235,7 @@ export default class RepoPage extends Component {
                                         Save
                                     </button>
                                 </div>
-                            </div>
-                        </div>
+                           
                         <div className="col-md-1" style={{"margin-top": "5px"}}>
                         </div>
                         <div className="col-md-12" style={{"margin-top": "5px"}}>
