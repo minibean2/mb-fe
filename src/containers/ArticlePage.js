@@ -169,7 +169,10 @@ export default class ArticlePage extends Component {
         return (
 
             <div style={{"margin-top": "80px"}}>
-                <div className="themeA-container">
+             <div className="col-md-1">
+             </div>
+             <div className="col-md-10">
+                    <div className="themeA-container">
                     <div className="row">
                         <div className="col-md-3" style={{"margin-top": "5px"}}>
                         </div>
@@ -192,6 +195,10 @@ export default class ArticlePage extends Component {
                         </div>
                     </div>
                 </div>
+             </div>
+             <div className="col-md-1">
+             </div>
+                
             </div>
 
         )

@@ -155,7 +155,10 @@ export default class ArticleDataGrid extends Component {
         return (
 
             <div style={{"margin-top": "80px"}}>
-                <div className="themeA-container">
+            <div className="col-md-1">
+             </div>
+             <div className="col-md-10">
+                 <div className="themeA-container">
                     <div className="row">
 
                         <div className="col-md-12" style={{
@@ -185,6 +188,10 @@ export default class ArticleDataGrid extends Component {
 
                     </div>
                 </div>
+             </div>
+             <div className="col-md-1">
+             </div>
+               
             </div>
 
         )

@@ -281,9 +281,12 @@ export default class DashboardPage extends Component {
 
 
             <div style={{"margin-top": "80px"}}>
-                <div className="themeA-container">
+             <div className="col-md-1">
+             </div>
+             <div className="col-md-10">
+                    <div className="themeA-container">
                     <div className="row">
-                        <div className="col-lg-3 col-md-4 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
+                        <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
                             <div id="articles-slider" className="general-box">
                                 <a className="row col-md-12" style={{"font-size": "17px"}}
                                    onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
@@ -291,7 +294,7 @@ export default class DashboardPage extends Component {
                             </div>
                         </div>
 
-                        <div className="col-lg-6 col-md-6 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
                             <div>
                                 <div>
                                     <div className="general-box" style={{"height": "180px", "width": "100%"}}>
@@ -329,7 +332,7 @@ export default class DashboardPage extends Component {
                             </div>
 
                         </div>
-                          <div className="col-lg-3 col-md-4 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
+                          <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
                             <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
                                
                             </div>
@@ -339,6 +342,10 @@ export default class DashboardPage extends Component {
                         </div>
                     </div>
                 </div>
+             </div>
+             <div className="col-md-1">
+             </div>
+                
             </div>
 
         )
