@@ -188,7 +188,7 @@ export default class CreateArticle extends Component {
                                         <label>Posted Date :</label>
                                     </div>
                                     <div className="col-md-8">
-                                        <DatePicker selected={this.state.date} onChange={this.dateChange.bind(this)} />
+                                        <DatePicker dateFormat="DD-MM-YYYY" selected={this.state.date} onChange={this.dateChange.bind(this)} />
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-12">

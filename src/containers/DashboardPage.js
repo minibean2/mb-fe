@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import configData from '../config.js';
 var Slider = require('react-slick');
 var $ = require('jquery');
+var moment = require('moment');
 
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
 const margin = {
@@ -128,7 +129,7 @@ export default class DashboardPage extends Component {
         console.log(this.categories);
         let menu = [];
         for (let i = 0; i < this.categories.length; i++) {
-            menu.push(<a className="col-md-12" style={{"font-size": "17px"}}
+            menu.push(<a className="row col-md-12" style={{"font-size": "17px"}}
                          onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>);
         }
         setTimeout(() => {
@@ -144,6 +145,7 @@ export default class DashboardPage extends Component {
         for (let i = 0; i < this.res.length; i++) {
             // console.log(res.res[i]._id);
             //var id = res.res[i]._id;
+             this.res[i].created_date = moment(this.res[i].created_date).format("DD-MM-YYYY");
             moreDivs.push(
                 <div>
                     <div className="general-box">
@@ -206,6 +208,7 @@ export default class DashboardPage extends Component {
                 for (let i = 0; i < 6; i++) {
                     console.log(res.res[i]._id);
                     //var id = res.res[i]._id;
+                     res.res[i].created_date = moment(res.res[i].created_date).format("DD-MM-YYYY");
                     moreDivs.push(
                         <div>
                             <div className="general-box">
@@ -280,15 +283,15 @@ export default class DashboardPage extends Component {
             <div style={{"margin-top": "80px"}}>
                 <div className="themeA-container">
                     <div className="row">
-                        <div className="col-md-3" style={{"margin-top": "5px"}}>
+                        <div className="col-lg-3 col-md-4 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
                             <div id="articles-slider" className="general-box">
-                                <a className="col-md-12" style={{"font-size": "17px"}}
+                                <a className="row col-md-12" style={{"font-size": "17px"}}
                                    onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
                                 {this.htmlCategories}
                             </div>
                         </div>
 
-                        <div className="col-md-6" style={{"margin-top": "5px"}}>
+                        <div className="col-lg-6 col-md-6 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
                             <div>
                                 <div>
                                     <div className="general-box" style={{"height": "180px", "width": "100%"}}>
@@ -326,7 +329,7 @@ export default class DashboardPage extends Component {
                             </div>
 
                         </div>
-                          <div className="col-md-3" style={{"margin-top": "5px"}}>
+                          <div className="col-lg-3 col-md-4 col-sm-7 col-xs-7" style={{"margin-top": "5px"}}>
                             <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
                                
                             </div>

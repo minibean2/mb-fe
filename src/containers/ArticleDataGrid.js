@@ -4,7 +4,7 @@ import configData from '../config.js';
 const {Editors, Toolbar, Formatters} = require('react-data-grid-addons');
 var $ = require('jquery');
 import ReactDataGrid from 'react-data-grid';
-
+var moment = require('moment');
 //const rows = [];
 //const columns = [];
 //columns = [{ key: '_id', name: 'ID' }, { key: 'articleName', name: 'ArticleName' },{ key: 'categoryName', name: 'categoryName' },{ key: 'postDate', name: 'PostedDate' },{ key: 'description', name: 'Description' }];
@@ -17,6 +17,9 @@ export default class ArticleDataGrid extends Component {
 
     constructor(props) {
         super(props);
+
+        
+        this.state = {selectedRows: []};
 
         this.getAllArticles();
         var mi = this;
@@ -105,8 +108,14 @@ export default class ArticleDataGrid extends Component {
             console.log("lead...........");
             console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
+                res.res[i].id = (i+1);
                 res.res[i].categoryName = res.res[i].category.name;
+                res.res[i].post_date = moment(res.res[i].post_date).format("DD-MM-YYYY");
+                res.res[i].created_date = moment(res.res[i].created_date).format("DD-MM-YYYY");
+               
+            
             }
+
             rows = res.res;
             console.log(rows);
             this.setState();
@@ -118,6 +127,28 @@ export default class ArticleDataGrid extends Component {
         console.log("select");
         console.log(cell);
     }
+    onRowSelect(rows) {
+        console.log(rows);
+        var articleIdList = [];
+        var articleObject = {};
+        for (let i = 0; i < rows.length; i++) {
+            articleIdList.push(rows[i].id);
+        }
+       
+        articleObject.articleIdList = articleIdList;
+         console.log(articleObject);
+        
+    }
+
+    onCellSelected({ rowIdx, idx }) {
+        this.grid.openCellEditor(rowIdx, idx);
+    }
+
+      onCellDeSelected({ rowIdx, idx }) {
+        if (idx === 2) {
+          alert('the editor for cell (' + rowIdx + ',' + idx + ') should have just closed');
+        }
+      }
 
     render() {
 
@@ -138,12 +169,15 @@ export default class ArticleDataGrid extends Component {
                         <div className="col-md-12">
 
                             <ReactDataGrid
-                                enableCellSelect={true}
+                                rowKey="id"
                                 columns={columns}
                                 rowGetter={rowGetter}
                                 rowsCount={rows.length}
                                 onGridRowsUpdated={this.handleGridRowsUpdated}
                                 enableRowSelect={true}
+                                onRowSelect={this.onRowSelect}
+                                onCellSelected={this.onCellSelected}
+                                onCellDeSelected={this.onCellDeSelected}
                                 rowHeight={50}
                                 minHeight={600}
                                 rowScrollTimeout={200}/>
