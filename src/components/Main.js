@@ -78,13 +78,24 @@ export default class Main extends Component {
             )
         } else {
             userMessage = (
-                <div id="header-menu" className="col-md-12" class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-3" id="main-logo"><a href="/">
+                <div id="header-menu" className="col-md-12 row">
+                    <div className="col-md-3 col-sm-3 col-xs-3" id="main-logo"><a href="/">
                         <img src="../lib/images/logo-2.png"/></a></div>
                     <div id="main-menu">
                         <ul>
-                            <li class="col-md-1 col-sm-1 col-xs-1">
+                            <li className="col-md-1 col-sm-1 col-xs-1">
                                 <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png"/></a>
+                            </li>
+                            <li className="col-md-3 col-sm-3 col-xs-3" style={{"width": "200px"}}>
+                                <div className="pull-right">
+                                    <div id="fb-btn-set">
+                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
+                                           target="_blank"><span>小萌豆 miniBean</span></a>
+                                        <iframe className="fb-like-btn" frameborder="0" scrolling="no"
+                                                allowtransparency="true"
+                                                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>

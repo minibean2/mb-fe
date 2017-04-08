@@ -103,7 +103,7 @@
 }
 #main-menu {
     position: relative; 
-    top: 30px; 
+    /*top: 30px;*/
     left: 250px; 
     height: 102px
 }
