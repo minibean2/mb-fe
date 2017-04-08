@@ -3,9 +3,9 @@ import {Link} from 'react-router'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import configData from '../config.js';
 var Slider = require('react-slick');
-var $ = require ('jquery');
+var $ = require('jquery');
+var moment = require('moment');
 
- 
 const GITHUB_REPO = 'https://github.com/reactjs/redux'
 const margin = {
     margin: 0
@@ -50,7 +50,7 @@ export default class ArticlePage extends Component {
         var urlArr = [];
         urlArr = url.split("/");
         this.articleId = urlArr[urlArr.length - 1];
-       
+
         this.state = {divs: divs};
         this.htmlCategories = [];
         this.generateDivs = this.generateDivs.bind(this);
@@ -78,23 +78,23 @@ export default class ArticlePage extends Component {
         this.count = 0;
         if (value == "All articles") {
 
-         $.get(configData.url+"api/articles").done((res) => {
-           this.res = res.res;
-           this.generateDivs();
-        }); 
-    }else{
-          
-        $.get(configData.url+"api/article/category/"+value).done((res) => {
-          console.log(res);
-         
-          this.state = {divs: divs};
-          arr = res.res;
-           this.res = arr;
-           
-          this.generateDivs();
-       }); 
-    }
-   
+            $.get(configData.url + "api/articles").done((res) => {
+                this.res = res.res;
+                this.generateDivs();
+            });
+        } else {
+
+            $.get(configData.url + "api/article/category/" + value).done((res) => {
+                console.log(res);
+
+                this.state = {divs: divs};
+                arr = res.res;
+                this.res = arr;
+
+                this.generateDivs();
+            });
+        }
+
 
     }
 
@@ -110,6 +110,7 @@ export default class ArticlePage extends Component {
 
         let moreDivs = [];
         $.get(configData.url + "api/article?articleId=" + this.articleId).done((res) => {
+            res.res.post_date = moment(res.res.post_date).format("MMM D, YYYY");
             moreDivs.push(
                 <div className="general-box">
                     <div className="col-md-12 col-sm-12" style={{"textAlign": "center"}}>
@@ -127,7 +128,7 @@ export default class ArticlePage extends Component {
                                 <h4 style={getColor}><a>{res.res.title}</a></h4>
                                 <div>
                                     <h6>
-                                        <font className="admin-visible-field">{res.res.created_date}</font>
+                                        <font className="admin-visible-field">{res.res.post_date}</font>
                                         <span className="view-count" style={marginLeft}>
                                             <img className="view-icon" src="view.png"/>
                                             View
@@ -169,36 +170,36 @@ export default class ArticlePage extends Component {
         return (
 
             <div style={{"margin-top": "80px"}}>
-             <div className="col-md-1">
-             </div>
-             <div className="col-md-10">
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-10">
                     <div className="themeA-container">
-                    <div className="row">
-                        <div className="col-md-3" style={{"margin-top": "5px"}}>
-                        </div>
-                        <div className="col-md-6" style={{"margin-top": "5px"}}>
-                            <div>
+                        <div className="row">
+                            <div className="col-md-3" style={{"margin-top": "5px"}}>
+                            </div>
+                            <div className="col-md-6" style={{"margin-top": "5px"}}>
                                 <div>
-                                    <div className="general-box" style={{"height": "180px", "width": "100%"}}>
-                                        <a>
-                                            <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
-                                        </a>
+                                    <div>
+                                        <div className="general-box" style={{"height": "180px", "width": "100%"}}>
+                                            <a>
+                                                <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div>
                                 <div>
-                                    {this.state.divs}
+                                    <div>
+                                        {this.state.divs}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-             </div>
-             <div className="col-md-1">
-             </div>
-                
+                <div className="col-md-1">
+                </div>
+
             </div>
 
         )

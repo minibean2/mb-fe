@@ -145,7 +145,7 @@ export default class DashboardPage extends Component {
         for (let i = 0; i < this.res.length; i++) {
             // console.log(res.res[i]._id);
             //var id = res.res[i]._id;
-             this.res[i].created_date = moment(this.res[i].created_date).format("DD-MM-YYYY");
+            this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
             moreDivs.push(
                 <div>
                     <div className="general-box">
@@ -155,8 +155,9 @@ export default class DashboardPage extends Component {
                                 </h4>
                                 <div>
                                     <h6>
-                                        <a className="tag" onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
-                                        <font className="admin-visible-field">{this.res[i].created_date}</font>
+                                        <a className="tag"
+                                           onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
+                                        <font className="admin-visible-field">{this.res[i].post_date}</font>
                                         <span className="view-count" style={marginLeft}><img className="view-icon"
                                                                                              src="view.png"/>view</span>
 
@@ -208,7 +209,7 @@ export default class DashboardPage extends Component {
                 for (let i = 0; i < 6; i++) {
                     console.log(res.res[i]._id);
                     //var id = res.res[i]._id;
-                     res.res[i].created_date = moment(res.res[i].created_date).format("DD-MM-YYYY");
+                    res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
                     moreDivs.push(
                         <div>
                             <div className="general-box">
@@ -218,8 +219,9 @@ export default class DashboardPage extends Component {
                                             to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
                                             <h6>
-                                                <a className="tag" onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
-                                                <font className="admin-visible-field">{res.res[i].created_date}</font>
+                                                <a className="tag"
+                                                   onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
+                                                <font className="admin-visible-field">{res.res[i].post_date}</font>
                                                 <span className="view-count" style={marginLeft}><img
                                                     className="view-icon" src="view.png"/>view</span>
                                             </h6>
@@ -281,71 +283,76 @@ export default class DashboardPage extends Component {
 
 
             <div style={{"margin-top": "80px"}}>
-             <div className="col-md-1">
-             </div>
-             <div className="col-md-10">
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-10">
                     <div className="themeA-container">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                            <div id="articles-slider" className="general-box">
-                                <a className="row col-md-12" style={{"font-size": "17px"}}
-                                   onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
-                                {this.htmlCategories}
+                        <div className="row">
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
+                                <div id="articles-slider" className="general-box">
+                                    <a className="row col-md-12" style={{"font-size": "17px"}}
+                                       onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
+                                    {this.htmlCategories}
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                            <div>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
                                 <div>
-                                    <div className="general-box" style={{"height": "180px", "width": "100%"}}>
+                                    <div>
+                                        <div className="general-box" style={{"height": "180px", "width": "100%"}}>
 
-                                        <Slider {...settings}>
-                                            <div>
-                                                {items.map(function (object, i) {
-                                                    return <div style={{"position": "relative", "width": "100%"}}><Link to={'/article/' + object._id}><img key={i}
-                                                                      style={{"width": "100%", "height": "180px"}}
-                                                                      src={object.imageUrl}/><span style={{
-                                                        "position": "absolute",
-                                                        "top": "147px",
-                                                        "left": "0",
-                                                        "width": "100%",
-                                                        "fontSize": "20px"
-                                                    }}>{object.title}</span></Link></div>
-                                                })}
-                                            </div>
-                                        </Slider>
+                                            <Slider {...settings}>
+                                                <div>
+                                                    {items.map(function (object, i) {
+                                                        return <div style={{"position": "relative", "width": "100%"}}>
+                                                            <Link to={'/article/' + object._id}><img key={i}
+                                                                                                     style={{
+                                                                                                         "width": "100%",
+                                                                                                         "height": "180px"
+                                                                                                     }}
+                                                                                                     src={object.imageUrl}/><span
+                                                                style={{
+                                                                    "position": "absolute",
+                                                                    "top": "147px",
+                                                                    "left": "0",
+                                                                    "width": "100%",
+                                                                    "fontSize": "20px"
+                                                                }}>{object.title}</span></Link></div>
+                                                    })}
+                                                </div>
+                                            </Slider>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div>
                                 <div>
-                                    <InfiniteScroll
-                                        scrollThreshold={this.scrollThreshold}
-                                        next={this.generateDivs}
-                                        hasMore={true}
-                                        loader={<h4>Loading...</h4>}>
-                                        {this.state.divs}
-                                    </InfiniteScroll>
+                                    <div>
+                                        <InfiniteScroll
+                                            scrollThreshold={this.scrollThreshold}
+                                            next={this.generateDivs}
+                                            hasMore={true}
+                                            loader={<h4>Loading...</h4>}>
+                                            {this.state.divs}
+                                        </InfiniteScroll>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
-                          <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                            <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
-                               
                             </div>
-                            <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
-                               
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
+                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+
+                                </div>
+                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-             </div>
-             <div className="col-md-1">
-             </div>
-                
+                <div className="col-md-1">
+                </div>
+
             </div>
 
         )

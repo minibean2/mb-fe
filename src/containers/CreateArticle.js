@@ -25,7 +25,7 @@ export default class CreateArticle extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {published: true, featured: true,date:moment()};
+        this.state = {published: true, featured: true, date: moment()};
         $.get(configData.url + "api/categories").done((res) => {
             console.log(res);
             this.categories = res;
@@ -79,7 +79,7 @@ export default class CreateArticle extends Component {
             category: cat,
             featured: featuredValue,
             published: publishedValue,
-            post_date:postDate._d,
+            post_date: postDate._d,
             created_date: new Date()
         };
 
@@ -116,170 +116,174 @@ export default class CreateArticle extends Component {
         featuredValue = !this.state.featured;
     }
 
-     dateChange(date) {
-       var self = this;
-          self.setState({
+    dateChange(date) {
+        var self = this;
+        self.setState({
             date: date
-          });
+        });
         postDate = date;
-          
+
         console.log(date);
-        }
+    }
+
     render() {
 
         return (
 
             <div style={{"margin-top": "80px"}}>
-            <div className="col-md-1">
-             </div>
-             <div className="col-md-10">
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-10">
                     <div className="themeA-container">
-                    <div className="row">
-                        <div className="col-md-1" style={{"margin-top": "5px"}}>
-                        </div>
-                        <div className="col-md-10" style={{"margin-top": "5px"}}>
-                            <div className="general-box">
-                                <div className="col-md-12">
-                                    <h1>Create Article </h1>
-                                </div>
-                                <hr></hr>
-                                <div className="form-group col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Title</label>
+                        <div className="row">
+                            <div className="col-md-1" style={{"margin-top": "5px"}}>
+                            </div>
+                            <div className="col-md-10" style={{"margin-top": "5px"}}>
+                                <div className="general-box">
+                                    <div className="col-md-12">
+                                        <h1>Create Article </h1>
                                     </div>
-                                    <div className="col-md-8">
-                                        <input type="text" className="form-control title col-md-8"
-                                               name="title"/>
-                                    </div>
-                                </div>
-                                <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Preview :</label>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <input type="text" className="form-control preview col-md-8"
-                                               name="preview"/>
-                                    </div>
-                                </div>
-                                <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Thumbnail Url :</label>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <input type="text" className="form-control thumbnailUrl col-md-8" name="thumbnailUrl"/>
-                                    </div>
-                                </div>
-                                <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Image Url :</label>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>
-                                    </div>
-                                </div>
-                                <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Category :</label>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <Dropdown options={options} onChange={this.categoryChange}
-                                                  value={defaultOption}/>
-                                    </div>
-                                </div>
-                                 <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                        <label>Posted Date :</label>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <DatePicker dateFormat="DD-MM-YYYY" selected={this.state.date} onChange={this.dateChange.bind(this)} />
-                                    </div>
-                                </div>
-                                <div className="form-group  col-md-12">
-                                    <div className="col-md-4">
-                                    </div>
-                                    <div className="col-md-8">
-
-                                        <div className="col-md-6">
-                                            <input type="checkbox" checked={this.state.published}
-                                                   onChange={this.publishedChangeChk.bind(this, this.state.published)}/>&nbsp;&nbsp;
-                                            Published
+                                    <hr></hr>
+                                    <div className="form-group col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Title</label>
                                         </div>
-                                        <div className="col-md-6">
-                                            <input type="checkbox" checked={this.state.featured}
-                                                   onChange={this.featuredChangeChk.bind(this, this.state.featured)}/>&nbsp;&nbsp;
-                                            Featured
+                                        <div className="col-md-8">
+                                            <input type="text" className="form-control title col-md-8"
+                                                   name="title"/>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div className="form-group col-md-12">
-                                    <div className="col-md-12">
-                                        <label>Html Body :</label>
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Preview :</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <input type="text" className="form-control preview col-md-8"
+                                                   name="preview"/>
+                                        </div>
                                     </div>
-                                    <div className="col-md-12">
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Thumbnail Url :</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <input type="text" className="form-control thumbnailUrl col-md-8"
+                                                   name="thumbnailUrl"/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Image Url :</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Category :</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <Dropdown options={options} onChange={this.categoryChange}
+                                                      value={defaultOption}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                            <label>Posted Date :</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                            <DatePicker dateFormat="DD-MM-YYYY" selected={this.state.date}
+                                                        onChange={this.dateChange.bind(this)}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group  col-md-12">
+                                        <div className="col-md-4">
+                                        </div>
+                                        <div className="col-md-8">
 
-                                        <TinyMCE
-                                            content=""
-                                            config={{
-                                                height: "400",
-                                                paste_data_images: true,
-                                                plugins: [
-                                                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                                                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                                                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                                                    "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc"
-                                                ],
-                                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
-                                                file_picker_callback: function (callback, value, meta) {
-                                                    if (meta.filetype == 'image') {
-                                                        $('#upload').trigger('click');
-                                                        $('#upload').on('change', function () {
-                                                            var file = this.files[0];
-                                                            var reader = new FileReader();
-                                                            reader.onload = function (e) {
-                                                                callback(e.target.result, {
-                                                                    alt: ''
-                                                                });
-                                                            };
-                                                            reader.readAsDataURL(file);
-                                                        });
+                                            <div className="col-md-6">
+                                                <input type="checkbox" checked={this.state.published}
+                                                       onChange={this.publishedChangeChk.bind(this, this.state.published)}/>&nbsp;&nbsp;
+                                                Published
+                                            </div>
+                                            <div className="col-md-6">
+                                                <input type="checkbox" checked={this.state.featured}
+                                                       onChange={this.featuredChangeChk.bind(this, this.state.featured)}/>&nbsp;&nbsp;
+                                                Featured
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div className="form-group col-md-12">
+                                        <div className="col-md-12">
+                                            <label>Html Body :</label>
+                                        </div>
+                                        <div className="col-md-12">
+
+                                            <TinyMCE
+                                                content=""
+                                                config={{
+                                                    height: "400",
+                                                    paste_data_images: true,
+                                                    plugins: [
+                                                        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                                                        "searchreplace wordcount visualblocks visualchars code fullscreen",
+                                                        "insertdatetime media nonbreaking save table contextmenu directionality",
+                                                        "emoticons template paste textcolor colorpicker textpattern imagetools codesample toc"
+                                                    ],
+                                                    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | my browser value',
+                                                    file_picker_callback: function (callback, value, meta) {
+                                                        if (meta.filetype == 'image') {
+                                                            $('#upload').trigger('click');
+                                                            $('#upload').on('change', function () {
+                                                                var file = this.files[0];
+                                                                var reader = new FileReader();
+                                                                reader.onload = function (e) {
+                                                                    callback(e.target.result, {
+                                                                        alt: ''
+                                                                    });
+                                                                };
+                                                                reader.readAsDataURL(file);
+                                                            });
+                                                        }
                                                     }
-                                                }
 
-                                            }}
+                                                }}
 
-                                            file_picker_callback={this.file_picker_callback}
-                                            onChange={this.handleEditorChange}
-                                        />
+                                                file_picker_callback={this.file_picker_callback}
+                                                onChange={this.handleEditorChange}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <input name="image" type="file" id="upload" onchange="" style={{"display": "none"}}/>
-                                <div className="form-group  col-md-12" style={{"textAlign": "right"}}>
-                                    <button
-                                        className="btn btn-default" style={{"marginRight": "10px"}}
-                                        onClick={this.backPage.bind()}>
-                                        Close
-                                    </button>
-                                    <button
-                                        className="btn btn-default save-article" onClick={this.saveArticle.bind()}>
-                                        Save
-                                    </button>
-                                </div>
+                                    <input name="image" type="file" id="upload" onchange=""
+                                           style={{"display": "none"}}/>
+                                    <div className="form-group  col-md-12" style={{"textAlign": "right"}}>
+                                        <button
+                                            className="btn btn-default" style={{"marginRight": "10px"}}
+                                            onClick={this.backPage.bind()}>
+                                            Close
+                                        </button>
+                                        <button
+                                            className="btn btn-default save-article" onClick={this.saveArticle.bind()}>
+                                            Save
+                                        </button>
+                                    </div>
 
-                                <div className="col-md-1" style={{"margin-top": "5px"}}>
-                                </div>
-                                <div className="col-md-12" style={{"margin-top": "5px"}}>
+                                    <div className="col-md-1" style={{"margin-top": "5px"}}>
+                                    </div>
+                                    <div className="col-md-12" style={{"margin-top": "5px"}}>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-             </div>
-             <div className="col-md-1">
-             </div>
-                
+                <div className="col-md-1">
+                </div>
+
             </div>
 
         )
