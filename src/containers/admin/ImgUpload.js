@@ -1,9 +1,8 @@
-import React, { Component, PropTypes } from 'react'
-import { Link,browserHistory } from 'react-router'
+import React, {Component, PropTypes} from 'react'
+import {Link, browserHistory} from 'react-router'
 import DropzoneComponent from 'react-dropzone-component';
-import configData from '../config.js';
-var $ = require ('jquery');
- 
+import configData from '../../config.js';
+var $ = require('jquery');
 
 const rows = [];
 
@@ -11,7 +10,7 @@ const urlList = [];
 var componentConfig = {
     iconFiletypes: ['.jpg', '.png', '.gif'],
     showFiletypeIcon: true,
-    postUrl: configData.url+'api/image/upload'
+    postUrl: configData.url + 'api/image/upload'
 };
 
 var djsConfig = {addRemoveLinks: true}
@@ -32,8 +31,6 @@ export default class ImgUpload extends Component {
     constructor(props) {
         super(props);
         this.state = {file: '', imagePreviewUrl: '', menu: []};
-
-
     }
 
     urlListTag() {
@@ -42,15 +39,17 @@ export default class ImgUpload extends Component {
         this.htmlCategories = [];
         let menu = [];
         for (let i = 0; i < urlList.length; i++) {
-          console.log(urlList[i]);
-          var arr = [];
-          arr = urlList[i].split(',');
-          console.log(arr[0]);
-          console.log(arr[1]);
+            console.log(urlList[i]);
+            var arr = [];
+            arr = urlList[i].split(',');
+            console.log(arr[0]);
+            console.log(arr[1]);
             menu.push(<a className="col-md-12"
                          style={{"font-size": "17px"}}>{configData.url + arr[0].substring(1, arr[0].length)}</a>);
             menu.push(<a className="col-md-12"
-                         style={{"font-size": "17px"}}>{configData.url + arr[1].substring(1, arr[1].length)}<hr></hr></a>); 
+                         style={{"font-size": "17px"}}>{configData.url + arr[1].substring(1, arr[1].length)}
+                <hr></hr>
+            </a>);
         }
 
         mi.setState({menu: menu});
@@ -83,7 +82,7 @@ export default class ImgUpload extends Component {
             sending: null,
             success: (file, response) => {
                 console.log(response);
-                urlList.push(response.url_300+","+response.url_600);
+                urlList.push(response.url_300 + "," + response.url_600);
                 console.log(urlList);
                 this.urlListTag();
 
@@ -109,7 +108,7 @@ export default class ImgUpload extends Component {
 
         return (
 
-            <div style={{"margin-top": "80px"}}>
+            <div style={{"margin-top": "72px"}}>
                 <div className="themeA-container">
                     <div className="row">
                         <div className="col-md-2" style={{"margin-top": "5px"}}>
@@ -129,9 +128,10 @@ export default class ImgUpload extends Component {
                                                        djsConfig={djsConfig}/>,
                                 </div>
                                 <hr></hr>
-				 <div className="form-group col-md-12">
-			                <label className="msgShow" style={{"display" : "none","color":"green"}}>Image Upload successfully</label>
-			            </div>
+                                <div className="form-group col-md-12">
+                                    <label className="msgShow" style={{"display": "none", "color": "green"}}>Image
+                                        Upload successfully</label>
+                                </div>
                                 <div className="form-group col-md-12">
                                     {this.state.menu}
                                 </div>

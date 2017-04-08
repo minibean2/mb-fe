@@ -1,68 +1,58 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>React App</title>
-     <link href="./lib/custom-css/bootstrap-override.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/boxSetup.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/business-page.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/campaign.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/community.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/frontpage.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/game.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/lightbox.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/login.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/magazine.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/mainWall.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/message.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/pin-wall.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/pkview.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/schools.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/signupInfo.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/textfield.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/mobile/mobile.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/mobile/simple-sidebar-2.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/custom-css/themeA.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/bootstrap.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/ag-grid.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/dropzone.css" rel="stylesheet" type="text/css"/>
-       <link href="./lib/style.css" rel="stylesheet" type="text/css"/>
-       <link href="./lib/react-datepicker.css" rel="stylesheet" type="text/css"/>
-       
-       
-     <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
-     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-     <link href="./lib/theme-fresh.css" rel="stylesheet" type="text/css"/>
+    <title>miniBean</title>
+    <link href="./lib/custom-css/bootstrap-override.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/boxSetup.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/frontpage.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/lightbox.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/mainWall.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/signupInfo.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/custom-css/textfield.css" rel="stylesheet" type="text/css"/>
+    <!--link href="./lib/custom-css/mobile/mobile.css" rel="stylesheet" type="text/css"/-->
+    <!--link href="./lib/custom-css/mobile/simple-sidebar-2.css" rel="stylesheet" type="text/css"/-->
+    <link href="./lib/custom-css/themeA.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/ag-grid.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/dropzone.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/style.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/react-datepicker.css" rel="stylesheet" type="text/css"/>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-     <link href="./lib/slick/slick.min.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/slick/slick-theme.min.css" rel="stylesheet" type="text/css"/>
-     <link href="./lib/react-select.css" rel="stylesheet" type="text/css"/>
-     <script src="./lib/dropzone.js"></script>
+    <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <link href="./lib/theme-fresh.css" rel="stylesheet" type="text/css"/>
 
- <script src="./lib/react-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="./lib/slick/slick.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/slick/slick-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./lib/react-select.css" rel="stylesheet" type="text/css"/>
+    <script src="./lib/dropzone.js"></script>
 
-  <style>
-      #noHeight, #height {
-        float: left;
-        width: 50%;
-      }
+    <script src="./lib/react-select.js"></script>
+
+    <style>
+        #noHeight, #height {
+            float: left;
+            width: 50%;
+        }
     </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</head>
+<body>
+<div id="root"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` in this folder.
-      To create a production bundle, use `npm run build`.
-    -->
-  </body>
-    <script type="text/javascript" src="https://npmcdn.com/react-data-grid/dist/react-data-grid.js"></script>
+  To begin the development, run `npm start` in this folder.
+  To create a production bundle, use `npm run build`.
+-->
+</body>
+<script type="text/javascript" src="https://npmcdn.com/react-data-grid/dist/react-data-grid.js"></script>
 </html>

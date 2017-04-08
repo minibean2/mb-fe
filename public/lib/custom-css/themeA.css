@@ -505,8 +505,8 @@ a:focus {
 .themeA-container{
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px 100px 15px;
-    width: 1050px;
+    padding: 15px 15px 100px 15px;
+    /*width: 1050px;*/
     min-height: 200px;
     position: relative;
     /* top: 55px; */
@@ -1915,7 +1915,7 @@ a:focus {
 }
 .allpost-wrapper li {
     display: block;
-    padding: 20px 0 15px 0;
+    padding: 10px 0 5px 0;
     border-top: #D8D8D8 thin solid;
     min-height: 100px;
 }
@@ -1928,8 +1928,8 @@ a:focus {
 }
 .allpost-wrapper img {
     float: left;
-    width: 185px;
-    height: 138px;
+    width: 150px;
+    height: 120px;
     border-radius: 3px;
 }
 .allpost-wrapper div {
