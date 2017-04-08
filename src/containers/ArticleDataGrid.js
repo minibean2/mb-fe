@@ -132,8 +132,13 @@ export default class ArticleDataGrid extends Component {
             articleIdList.push(rows[i].id);
         }
        
-        articleObject.articleIdList = articleIdList;
-        console.log(articleObject.articleIdList);
+        articleObject.articles = articleIdList;
+        console.log(articleObject);
+          $.post(configData.url + "api/update/featured", articleObject).done((res) => {
+            console.log("success");
+           
+
+        });
         
     }
 
