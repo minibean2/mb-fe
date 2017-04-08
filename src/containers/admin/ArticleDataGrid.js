@@ -112,14 +112,11 @@ export default class ArticleDataGrid extends Component {
                 res.res[i].categoryName = res.res[i].category.name;
                 res.res[i].post_date = moment(res.res[i].post_date).format("DD-MM-YYYY");
                 res.res[i].created_date = moment(res.res[i].created_date).format("DD-MM-YYYY");
-               
-            
             }
 
             rows = res.res;
             console.log(rows);
             this.setState();
-
         });
     }
 
