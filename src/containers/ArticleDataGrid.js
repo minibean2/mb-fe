@@ -123,10 +123,7 @@ export default class ArticleDataGrid extends Component {
         });
     }
 
-    onClick(cell) {
-        console.log("select");
-        console.log(cell);
-    }
+   
     onRowSelect(rows) {
         console.log(rows);
         var articleIdList = [];
@@ -136,19 +133,9 @@ export default class ArticleDataGrid extends Component {
         }
        
         articleObject.articleIdList = articleIdList;
-         console.log(articleObject);
+        console.log(articleObject.articleIdList);
         
     }
-
-    onCellSelected({ rowIdx, idx }) {
-        this.grid.openCellEditor(rowIdx, idx);
-    }
-
-      onCellDeSelected({ rowIdx, idx }) {
-        if (idx === 2) {
-          alert('the editor for cell (' + rowIdx + ',' + idx + ') should have just closed');
-        }
-      }
 
     render() {
 
