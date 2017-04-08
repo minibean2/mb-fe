@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
 import configData from '../../config.js';
+
 var $ = require('jquery');
 
 export default class Login extends Component {

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
 import DropzoneComponent from 'react-dropzone-component';
 import configData from '../../config.js';
+
 var $ = require('jquery');
 
 const rows = [];

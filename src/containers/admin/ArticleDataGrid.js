@@ -1,10 +1,13 @@
 import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
-import configData from '../config.js';
+import configData from '../../config.js';
+import ReactDataGrid from 'react-data-grid';
+
 const {Editors, Toolbar, Formatters} = require('react-data-grid-addons');
 var $ = require('jquery');
-import ReactDataGrid from 'react-data-grid';
+
 var moment = require('moment');
+
 //const rows = [];
 //const columns = [];
 //columns = [{ key: '_id', name: 'ID' }, { key: 'articleName', name: 'ArticleName' },{ key: 'categoryName', name: 'categoryName' },{ key: 'postDate', name: 'PostedDate' },{ key: 'description', name: 'Description' }];
