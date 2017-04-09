@@ -129,8 +129,15 @@ export default class HomePage extends Component {
         console.log(this.categories);
         let menu = [];
         for (let i = 0; i < this.categories.length; i++) {
-            menu.push(<a className="row col-md-12" style={{"font-size": "17px"}}
-                         onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>);
+            menu.push(
+                <li className="index-item">
+                    <div className="selected-item">
+                        <a className="nav-item"
+                           style={{"color": "#324fe1", "font-weight": "bold"}}
+                           onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
+                    </div>
+                </li>
+            );
         }
         setTimeout(() => {
             this.htmlCategories = menu;
@@ -159,7 +166,6 @@ export default class HomePage extends Component {
                                     <font className="admin-visible-field">{this.res[i].post_date}</font>
                                     <span className="view-count" style={marginLeft}><img className="view-icon"
                                                                                          src="view.png"/>view</span>
-
                                 </h6>
                             </div>
                         </li>
@@ -281,10 +287,25 @@ export default class HomePage extends Component {
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box">
-                                    <a className="row col-md-12" style={{"font-size": "17px"}}
-                                       onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
-                                    {this.htmlCategories}
+                                <div className="general-box top-box article-index-box">
+                                    <div id="nav-subbar" style={{"margin": "0px"}}>
+                                        <ul className="nav-menu">
+                                            <li>
+                                                <div className="index-title">
+                                                    <img style={{"width": "auto", "height": "26px"}}
+                                                         src="../lib/images/general/titles/hot_articles.png"/>
+                                                </div>
+                                            </li>
+                                            <li className="index-item">
+                                                <div className="selected-item">
+                                                    <a className="nav-item"
+                                                       style={{"color": "#324fe1", "font-weight": "bold"}}
+                                                       onClick={this.categoriesClick.bind(this, 'All articles')}>所有文章</a>
+                                                </div>
+                                            </li>
+                                            {this.htmlCategories}
+                                        </ul>
+                                    </div>
                                 </div>
 
                                 <div className="pull-right">

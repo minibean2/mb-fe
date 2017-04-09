@@ -24,8 +24,8 @@
       <file leaf-file-name="HomePage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/HomePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="348" column="103" lean-forward="false" selection-start-line="348" selection-start-column="103" selection-end-line="348" selection-end-column="103" />
+            <state relative-caret-position="175">
+              <caret line="295" column="83" lean-forward="false" selection-start-line="295" selection-start-column="83" selection-end-line="295" selection-end-column="83" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -95,9 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/login</find>
-      <find>containers</find>
-      <find>themeA.css</find>
       <find>./</find>
       <find>index</find>
       <find>index.html</find>
@@ -125,6 +122,9 @@
       <find>render()</find>
       <find>generateDivs</find>
       <find>items</find>
+      <find>row col-md-12</find>
+      <find>categoriesClick</find>
+      <find>images/general</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -407,7 +407,7 @@
       <option name="presentableId" value="Default" />
       <updated>1490878963876</updated>
       <workItem from="1490878966077" duration="10810000" />
-      <workItem from="1491136269347" duration="26225000" />
+      <workItem from="1491136269347" duration="27388000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <created>1491022790074</created>
@@ -500,11 +500,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491731945198</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Minor">
+      <created>1491749760669</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1491749760669</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37035000" />
+    <option name="totallyTimeSpent" value="38198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -543,7 +550,8 @@
     <MESSAGE value="Major layout changes" />
     <MESSAGE value="fb like icon" />
     <MESSAGE value="Menu search box" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu search box" />
+    <MESSAGE value="Minor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -843,8 +851,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/HomePage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="348" column="103" lean-forward="false" selection-start-line="348" selection-start-column="103" selection-end-line="348" selection-end-column="103" />
+        <state relative-caret-position="175">
+          <caret line="295" column="83" lean-forward="false" selection-start-line="295" selection-start-column="83" selection-end-line="295" selection-end-column="83" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
