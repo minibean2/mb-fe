@@ -86,17 +86,35 @@ export default class Main extends Component {
                             <li className="col-md-1 col-sm-1 col-xs-1">
                                 <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png"/></a>
                             </li>
-                            <li className="col-md-3 col-sm-3 col-xs-3" style={{"width": "200px"}}>
-                                <div className="pull-right">
-                                    <div id="fb-btn-set">
-                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
-                                           target="_blank"><span>小萌豆 miniBean</span></a>
-                                        <iframe className="fb-like-btn" frameborder="0" scrolling="no"
-                                                allowtransparency="true"
-                                                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+
+                            <form method="post" action="/search">
+                                <div id="main-search-box" name="main-search-box" className="pull-left">
+                                    <a id="main-search-wrapper">
+                                        <div className="input-group innerB main-search">
+                                            <input type="text" name="searchfield" id="searchfield"
+                                                   className="form-control" placeholder=""/>
+                                            <div className="input-group-btn">
+                                                <button id="submit-search" name="submit" className="btn btn-default"
+                                                        type="submit">
+                                                    <i className="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div className="row">
+                                        <ul style={{
+                                            "top": "23px",
+                                            "left": "5px",
+                                            "overflow-y": "scroll",
+                                            "max-height": "345px",
+                                            "width": "260px"
+                                        }}
+                                            className="dropdown-menu chat media-list hide">
+                                        </ul>
                                     </div>
                                 </div>
-                            </li>
+                            </form>
                         </ul>
                     </div>
                 </div>

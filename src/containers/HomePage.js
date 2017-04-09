@@ -286,6 +286,16 @@ export default class HomePage extends Component {
                                        onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
                                     {this.htmlCategories}
                                 </div>
+
+                                <div className="pull-right">
+                                    <div id="fb-btn-set">
+                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
+                                           target="_blank"><span>小萌豆 miniBean</span></a>
+                                        <iframe className="fb-like-btn" frameborder="0" scrolling="no"
+                                                allowtransparency="true"
+                                                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
