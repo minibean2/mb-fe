@@ -291,8 +291,8 @@ export default class HomePage extends Component {
                                     <div id="fb-btn-set">
                                         <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
                                            target="_blank"><span>小萌豆 miniBean</span></a>
-                                        <iframe className="fb-like-btn" frameborder="0" scrolling="no"
-                                                allowtransparency="true"
+                                        <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
+                                                allowTransparency="true"
                                                 src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
                                     </div>
                                 </div>
@@ -343,10 +343,10 @@ export default class HomePage extends Component {
 
                             </div>
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
 
                                 </div>
-                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
 
                                 </div>
                             </div>
