@@ -1,11 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { Link, browserHistory } from 'react-router'
-import InfiniteScroll from 'react-infinite-scroll-component';
-var Slider = require('react-slick');
-var $ = require ('jquery');
-//var InfiniteScroll = require('react-infinite-scroll-component');
-
-
+import React, {Component, PropTypes} from 'react'
+import {Link, browserHistory} from 'react-router'
+var $ = require('jquery');
 
 export default class Main extends Component {
 
@@ -63,37 +58,66 @@ export default class Main extends Component {
                     "height": "75px",
                     "width": "100%",
                     "zIndex": "1"
-                }}><Link onClick={this.logOut.bind()} style={{
-                    "float": "right",
-                    "color": "white",
-                    "font-size": "20px",
-                    "margin-top": "17px",
-                    "margin-right": "12px"
-                }}>| LogOut </Link><Link to="/upload" style={{
-                    "float": "right",
-                    "color": "white",
-                    "font-size": "20px",
-                    "margin-top": "17px",
-                    "margin-right": "12px"
-                }}> Upload Images</Link><Link>.</Link></div>
+                }}>
+                    <Link onClick={this.logOut.bind()} style={{
+                        "float": "right",
+                        "color": "white",
+                        "font-size": "20px",
+                        "margin-top": "17px",
+                        "margin-right": "12px"
+                    }}>| LogOut </Link>
+                    <Link to="/imgUpload" style={{
+                        "float": "right",
+                        "color": "white",
+                        "font-size": "20px",
+                        "margin-top": "17px",
+                        "margin-right": "12px"
+                    }}> Upload Images</Link>
+                    <Link>.</Link>
+                </div>
             )
         } else {
             userMessage = (
-                <div className="col-md-12" style={{
-                    "overflow": "hidden",
-                    "position": "fixed",
-                    "top": "0px",
-                    "background-color": "#36648B",
-                    "height": "75px",
-                    "width": "100%",
-                    "zIndex": "1"
-                }}><Link to="/" style={{
-                    "float": "right",
-                    "color": "white",
-                    "font-size": "20px",
-                    "margin-top": "17px",
-                    "margin-right": "12px"
-                }}>Home</Link><Link>.</Link></div>
+                <div id="header-menu" className="col-md-12 row">
+                    <div className="col-md-3 col-sm-3 col-xs-3" id="main-logo"><a href="/">
+                        <img src="../lib/images/logo-2.png"/></a></div>
+                    <div id="main-menu">
+                        <ul>
+                            <li className="col-md-1 col-sm-1 col-xs-1">
+                                <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png"/></a>
+                            </li>
+
+                            <form method="post" action="/search">
+                                <div id="main-search-box" name="main-search-box" className="pull-left">
+                                    <a id="main-search-wrapper">
+                                        <div className="input-group innerB main-search">
+                                            <input type="text" name="searchfield" id="searchfield"
+                                                   className="form-control" placeholder=""/>
+                                            <div className="input-group-btn">
+                                                <button id="submit-search" name="submit" className="btn btn-default"
+                                                        type="submit">
+                                                    <i className="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div className="row">
+                                        <ul style={{
+                                            "top": "23px",
+                                            "left": "5px",
+                                            "overflow-y": "scroll",
+                                            "max-height": "345px",
+                                            "width": "260px"
+                                        }}
+                                            className="dropdown-menu chat media-list hide">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
             )
         }
 

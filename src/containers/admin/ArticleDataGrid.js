@@ -1,10 +1,13 @@
 import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
-import configData from '../config.js';
+import configData from '../../config.js';
+import ReactDataGrid from 'react-data-grid';
+
 const {Editors, Toolbar, Formatters} = require('react-data-grid-addons');
 var $ = require('jquery');
-import ReactDataGrid from 'react-data-grid';
+
 var moment = require('moment');
+
 //const rows = [];
 //const columns = [];
 //columns = [{ key: '_id', name: 'ID' }, { key: 'articleName', name: 'ArticleName' },{ key: 'categoryName', name: 'categoryName' },{ key: 'postDate', name: 'PostedDate' },{ key: 'description', name: 'Description' }];
@@ -112,14 +115,11 @@ export default class ArticleDataGrid extends Component {
                 res.res[i].categoryName = res.res[i].category.name;
                 res.res[i].post_date = moment(res.res[i].post_date).format("DD-MM-YYYY");
                 res.res[i].created_date = moment(res.res[i].created_date).format("DD-MM-YYYY");
-               
-            
             }
 
             rows = res.res;
             console.log(rows);
             this.setState();
-
         });
     }
 

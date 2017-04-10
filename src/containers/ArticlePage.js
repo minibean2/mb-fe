@@ -130,7 +130,7 @@ export default class ArticlePage extends Component {
                                     <h6>
                                         <font className="admin-visible-field">{res.res.post_date}</font>
                                         <span className="view-count" style={marginLeft}>
-                                            <img className="view-icon" src="view.png"/>
+                                            <img className="view-icon" src="../lib/images/general/icons/view.png"/>
                                             View
                                         </span>
                                     </h6>
@@ -169,7 +169,7 @@ export default class ArticlePage extends Component {
 
         return (
 
-            <div style={{"margin-top": "80px"}}>
+            <div style={{"margin-top": "72px"}}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">

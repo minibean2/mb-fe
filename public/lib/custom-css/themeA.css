@@ -505,8 +505,8 @@ a:focus {
 .themeA-container{
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px 100px 15px;
-    width: 1050px;
+    padding: 15px 15px 100px 15px;
+    /*width: 1050px;*/
     min-height: 200px;
     position: relative;
     /* top: 55px; */
@@ -675,13 +675,15 @@ a:focus {
 
 /*Search Box Start*/
 #main-search-box {
-    position:relative;
+    position:fixed;
     display:inline-block;
     width:20%;
     max-width:250px;
     background-color:transparent;
     top:-2px;
     margin-left: 10px;
+    margin-top: 12px;
+    right: 50px;
 }
 #main-search-box a {
     line-height: 1.2 !important;
@@ -1915,7 +1917,7 @@ a:focus {
 }
 .allpost-wrapper li {
     display: block;
-    padding: 20px 0 15px 0;
+    padding: 10px 0 5px 0;
     border-top: #D8D8D8 thin solid;
     min-height: 100px;
 }
@@ -1928,8 +1930,8 @@ a:focus {
 }
 .allpost-wrapper img {
     float: left;
-    width: 185px;
-    height: 138px;
+    width: 150px;
+    height: 120px;
     border-radius: 3px;
 }
 .allpost-wrapper div {
@@ -3251,7 +3253,7 @@ span.notif-count {
     margin: 0;
 }
 #fb-btn-set {
-    margin-top: 28px;
+    margin: 15px 0px;
 }
 #fb-btn-set a.fb-link-btn {
     height: 20px;

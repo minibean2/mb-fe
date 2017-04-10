@@ -41,7 +41,7 @@ const data = [];
 
 var imgs = [];
 var items = [];
-export default class DashboardPage extends Component {
+export default class HomePage extends Component {
 
     constructor() {
         super();
@@ -129,8 +129,15 @@ export default class DashboardPage extends Component {
         console.log(this.categories);
         let menu = [];
         for (let i = 0; i < this.categories.length; i++) {
-            menu.push(<a className="row col-md-12" style={{"font-size": "17px"}}
-                         onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>);
+            menu.push(
+                <li className="index-item">
+                    <div className="selected-item">
+                        <a className="nav-item"
+                           style={{"color": "#324fe1", "font-weight": "bold"}}
+                           onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
+                    </div>
+                </li>
+            );
         }
         setTimeout(() => {
             this.htmlCategories = menu;
@@ -147,29 +154,26 @@ export default class DashboardPage extends Component {
             //var id = res.res[i]._id;
             this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
             moreDivs.push(
-                <div>
-                    <div className="general-box">
-                        <ul className="allpost-wrapper">
-                            <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl}/></Link>
-                                <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link>
-                                </h4>
-                                <div>
-                                    <h6>
-                                        <a className="tag"
-                                           onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
-                                        <font className="admin-visible-field">{this.res[i].post_date}</font>
-                                        <span className="view-count" style={marginLeft}><img className="view-icon"
-                                                                                             src="view.png"/>view</span>
-
-                                    </h6>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul className="allpost-wrapper">
-                            {this.showBody(this.res[i].preview)}
-                        </ul>
-                        <span></span>
-                    </div>
+                <div style={{"border-bottom": "#bcbcbc solid thin"}}>
+                    <ul className="allpost-wrapper">
+                        <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl}/></Link>
+                            <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link>
+                            </h4>
+                            <div>
+                                <h6>
+                                    <a className="tag"
+                                       onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
+                                    <font className="admin-visible-field">{this.res[i].post_date}</font>
+                                    <span className="view-count" style={marginLeft}><img className="view-icon"
+                                                                                         src="view.png"/>view</span>
+                                </h6>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul className="allpost-wrapper">
+                        {this.showBody(this.res[i].preview)}
+                    </ul>
+                    <span></span>
                 </div>
             );
             if (this.res[i].featured === true) {
@@ -192,7 +196,6 @@ export default class DashboardPage extends Component {
             return (
                 <div dangerouslySetInnerHTML={{__html: value}}></div>
             )
-
         }
     }
 
@@ -211,57 +214,51 @@ export default class DashboardPage extends Component {
                     //var id = res.res[i]._id;
                     res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
                     moreDivs.push(
-                        <div>
-                            <div className="general-box">
-                                <ul className="allpost-wrapper">
-                                    <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl}/></Link>
-                                        <h4 style={getColor}><Link
-                                            to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
+                        <div style={{"border-bottom": "#bcbcbc solid thin"}}>
+                            <ul className="allpost-wrapper">
+                                <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl}/></Link>
+                                    <h4 style={getColor}><Link
+                                        to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
+                                    <div>
+                                        <h6>
+                                            <a className="tag"
+                                               onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
+                                            <font className="admin-visible-field">{res.res[i].post_date}</font>
+                                            <span className="view-count" style={marginLeft}><img
+                                                className="view-icon"
+                                                src="../lib/images/general/icons/view.png"/>view</span>
+                                        </h6>
                                         <div>
-                                            <h6>
-                                                <a className="tag"
-                                                   onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
-                                                <font className="admin-visible-field">{res.res[i].post_date}</font>
-                                                <span className="view-count" style={marginLeft}><img
-                                                    className="view-icon" src="view.png"/>view</span>
-                                            </h6>
-                                            <div>
-                                            </div>
                                         </div>
-                                    </li>
-                                </ul>
-                                <ul className="allpost-wrapper">
-                                    {this.showBody(res.res[i].preview)}
-                                </ul>
-                                <span></span>
-                            </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul className="allpost-wrapper">
+                                {this.showBody(res.res[i].preview)}
+                            </ul>
+                            <span></span>
                         </div>
                     );
                     if (res.res[i].featured === true) {
                         items.push(res.res[i]);
-
                     }
 
                     this.count++;
                 }
-
             });
 
             setTimeout(() => {
                 this.setState({divs: this.state.divs.concat(moreDivs)});
             }, 500);
         }
-
     }
 
     showBody(value) {
         console.log(value);
         if (value != null && value != "") {
-
             return (
                 <div dangerouslySetInnerHTML={{__html: value}}></div>
             )
-
         }
     }
 
@@ -269,37 +266,53 @@ export default class DashboardPage extends Component {
 
         var settings = {
             className: '',
+            adaptiveHeight: true,
             dots: true,
             infinite: true,
             slidesToShow: 1,
-            speed: 2000,
+            speed: 500,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 2000,
-            rtl: true,
+            swipe: true,
+            rtl: false,
         };
 
         return (
 
-
-            <div style={{"margin-top": "80px"}}>
+            <div style={{"margin-top": "72px"}}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box">
-                                    <a className="row col-md-12" style={{"font-size": "17px"}}
-                                       onClick={this.categoriesClick.bind(this, 'All articles')}>All articles</a>
-                                    {this.htmlCategories}
+                                <div className="general-box top-box article-index-box">
+                                    <div id="nav-subbar" style={{"margin": "0px"}}>
+                                        <ul className="nav-menu">
+                                            <li>
+                                                <div className="index-title">
+                                                    <img style={{"width": "auto", "height": "26px"}}
+                                                         src="../lib/images/general/titles/hot_articles.png"/>
+                                                </div>
+                                            </li>
+                                            <li className="index-item">
+                                                <div className="selected-item">
+                                                    <a className="nav-item"
+                                                       style={{"color": "#324fe1", "font-weight": "bold"}}
+                                                       onClick={this.categoriesClick.bind(this, 'All articles')}>所有文章</a>
+                                                </div>
+                                            </li>
+                                            {this.htmlCategories}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
                                 <div>
                                     <div>
-                                        <div className="general-box" style={{"height": "180px", "width": "100%"}}>
+                                        <div className="general-box" style={{"height": "300px", "width": "100%"}}>
 
                                             <Slider {...settings}>
                                                 <div>
@@ -308,13 +321,14 @@ export default class DashboardPage extends Component {
                                                             <Link to={'/article/' + object._id}><img key={i}
                                                                                                      style={{
                                                                                                          "width": "100%",
-                                                                                                         "height": "180px"
+                                                                                                         "height": "300px"
                                                                                                      }}
                                                                                                      src={object.imageUrl}/><span
                                                                 style={{
                                                                     "position": "absolute",
-                                                                    "top": "147px",
-                                                                    "left": "0",
+                                                                    "top": "235px",
+                                                                    "left": "0px",
+                                                                    "padding": "15px",
                                                                     "width": "100%",
                                                                     "fontSize": "20px"
                                                                 }}>{object.title}</span></Link></div>
@@ -327,7 +341,7 @@ export default class DashboardPage extends Component {
                                 </div>
 
                                 <div>
-                                    <div>
+                                    <div className="general-box">
                                         <InfiniteScroll
                                             scrollThreshold={this.scrollThreshold}
                                             next={this.generateDivs}
@@ -340,11 +354,20 @@ export default class DashboardPage extends Component {
 
                             </div>
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
 
                                 </div>
-                                <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
 
+                                </div>
+                                <div className="pull-right">
+                                    <div id="fb-btn-set">
+                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
+                                           target="_blank"><span>小萌豆 miniBean</span></a>
+                                        <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
+                                                allowTransparency="true"
+                                                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -352,9 +375,7 @@ export default class DashboardPage extends Component {
                 </div>
                 <div className="col-md-1">
                 </div>
-
             </div>
-
         )
     }
 }

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
 var Select = require('react-select');
 import Dropdown from 'react-dropdown'
-import configData from '../config.js';
+import configData from '../../config.js';
 import TinyMCE from 'react-tinymce';
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
@@ -130,7 +130,7 @@ export default class CreateArticle extends Component {
 
         return (
 
-            <div style={{"margin-top": "80px"}}>
+            <div style={{"margin-top": "72px"}}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
