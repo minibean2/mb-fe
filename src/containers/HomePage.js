@@ -40,7 +40,11 @@ const divs = [];
 const data = [];
 
 var imgs = [];
-var items = [];
+var items = [{
+    id: "0",
+    title: "No Result",
+    imageUrl: ""
+}];
 export default class HomePage extends Component {
 
     constructor() {
@@ -278,6 +282,34 @@ export default class HomePage extends Component {
             rtl: false,
         };
 
+        let values = 0; 
+
+        let articleImgs = (<div></div>);
+      
+            articleImgs = (
+
+                items.map(function (object, i) {
+                                                       
+                    return <div style={{"position": "relative", "width": "100%"}}>
+                        <Link to={'/article/' + object._id}><img key={i}
+                                                                 style={{
+                                                                     "width": "100%",
+                                                                     "height": "180px"
+                                                                 }}
+                                                                 src={object.imageUrl}/><span
+                            style={{
+                                "position": "absolute",
+                                "top": "147px",
+                                "left": "0",
+                                "width": "100%",
+                                "fontSize": "20px"
+                            }}>{object.title}</span></Link></div>
+                                    
+                })
+            )
+
+     
+console.log("articleImgs ", articleImgs);
         return (
 
             <div style={{"margin-top": "72px"}}>
@@ -313,29 +345,9 @@ export default class HomePage extends Component {
                                 <div>
                                     <div>
                                         <div className="general-box" style={{"height": "300px", "width": "100%"}}>
-
                                             <Slider {...settings}>
-                                                <div>
-                                                    {items.map(function (object, i) {
-                                                        return <div style={{"position": "relative", "width": "100%"}}>
-                                                            <Link to={'/article/' + object._id}><img key={i}
-                                                                                                     style={{
-                                                                                                         "width": "100%",
-                                                                                                         "height": "300px"
-                                                                                                     }}
-                                                                                                     src={object.imageUrl}/><span
-                                                                style={{
-                                                                    "position": "absolute",
-                                                                    "top": "235px",
-                                                                    "left": "0px",
-                                                                    "padding": "15px",
-                                                                    "width": "100%",
-                                                                    "fontSize": "20px"
-                                                                }}>{object.title}</span></Link></div>
-                                                    })}
-                                                </div>
+                                                    {articleImgs}
                                             </Slider>
-
                                         </div>
                                     </div>
                                 </div>
