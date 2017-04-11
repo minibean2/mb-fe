@@ -1,7 +1,8 @@
 {
-  "name": "real-world",
-  "version": "0.0.1",
-  "private": true,
+  "name": "mb-fe",
+  "version": "1.0.0",
+  "private": false,
+  "description": "minibean FE",
   "devDependencies": {
     "react-scripts": "^0.9.3",
     "redux-devtools": "^3.3.1",
