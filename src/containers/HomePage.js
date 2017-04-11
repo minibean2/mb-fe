@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from "react";
-import {Link} from "react-router";
+import React, { Component, PropTypes } from "react";
+import { Link } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import configData from '../config.js';
 var Slider = require('react-slick');
@@ -42,14 +42,15 @@ const data = [];
 var imgs = [];
 var items = [{
     id: "0",
-    title: "No Result",
+    title: "",
     imageUrl: ""
 }];
+
 export default class HomePage extends Component {
 
     constructor() {
         super();
-        this.state = {divs: divs};
+        this.state = { divs: divs };
         this.htmlCategories = [];
         this.generateDivs = this.generateDivs.bind(this);
         this.count = 0;
@@ -85,13 +86,13 @@ export default class HomePage extends Component {
         console.log(value);
         this.flag = 0;
         var arr = [];
-        this.state = {divs: arr, img: []};
+        this.state = { divs: arr, img: [] };
         this.count = 0;
         if (value == "All articles") {
 
             // $.get(configData.url+"api/articles").done((res) => {
             // this.res = res.res;
-            this.state = {divs: []};
+            this.state = { divs: [] };
             this.count = 0;
             this.generateDivs();
             //});
@@ -100,7 +101,7 @@ export default class HomePage extends Component {
             $.get(configData.url + "api/article/category/" + value).done((res) => {
                 console.log(res);
                 this.flag = 1;
-                this.state = {divs: divs};
+                this.state = { divs: divs };
                 arr = res.res;
                 this.res = arr;
 
@@ -113,13 +114,13 @@ export default class HomePage extends Component {
 
     articleClick(articleId) {
         var arr = [];
-        this.state = {divs: arr};
+        this.state = { divs: arr };
         this.count = 0;
         console.log(articleId);
         $.get(configData.url + "api/article?articleId=" + articleId).done((res) => {
             console.log(res);
 
-            this.state = {divs: divs};
+            this.state = { divs: divs };
             arr.push(res.res);
             console.log(arr);
             this.res = arr;
@@ -137,8 +138,8 @@ export default class HomePage extends Component {
                 <li className="index-item">
                     <div className="selected-item">
                         <a className="nav-item"
-                           style={{"color": "#324fe1", "font-weight": "bold"}}
-                           onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
+                            style={{ "color": "#324fe1", "font-weight": "bold" }}
+                            onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
                     </div>
                 </li>
             );
@@ -158,18 +159,18 @@ export default class HomePage extends Component {
             //var id = res.res[i]._id;
             this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
             moreDivs.push(
-                <div style={{"border-bottom": "#bcbcbc solid thin"}}>
+                <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                     <ul className="allpost-wrapper">
-                        <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl}/></Link>
+                        <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl} /></Link>
                             <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link>
                             </h4>
                             <div>
                                 <h6>
                                     <a className="tag"
-                                       onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
+                                        onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
                                     <font className="admin-visible-field">{this.res[i].post_date}</font>
                                     <span className="view-count" style={marginLeft}><img className="view-icon"
-                                                                                         src="view.png"/>view</span>
+                                        src="view.png" />view</span>
                                 </h6>
                             </div>
                         </li>
@@ -180,25 +181,23 @@ export default class HomePage extends Component {
                     <span></span>
                 </div>
             );
+
             if (this.res[i].featured === true) {
                 items.push(this.res[i]);
-
             }
 
             this.count++;
-
         }
 
         setTimeout(() => {
-            this.setState({divs: this.state.divs.concat(moreDivs)});
+            this.setState({ divs: this.state.divs.concat(moreDivs) });
         }, 500);
-
     }
 
     showBody(value) {
         if (value != null && value != "") {
             return (
-                <div dangerouslySetInnerHTML={{__html: value}}></div>
+                <div dangerouslySetInnerHTML={{ __html: value }}></div>
             )
         }
     }
@@ -218,19 +217,19 @@ export default class HomePage extends Component {
                     //var id = res.res[i]._id;
                     res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
                     moreDivs.push(
-                        <div style={{"border-bottom": "#bcbcbc solid thin"}}>
+                        <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                             <ul className="allpost-wrapper">
-                                <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl}/></Link>
+                                <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl} /></Link>
                                     <h4 style={getColor}><Link
                                         to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                     <div>
                                         <h6>
                                             <a className="tag"
-                                               onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
+                                                onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
                                             <font className="admin-visible-field">{res.res[i].post_date}</font>
                                             <span className="view-count" style={marginLeft}><img
                                                 className="view-icon"
-                                                src="../lib/images/general/icons/view.png"/>view</span>
+                                                src="../lib/images/general/icons/view.png" />view</span>
                                         </h6>
                                         <div>
                                         </div>
@@ -252,7 +251,7 @@ export default class HomePage extends Component {
             });
 
             setTimeout(() => {
-                this.setState({divs: this.state.divs.concat(moreDivs)});
+                this.setState({ divs: this.state.divs.concat(moreDivs) });
             }, 500);
         }
     }
@@ -261,13 +260,12 @@ export default class HomePage extends Component {
         console.log(value);
         if (value != null && value != "") {
             return (
-                <div dangerouslySetInnerHTML={{__html: value}}></div>
+                <div dangerouslySetInnerHTML={{ __html: value }}></div>
             )
         }
     }
 
     render() {
-
         var settings = {
             className: '',
             adaptiveHeight: true,
@@ -282,21 +280,19 @@ export default class HomePage extends Component {
             rtl: false,
         };
 
-        let values = 0; 
+        let values = 0;
 
         let articleImgs = (<div></div>);
-      
-            articleImgs = (
 
-                items.map(function (object, i) {
-                                                       
-                    return <div style={{"position": "relative", "width": "100%"}}>
-                        <Link to={'/article/' + object._id}><img key={i}
-                                                                 style={{
-                                                                     "width": "100%",
-                                                                     "height": "180px"
-                                                                 }}
-                                                                 src={object.imageUrl}/><span
+        articleImgs = (
+            items.map(function (object, i) {
+                return <div style={{ "position": "relative", "width": "100%" }}>
+                    <Link to={'/article/' + object._id}><img key={i}
+                        style={{
+                            "width": "100%",
+                            "height": "300px"
+                        }}
+                        src={object.imageUrl} /><span
                             style={{
                                 "position": "absolute",
                                 "top": "147px",
@@ -304,35 +300,33 @@ export default class HomePage extends Component {
                                 "width": "100%",
                                 "fontSize": "20px"
                             }}>{object.title}</span></Link></div>
-                                    
-                })
-            )
+            })
+        )
 
-     
-console.log("articleImgs ", articleImgs);
+        console.log("articleImgs ", articleImgs);
+
         return (
-
-            <div style={{"margin-top": "72px"}}>
+            <div style={{ "margin-top": "72px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
                                 <div className="general-box top-box article-index-box">
-                                    <div id="nav-subbar" style={{"margin": "0px"}}>
+                                    <div id="nav-subbar" style={{ "margin": "0px" }}>
                                         <ul className="nav-menu">
                                             <li>
                                                 <div className="index-title">
-                                                    <img style={{"width": "auto", "height": "26px"}}
-                                                         src="../lib/images/general/titles/hot_articles.png"/>
+                                                    <img style={{ "width": "auto", "height": "26px" }}
+                                                        src="../lib/images/general/titles/hot_articles.png" />
                                                 </div>
                                             </li>
                                             <li className="index-item">
                                                 <div className="selected-item">
                                                     <a className="nav-item"
-                                                       style={{"color": "#324fe1", "font-weight": "bold"}}
-                                                       onClick={this.categoriesClick.bind(this, 'All articles')}>所有文章</a>
+                                                        style={{ "color": "#324fe1", "font-weight": "bold" }}
+                                                        onClick={this.categoriesClick.bind(this, 'All articles')}>所有文章</a>
                                                 </div>
                                             </li>
                                             {this.htmlCategories}
@@ -341,12 +335,12 @@ console.log("articleImgs ", articleImgs);
                                 </div>
                             </div>
 
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
                                 <div>
                                     <div>
-                                        <div className="general-box" style={{"height": "300px", "width": "100%"}}>
+                                        <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
                                             <Slider {...settings}>
-                                                    {articleImgs}
+                                                {articleImgs}
                                             </Slider>
                                         </div>
                                     </div>
@@ -365,20 +359,20 @@ console.log("articleImgs ", articleImgs);
                                 </div>
 
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{"margin-top": "5px"}}>
-                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
-                                <div id="articles-slider" className="general-box" style={{"height": "180px"}}>
+                                <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
                                 <div className="pull-right">
                                     <div id="fb-btn-set">
                                         <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
-                                           target="_blank"><span>小萌豆 miniBean</span></a>
+                                            target="_blank"><span>小萌豆 miniBean</span></a>
                                         <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
-                                                allowTransparency="true"
-                                                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                            allowTransparency="true"
+                                            src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
                                     </div>
                                 </div>
                             </div>
