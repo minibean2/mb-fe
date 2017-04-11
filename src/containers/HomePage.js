@@ -57,6 +57,13 @@ export default class HomePage extends Component {
         this.generateDivs = this.generateDivs.bind(this);
         this.count = 0;
         this.flag = 0;
+        this.catId = 0;
+        this.apiFlag = 0;
+         var url = window.location.href;
+         var urlArr = [];
+        urlArr = url.split("/");
+        this.catId = urlArr[urlArr.length - 1];
+            
 
         this.pageSize = 5;
         this.scrollThreshold = 0.5;
@@ -66,7 +73,17 @@ export default class HomePage extends Component {
 
             this.categories = res;
             this.categoriesFunction();
-            this.generateDivs();
+            console.log(this.catId);
+            if(this.catId != "" && this.catId != null){
+                 this.categoryClick(this.catId);
+
+            }else{
+                $(".spinner").toggle(true);
+                this.catId = 0;
+                this.generateDivs();
+            }
+
+            
         });
 
     }
@@ -91,20 +108,17 @@ export default class HomePage extends Component {
         this.state = { divs: arr, img: [] };
         this.count = 0;
         if (value == constants.CATEGORIES_ALL) {
-            // $.get(config.API_URL + "api/articles").done((res) => {
-            // this.res = res.res;
+            
+            this.catId = 0;
+            this.count = 0;
             this.state = { divs: [] };
             this.generateDivs();
-            //});
+            
         } else {
-            $.get(config.API_URL + "api/article/category/" + value).done((res) => {
-                console.log(res);
-                this.flag = 1;
-                this.state = { divs: divs };
-                arr = res.res;
-                this.res = arr;
-                this.generateCatDivs();
-            });
+            this.catCount = 0;
+            this.catId = value;
+             this.generateDivs();
+           
         }
     }
 
@@ -137,18 +151,111 @@ export default class HomePage extends Component {
             );
         }
 
-        this.htmlCategories = menu;
+      
+            this.htmlCategories = menu;
+      
     }
 
-    generateCatDivs() {
-        console.log(this.state.divs);
-        console.log(this.count);
+   
+    showBody(value) {
+        if (value != null && value != "") {
+            return (
+                <span dangerouslySetInnerHTML={{ __html: value }}></span>
+            )
+        }
+    }
 
-        let moreDivs = [];
-        for (let i = 0; i < this.res.length; i++) {
-            if (this.res[i] != undefined) {
-                var articleItem = this.res[i];
-                moreDivs.push(
+    generateDivs() {
+       
+         let moreDivs = [];
+        if(this.catId == 0){
+             if (this.flag == 0) {
+            console.log(this.state.divs);
+            console.log(this.count);
+            if(this.apiFlag == 1){
+                $(".spinner").toggle(false);
+             }else{
+                 $(".spinner").toggle(true);
+             } 
+                let img = [];
+            $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
+                console.log(res);
+                let moreDivs = [];
+
+                if(res.res.length == 0){
+                    this.apiFlag = 1;       
+                }
+                for (let i = 0; i < res.res.length; i++) {
+                    
+                     if(res.res[i] != undefined){
+
+                         if (res.res[i].post_date != undefined) {
+                              res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                           }
+
+                               var articleItem = res.res[i];
+                    moreDivs.push(
+                        <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
+                            <ul className="allpost-wrapper">
+                                <li>
+                                    <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                    <div>
+                                        <Link to={'/article/' + articleItem._id}>
+                                            <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
+                                        </Link>
+                                        <h6>
+                                            <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
+                                                {articleItem.category.name}
+                                            </a>
+                                            <font className="admin-visible-field">{articleItem.post_date}</font>
+                                            <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
+                                        </h6>
+                                        <p>{this.showBody(articleItem.preview)}...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    );
+
+                    if (articleItem.featured === true) {
+                        if (items.length == 1) {
+                            if (items[0].imageUrl == "") {
+                                items = [];
+                            }
+                        }
+                        items.push(articleItem);
+                    }
+
+                    this.count++;
+
+                     }
+                 
+                }
+               
+                  this.setState({ divs: this.state.divs.concat(moreDivs) });
+                 
+            });
+           
+            
+            
+     }
+
+        }else{
+            let moreDivsCat = [];
+             console.log("jjjkkk00000");
+             console.log(this.catCount);
+
+            $.get(config.API_URL + "api/article/category/" + this.catId +"?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
+                let moreDivs = [];
+                console.log(res);
+            for (let i = 0; i < res.res.length; i++) {
+                if(res.res[i] != undefined){
+                     if (res.res[i].post_date != undefined) {
+                              res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                           }
+                  
+                     var articleItem = res.res[i];
+                moreDivsCat.push(
                     <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                         <ul className="allpost-wrapper">
                             <li>
@@ -180,74 +287,18 @@ export default class HomePage extends Component {
                     items.push(articleItem);
                 }
 
-                this.count++;
-            }
-        }
-
-        this.setState({ divs: this.state.divs.concat(moreDivs) });
-    }
-
-    showBody(value) {
-        if (value != null && value != "") {
-            return (
-                <span dangerouslySetInnerHTML={{ __html: value }}></span>
-            )
-        }
-    }
-
-    generateDivs() {
-
-        if (this.flag == 0) {
-            console.log(this.state.divs);
-            console.log(this.count);
-
-            let img = [];
-            $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
-                console.log(res);
-                let moreDivs = [];
-                for (let i = 0; i < res.res.length; i++) {
-
-                    if (res.res[i] != undefined) {
-                        var articleItem = res.res[i];
-                        moreDivs.push(
-                            <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
-                                <ul className="allpost-wrapper">
-                                    <li>
-                                        <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
-                                        <div>
-                                            <Link to={'/article/' + articleItem._id}>
-                                                <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
-                                            </Link>
-                                            <h6>
-                                                <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
-                                                    {articleItem.category.name}
-                                                </a>
-                                                <font className="admin-visible-field">{articleItem.post_date}</font>
-                                                <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
-                                            </h6>
-                                            <p>{this.showBody(articleItem.preview)}...</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        );
-
-                        if (articleItem.featured === true) {
-                            if (items.length == 1) {
-                                if (items[0].imageUrl == "") {
-                                    items = [];
-                                }
-                            }
-                            items.push(articleItem);
-                        }
-
-                        this.count++;
-                    }
+                this.catCount++;
                 }
 
-                this.setState({ divs: this.state.divs.concat(moreDivs) });
+               
+            }
+               this.setState({ divs: this.state.divs.concat(moreDivsCat) });
             });
         }
+
+        
+           
+      
     }
 
     showBody(value) {
@@ -349,7 +400,7 @@ export default class HomePage extends Component {
                                             scrollThreshold={this.scrollThreshold}
                                             next={this.generateDivs}
                                             hasMore={true}
-                                            loader={<div><img className="center-img spinner" src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
+                                            loader={<div><img className="center-img spinner" style={{ "display": "none"}} src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
                                             {this.state.divs}
                                         </InfiniteScroll>
                                     </div>

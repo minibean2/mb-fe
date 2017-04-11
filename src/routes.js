@@ -16,4 +16,5 @@ export default
     <Route path="/articleGrid" component={AdminArticleDataGrid}/>
     <Route path="/createArticle" component={AdminCreateArticle}/>
     <Route path="/imgUpload" component={AdminImgUpload}/>
+    <Route path="/:id" component={HomePage}/>
 </Route>

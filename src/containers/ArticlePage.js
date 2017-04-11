@@ -85,16 +85,20 @@ export default class ArticlePage extends Component {
 
         let moreDivs = [];
         $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
+           
+             if (res.res.post_date != undefined) {
+                 res.res.post_date = moment(res.res.post_date).format("MMM D, YYYY");
+             }
 
             moreDivs.push(
                 <div className="general-box article-box-main">
                     <ul className="article-detail-wrapper">
                         <li>
-                            <Link to={'/categoryId=' + res.res.category.id}>
+                            <Link to={'/' + res.res.category.id}>
                                 <img className="scCatMiniThumbnail" src={res.res.thumbnailUrl} />
                             </Link>
                             <div style={{ "margin-left": "10px", "width": "60%" }}>
-                                <Link className="scCatName" to={'/categoryId=' + res.res.category.id}>{res.res.category.name}</Link>
+                                <Link className="scCatName" to={'/' + res.res.category.id}>{res.res.category.name}</Link>
                                 <h6>
                                     <font className="admin-visible-field">{res.res.post_date}</font>
                                 </h6>
@@ -124,10 +128,10 @@ export default class ArticlePage extends Component {
 
 
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-
+      
         });
 
-
+        
     }
 
     render() {
