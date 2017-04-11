@@ -129,7 +129,7 @@ export default class ArticleDataGrid extends Component {
         var articleIdList = [];
         var articleObject = {};
         for (let i = 0; i < rows.length; i++) {
-            articleIdList.push(rows[i].id);
+            articleIdList.push(rows[i]._id);
         }
        
         articleObject.articles = articleIdList;
