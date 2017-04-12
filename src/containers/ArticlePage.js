@@ -113,34 +113,28 @@ export default class ArticlePage extends Component {
             res.res.post_date = moment(res.res.post_date).format("MMM D, YYYY");
             moreDivs.push(
                 <div className="general-box">
-                    <div className="col-md-12 col-sm-12" style={{"textAlign": "center"}}>
-                        <div className="col-md-1 col-sm-1"></div>
-                        <div className="col-md-10 col-sm-10">
+                    <div className="col-md-12 col-sm-12" style={{"textAlign": "center","marginTop": "10px"}}>
+                        <div className="col-md-2 col-sm-2">
                             <a>
-                                <img style={{"width": "300px"}} src="../lib/images/article/cat_2.jpg"/>
+                                <img style={{"width": "82px","borderRadius":"9%"}} src="../lib/images/article/cat_2.jpg"/>
                             </a>
                         </div>
-                        <div className="col-md-1 col-sm-1"></div>
+                        <div className="col-md-10 col-sm-10 form-group" style={{"textAlign":"left"}}>
+                            <div className="col-md-12 col-sm-12">
+                                       <a> {res.res.category.name}</a>
+                            </div>
+                            <div className="col-md-12 col-sm-12">
+                                       <label style={{"fontSize":"11px"}}>Posted on {res.res.post_date}</label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-12 col-sm-12" style={{"text-align": "center"}}>
-                        <ul className="allpost-wrapper">
-                            <li>
-                                <h4 style={getColor}><a>{res.res.title}</a></h4>
-                                <div>
-                                    <h6>
-                                        <font className="admin-visible-field">{res.res.post_date}</font>
-                                        <span className="view-count" style={marginLeft}>
-                                            <img className="view-icon" src="../lib/images/general/icons/view.png"/>
-                                            View
-                                        </span>
-                                    </h6>
-                                </div>
-                            </li>
-                        </ul>
-                        <span></span>
-                    </div>
+                     <div className="col-md-12 col-sm-12" style={{"textAlign": "left"}}>
+                            <h2 className="col-md-12 col-sm-12">
+                                        {res.res.title}
+                            </h2>
+                     </div>
                     <div className="col-md-12 col-sm-12" style={{"textAlign": "center"}}>
-                        {this.showBody(res.res.body)}
+                        {this.showBody(res.res.preview)}
                     </div>
                 </div>
             );
@@ -176,23 +170,12 @@ export default class ArticlePage extends Component {
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-md-3" style={{"margin-top": "5px"}}>
+                                    
                             </div>
                             <div className="col-md-6" style={{"margin-top": "5px"}}>
-                                <div>
-                                    <div>
-                                        <div className="general-box" style={{"height": "180px", "width": "100%"}}>
-                                            <a>
-                                                <img style={{"width": "100%"}} src="../lib/images/logo-xmas.gif"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
-                                <div>
-                                    <div>
-                                        {this.state.divs}
-                                    </div>
-                                </div>
+                               {this.state.divs}
                             </div>
                         </div>
                     </div>
