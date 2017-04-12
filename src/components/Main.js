@@ -1,6 +1,13 @@
-import React, {Component, PropTypes} from 'react'
-import {Link, browserHistory} from 'react-router'
+import React, { Component, PropTypes } from 'react'
+import { Link, browserHistory } from 'react-router'
 var $ = require('jquery');
+
+var adminLoginPage = "login";
+var adminPages = [
+    "articleGrid",
+    "createArticle",
+    "imgUpload"
+];
 
 export default class Main extends Component {
 
@@ -11,10 +18,12 @@ export default class Main extends Component {
         var urlArr = [];
         urlArr = url.split("/");
         this.page = urlArr[urlArr.length - 1];
-        console.log(this.page);
+
+        console.log("url=" + url);
+        console.log("this.page=" + this.page);
 
         console.log(localStorage.getItem('token'));
-        if (this.page == "articleGrid" || this.page == "createArticle") {
+        if (adminPages.indexOf(this.page) != -1) {
             if (localStorage.getItem('token') == "") {
                 browserHistory.push('/login');
                 location.reload();
@@ -42,49 +51,63 @@ export default class Main extends Component {
     }
 
     render() {
-
         let userMessage;
-        if (this.page == "login") {
+        if (this.page == adminLoginPage) {
             userMessage = (
                 <span></span>
             )
-        } else if (this.page == "articleGrid" || this.page == "createArticle") {
+        } else if (adminPages.indexOf(this.page) != -1) {
             userMessage = (
-                <div className="col-md-12" style={{
+                <div style={{
                     "overflow": "hidden",
                     "position": "fixed",
                     "top": "0px",
                     "background-color": "#36648B",
-                    "height": "75px",
+                    "height": "50px",
                     "width": "100%",
+                    "padding-top": "20px",
+                    "font-size": "16px",
                     "zIndex": "1"
                 }}>
+                    <Link to="/articleGrid" style={{
+                        "float": "left",
+                        "color": "white",
+                        "margin-left": "50px",
+                        "margin-right": "15px"
+                    }}>All Articles</Link>
+
+                    <Link to="/createArticle" style={{
+                        "float": "left",
+                        "color": "white",
+                        "margin-left": "15px",
+                        "margin-right": "15px"
+                    }}>Create Article</Link>
+
+                    <Link to="/imgUpload" style={{
+                        "float": "left",
+                        "color": "white",
+                        "margin-left": "15px",
+                        "margin-right": "15px"
+                    }}>Upload Image</Link>
+
                     <Link onClick={this.logOut.bind()} style={{
                         "float": "right",
                         "color": "white",
-                        "font-size": "20px",
-                        "margin-top": "17px",
-                        "margin-right": "12px"
-                    }}>| LogOut </Link>
-                    <Link to="/imgUpload" style={{
-                        "float": "right",
-                        "color": "white",
-                        "font-size": "20px",
-                        "margin-top": "17px",
-                        "margin-right": "12px"
-                    }}> Upload Images</Link>
-                    <Link>.</Link>
+                        "margin-left": "15px",
+                        "margin-right": "50px"
+                    }}>Log Out </Link>
+
                 </div>
             )
         } else {
             userMessage = (
                 <div id="header-menu" className="col-md-12 row">
                     <div className="col-md-3 col-sm-3 col-xs-3" id="main-logo"><a href="/">
-                        <img src="../lib/images/logo-2.png"/></a></div>
+                        <img src="../lib/images/logo-2.png" /></a></div>
                     <div id="main-menu">
                         <ul>
                             <li className="col-md-1 col-sm-1 col-xs-1">
-                                <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png"/></a>
+                                <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png" /></a>
                             </li>
 
                             <form method="post" action="/search">
@@ -92,10 +115,10 @@ export default class Main extends Component {
                                     <a id="main-search-wrapper">
                                         <div className="input-group innerB main-search">
                                             <input type="text" name="searchfield" id="searchfield"
-                                                   className="form-control" placeholder=""/>
+                                                className="form-control" placeholder="" />
                                             <div className="input-group-btn">
                                                 <button id="submit-search" name="submit" className="btn btn-default"
-                                                        type="submit">
+                                                    type="submit">
                                                     <i className="fa fa-search"></i>
                                                 </button>
                                             </div>
