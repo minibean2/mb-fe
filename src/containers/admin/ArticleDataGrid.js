@@ -112,17 +112,17 @@ export default class ArticleDataGrid extends Component {
         $.get(configData.url + "api/articles").done((res) => {
             console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
-                res.res[i].id = (i + 1);
+                res.res[i].id = i;
                 res.res[i].categoryName = res.res[i].category.name;
                 res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY h:mA");
                 res.res[i].created_date = moment(res.res[i].created_date).format("MMM D, YYYY h:mA");
                 if (res.res[i].featured == true) {
-                    featuredArray.push(res.res[i].id);
+                    featuredArray.push(res.res[i].id - 1);
                 }
             }
             dataObject = res.res;
             console.log(featuredArray);
-            this.setState({ selectedIndexes: this.state.selectedIndexes.concat(featuredArray) });
+           
 
             rows = res.res;
             console.log(rows);
