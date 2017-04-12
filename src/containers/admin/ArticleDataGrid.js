@@ -130,54 +130,51 @@ export default class ArticleDataGrid extends Component {
         });
     }
 
-    onRowSelect(rows) {
-        console.log("selectedindex---", featuredArray, rows);
+   
+    onRowSelect(rows) { 
+        console.log("selectedindex---",featuredArray, rows);
         featuredArray.push(rows[0].rowIdx);
         console.log(dataObject);
-        console.log(rows, "featuredArray--", featuredArray); var articleIdList = [];
-        var articleObject = {};
-        var articleIdList = [];
-        for (let i = 0; i < dataObject.length; i++) {
-            for (let j = 0; j < featuredArray.length; j++) {
-                if ((dataObject[i].id - 1) == featuredArray[j]) {
-                    articleIdList.push(dataObject[i]._id);
-                }
-            }
-        }
+        console.log(rows,"featuredArray--",featuredArray); var articleIdList = [];
+       
+        console.log(featuredArray);
+       
+         
         
-        articleObject.articles = articleIdList;
-        console.log(articleObject);
-        $.post(configData.url + "api/update/featured", articleObject).done((res) => {
-            console.log("success");
-
-
-        });
     }
 
-    onRowsDeselected(rows) {
-        console.log(rows);
-        var index = featuredArray.indexOf(rows[0].rowIdx);
-        featuredArray.splice(index, 1);
-        console.log("index", index);
-        var articleObject = {};
-        var articleIdList = [];
-        for (let i = 0; i < dataObject.length; i++) {
-            for (let j = 0; j < featuredArray.length; j++) {
-                if ((dataObject[i].id - 1) == featuredArray[j]) {
-                    articleIdList.push(dataObject[i]._id);
+    onRowsDeselected(rows){
+            console.log(rows);
+            var index = featuredArray.indexOf(rows[0].rowIdx);
+            featuredArray.splice(index,1);
+            console.log("index",index);
+            
+             console.log(featuredArray);
+           
+            
+    }
+
+    savefeatured(){
+        console.log("cheeeeeeeeeee");
+         var articleObject = {}; 
+            var articleIdList = [];
+
+            for (let i = 0; i < dataObject.length; i++) {
+                for (let j = 0; j < featuredArray.length; j++) {
+                      if((dataObject[i].id - 1) == featuredArray[j]){
+                          articleIdList.push(dataObject[i]._id); 
+                     }
                 }
+             
+              
             }
+            articleObject.articles = articleIdList;
 
+         $.post(configData.url + "api/update/featured", articleObject).done((res) => {
+                    console.log("success");
+                   
 
-        }
-        articleObject.articles = articleIdList;
-        console.log(articleObject);
-        $.post(configData.url + "api/update/featured", articleObject).done((res) => {
-            console.log("success");
-
-
-        });
-
+                }); 
     }
 
     render() {
@@ -191,15 +188,20 @@ export default class ArticleDataGrid extends Component {
                     <div className="themeA-container">
                         <div className="row">
 
-                            <div className="col-md-12" style={{
-                                "margin-top": "5px",
-                                "textAlign": "right",
-                                "marginBottom": "16px",
-                                "marginTop": "15px"
-                            }}>
-                                <button className="btn btn-default" onClick={this.createArticle}>Create Article</button>
-                            </div>
-                            <div className="col-md-12">
+                        <div className="col-md-12" style={{
+                            "margin-top": "5px",
+                            "textAlign": "right",
+                            "marginBottom": "16px",
+                            "marginTop": "15px"
+                        }}>
+                            <button className="btn btn-default" style={{"margin-right":"13px"}} onClick={this.createArticle}>Create Article</button>
+                            <button
+                                        className="btn btn-default" onClick={this.savefeatured.bind()}>
+                                        Save featured
+                                    </button>
+                        </div>
+                        
+                        <div className="col-md-12">
 
                                 <ReactDataGrid
                                     rowKey="id"
