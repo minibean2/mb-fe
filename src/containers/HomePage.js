@@ -168,7 +168,7 @@ export default class HomePage extends Component {
                                         {articleItem.category.name}
                                     </a>
                                     <font className="admin-visible-field">{articleItem.post_date}</font>
-                                    <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png" />{articleItem.nov}</span>
+                                    <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                 </h6>
                                 <p>{this.showBody(articleItem.preview)}...</p>
                             </div>
@@ -224,7 +224,7 @@ export default class HomePage extends Component {
                                                 {articleItem.category.name}
                                             </a>
                                             <font className="admin-visible-field">{articleItem.post_date}</font>
-                                            <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png" />{articleItem.nov}</span>
+                                            <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                         </h6>
                                         <p>{this.showBody(articleItem.preview)}...</p>
                                     </div>
