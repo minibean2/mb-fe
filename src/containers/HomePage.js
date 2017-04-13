@@ -82,7 +82,7 @@ export default class HomePage extends Component {
         this.refs.input.value = val
     }
 
-    categoriesClick(value) {
+    categoryClick(value) {
         console.log(value);
         this.flag = 0;
         var arr = [];
@@ -97,7 +97,6 @@ export default class HomePage extends Component {
             this.generateDivs();
             //});
         } else {
-
             $.get(configData.url + "api/article/category/" + value).done((res) => {
                 console.log(res);
                 this.flag = 1;
@@ -108,8 +107,6 @@ export default class HomePage extends Component {
                 this.generateCatDivs();
             });
         }
-
-
     }
 
     articleClick(articleId) {
@@ -139,7 +136,7 @@ export default class HomePage extends Component {
                     <div className="selected-item">
                         <a className="nav-item"
                             style={{ "color": "#324fe1", "font-weight": "bold" }}
-                            onClick={this.categoriesClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
+                            onClick={this.categoryClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
                     </div>
                 </li>
             );
@@ -155,35 +152,33 @@ export default class HomePage extends Component {
 
         let moreDivs = [];
         for (let i = 0; i < this.res.length; i++) {
-            // console.log(res.res[i]._id);
-            //var id = res.res[i]._id;
             this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
+            var articleItem = this.res[i];
             moreDivs.push(
                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                     <ul className="allpost-wrapper">
-                        <li><Link to={'/article/' + this.res[i]._id}><img src={this.res[i].imageUrl} /></Link>
-                            <h4 style={getColor}><Link to={'/article/' + this.res[i]._id}>{this.res[i].title}</Link>
-                            </h4>
+                        <li>
+                            <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                             <div>
+                                <Link to={'/article/' + articleItem._id}>
+                                    <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
+                                </Link>
                                 <h6>
-                                    <a className="tag"
-                                        onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
-                                    <font className="admin-visible-field">{this.res[i].post_date}</font>
-                                    <span className="view-count" style={marginLeft}><img className="view-icon"
-                                        src="view.png" />view</span>
+                                    <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
+                                        {articleItem.category.name}
+                                    </a>
+                                    <font className="admin-visible-field">{articleItem.post_date}</font>
+                                    <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png" />{articleItem.nov}</span>
                                 </h6>
+                                <p>{this.showBody(articleItem.preview)}...</p>
                             </div>
                         </li>
                     </ul>
-                    <ul className="allpost-wrapper">
-                        {this.showBody(this.res[i].preview)}
-                    </ul>
-                    <span></span>
                 </div>
             );
 
-            if (this.res[i].featured === true) {
-                items.push(this.res[i]);
+            if (articleItem.featured === true) {
+                items.push(articleItem);
             }
 
             this.count++;
@@ -197,7 +192,7 @@ export default class HomePage extends Component {
     showBody(value) {
         if (value != null && value != "") {
             return (
-                <div dangerouslySetInnerHTML={{ __html: value }}></div>
+                <span dangerouslySetInnerHTML={{ __html: value }}></span>
             )
         }
     }
@@ -213,37 +208,33 @@ export default class HomePage extends Component {
             $.get(configData.url + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
-                    console.log(res.res[i]._id);
-                    //var id = res.res[i]._id;
                     res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                    var articleItem = res.res[i];
                     moreDivs.push(
                         <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                             <ul className="allpost-wrapper">
-                                <li><Link to={'/article/' + res.res[i]._id}><img src={res.res[i].imageUrl} /></Link>
-                                    <h4 style={getColor}><Link
-                                        to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
+                                <li>
+                                    <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                                     <div>
+                                        <Link to={'/article/' + articleItem._id}>
+                                            <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
+                                        </Link>
                                         <h6>
-                                            <a className="tag"
-                                                onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
-                                            <font className="admin-visible-field">{res.res[i].post_date}</font>
-                                            <span className="view-count" style={marginLeft}><img
-                                                className="view-icon"
-                                                src="../lib/images/general/icons/view.png" />view</span>
+                                            <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
+                                                {articleItem.category.name}
+                                            </a>
+                                            <font className="admin-visible-field">{articleItem.post_date}</font>
+                                            <span className="view-count" style={marginLeft}><img className="view-icon" src="view.png" />{articleItem.nov}</span>
                                         </h6>
-                                        <div>
-                                        </div>
+                                        <p>{this.showBody(articleItem.preview)}...</p>
                                     </div>
                                 </li>
                             </ul>
-                            <ul className="allpost-wrapper">
-                                {this.showBody(res.res[i].preview)}
-                            </ul>
-                            <span></span>
                         </div>
                     );
-                    if (res.res[i].featured === true) {
-                        items.push(res.res[i]);
+
+                    if (articleItem.featured === true) {
+                        items.push(articleItem);
                     }
 
                     this.count++;
@@ -260,7 +251,7 @@ export default class HomePage extends Component {
         console.log(value);
         if (value != null && value != "") {
             return (
-                <div dangerouslySetInnerHTML={{ __html: value }}></div>
+                <span dangerouslySetInnerHTML={{ __html: value }}></span>
             )
         }
     }
@@ -306,7 +297,7 @@ export default class HomePage extends Component {
         console.log("articleImgs ", articleImgs);
 
         return (
-            <div style={{ "margin-top": "72px" }}>
+            <div style={{ "margin-top": "50px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
@@ -326,7 +317,7 @@ export default class HomePage extends Component {
                                                 <div className="selected-item">
                                                     <a className="nav-item"
                                                         style={{ "color": "#324fe1", "font-weight": "bold" }}
-                                                        onClick={this.categoriesClick.bind(this, 'All articles')}>所有文章</a>
+                                                        onClick={this.categoryClick.bind(this, 'All articles')}>所有文章</a>
                                                 </div>
                                             </li>
                                             {this.htmlCategories}
@@ -352,7 +343,7 @@ export default class HomePage extends Component {
                                             scrollThreshold={this.scrollThreshold}
                                             next={this.generateDivs}
                                             hasMore={true}
-                                            loader={<h4>Loading...</h4>}>
+                                            loader={<div><img className="center-img spinner" src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
                                             {this.state.divs}
                                         </InfiniteScroll>
                                     </div>

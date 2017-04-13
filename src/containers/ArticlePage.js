@@ -98,7 +98,7 @@ export default class ArticlePage extends Component {
     showBody(value) {
         if (value != null && value != "") {
             return (
-                <div dangerouslySetInnerHTML={{ __html: value }}></div>
+                <span dangerouslySetInnerHTML={{ __html: value }}></span>
             )
         }
     }
