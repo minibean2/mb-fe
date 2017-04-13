@@ -63,6 +63,15 @@ pre {
     color: #038100 !important;
     font-style: italic;
 }
+.center-img {
+    display: block;
+    margin: auto;
+}
+.spinner {
+    width: 24px;
+    height: 24px;
+    margin: 10px auto;
+}
 .comment-spinner {
     height: 6px;
     margin-top: -3px;
@@ -2056,7 +2065,7 @@ a:focus {
     float: left;
     padding-left: 3px;
     position: relative;
-    width: 98%;
+    width: 100%;
 }
 .article-detail-wrapper h3 {
     margin: 0;
@@ -2873,7 +2882,7 @@ span.notif-count {
     padding: 3px;
 }
 #article-link {
-    width: 65%;
+    width: 85%;
     padding: 5px;
 }
 .alert {
