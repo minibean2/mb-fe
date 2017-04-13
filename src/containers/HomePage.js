@@ -178,6 +178,11 @@ export default class HomePage extends Component {
             );
 
             if (articleItem.featured === true) {
+		 if(items.length == 1){
+                    if(items[0].imageUrl == ""){
+                        items = [];
+                    }
+                }
                 items.push(articleItem);
             }
 
@@ -198,7 +203,7 @@ export default class HomePage extends Component {
     }
 
     generateDivs() {
-        items = [];
+        
         if (this.flag == 0) {
             console.log(this.state.divs);
             console.log(this.count);
@@ -234,6 +239,11 @@ export default class HomePage extends Component {
                     );
 
                     if (articleItem.featured === true) {
+			if(items.length == 1){
+                            if(items[0].imageUrl == ""){
+                                items = [];
+                            }
+                        }
                         items.push(articleItem);
                     }
 

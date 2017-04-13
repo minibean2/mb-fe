@@ -117,7 +117,7 @@ export default class ArticleDataGrid extends Component {
                 res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY h:mA");
                 res.res[i].created_date = moment(res.res[i].created_date).format("MMM D, YYYY h:mA");
                 if (res.res[i].featured == true) {
-                    featuredArray.push(res.res[i].id - 1);
+                    featuredArray.push(res.res[i].id);
                 }
             }
             dataObject = res.res;
@@ -162,7 +162,7 @@ export default class ArticleDataGrid extends Component {
             for (let i = 0; i < dataObject.length; i++) {
                 for (let j = 0; j < featuredArray.length; j++) {
                       if((dataObject[i].id - 1) == featuredArray[j]){
-                          articleIdList.push(dataObject[i]._id); 
+                          articleIdList.push(dataObject[i-1]._id); 
                      }
                 }
              
