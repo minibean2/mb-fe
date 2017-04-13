@@ -56,7 +56,6 @@ export default class ArticlePage extends Component {
         this.generateDivs = this.generateDivs.bind(this);
         this.count = 0;
         this.generateDivs();
-
     }
 
     getDivs = () => {
@@ -112,31 +111,37 @@ export default class ArticlePage extends Component {
             moreDivs.push(
                 <div className="general-box article-box-main">
                     <ul className="article-detail-wrapper">
-                        <div className="col-md-12 col-sm-12" style={{ "textAlign": "center", "marginTop": "10px" }}>
-                            <div className="col-md-2 col-sm-2">
-                                <a>
-                                    <img style={{ "width": "82px", "borderRadius": "9%" }} src="../lib/images/article/cat_2.jpg" />
-                                </a>
+                        <li>
+                            <Link to={'/categoryId=' + res.res.category.id}>
+                                <img className="scCatMiniThumbnail" src={res.res.thumbnailUrl} />
+                            </Link>
+                            <div style={{ "margin-left": "10px", "width": "60%" }}>
+                                <Link className="scCatName" to={'/categoryId=' + res.res.category.id}>{res.res.category.name}</Link>
+                                <h6>
+                                    <font className="admin-visible-field">{res.res.post_date}</font>
+                                </h6>
                             </div>
-                            <div className="col-md-10 col-sm-10 form-group" style={{ "textAlign": "left" }}>
-                                <div className="col-md-12 col-sm-12">
-                                    <a> {res.res.category.name}</a>
-                                </div>
-                                <div className="col-md-12 col-sm-12">
-                                    <label style={{ "fontSize": "11px" }}>Posted on {res.res.post_date}</label>
-                                </div>
+                        </li>
+                        <li>
+                            <font className="scTitle">{res.res.title}</font>
+                        </li>
+                        <li>
+                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
+                        </li>
+                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(res.res.preview)}</div></li>
+                        <li>
+                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
+                        </li>
+                        <li>
+                            <div style={{ "margin": "20px 0", "font-size": "16px" }}>
+                                <div className="padding10" style={{ "border-top": "1px solid #eee" }}></div>
+                                分享連結:&nbsp;
+                                <input type='text' name='article-link' id='article-link' value={configData.url + 'article/' + this.articleId}></input>
+                                {/*<a style={{"margin-left":"5px","padding":"2px 7px","font-size":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
                             </div>
-                        </div>
-                        <div className="col-md-12 col-sm-12" style={{ "textAlign": "left" }}>
-                            <h2 className="col-md-12 col-sm-12">
-                                {res.res.title}
-                            </h2>
-                        </div>
-                        <div className="col-md-12 col-sm-12" style={{ "textAlign": "center" }}>
-                            {this.showBody(res.res.preview)}
-                        </div>
+                        </li>
                     </ul>
-                </div>
+                </div >
             );
 
         });
