@@ -152,7 +152,10 @@ export default class HomePage extends Component {
 
         let moreDivs = [];
         for (let i = 0; i < this.res.length; i++) {
-            this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
+            if(this.res[i].post_date != undefined){
+                          this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
+                    }
+           
             var articleItem = this.res[i];
             moreDivs.push(
                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
@@ -189,9 +192,9 @@ export default class HomePage extends Component {
             this.count++;
         }
 
-        setTimeout(() => {
+       
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-        }, 500);
+       
     }
 
     showBody(value) {
@@ -213,7 +216,10 @@ export default class HomePage extends Component {
             $.get(configData.url + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
-                    res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                    if(res.res[i].post_date != undefined){
+                         res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");     
+                    }
+                   
                     var articleItem = res.res[i];
                     moreDivs.push(
                         <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
