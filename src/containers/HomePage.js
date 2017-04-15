@@ -276,13 +276,17 @@ export default class HomePage extends Component {
         var settings = {
             className: '',
             adaptiveHeight: true,
+            variableWidth: false,
             dots: true,
+            arrows: true,
+            pauseOnHover: false,
             infinite: true,
             slidesToShow: 1,
+            initialSlide: 0,
             speed: 500,
             slidesToScroll: 1,
             autoplay: true,
-            autoplaySpeed: 2000,
+            autoplaySpeed: 1000,
             swipe: true,
             rtl: false,
         };

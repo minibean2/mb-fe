@@ -154,18 +154,6 @@ export default class ArticlePage extends Component {
 
     render() {
 
-        var settings = {
-            className: '',
-            dots: true,
-            infinite: true,
-            slidesToShow: 1,
-            speed: 2000,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            rtl: true,
-        };
-
         return (
 
             <div style={{ "margin-top": "80px" }}>
