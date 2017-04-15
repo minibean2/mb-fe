@@ -151,8 +151,8 @@ export default class ArticleDataGrid extends Component {
 
         for (let i = 0; i < dataObject.length; i++) {
             for (let j = 0; j < featuredArray.length; j++) {
-                if ((dataObject[i].id - 1) == featuredArray[j]) {
-                    articleIdList.push(dataObject[i - 1]._id);
+                if (dataObject[i].id == featuredArray[j]) {
+                    articleIdList.push(dataObject[i]._id);
                 }
             }
         }
