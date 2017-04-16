@@ -156,34 +156,29 @@ export default class ArticlePage extends Component {
 
         return (
 
-            <div style={{ "margin-top": "80px" }}>
-                <div className="row">
-                    <div className="col-md-2 col-sm-2 col-xs-2" style={{ "width": "10%" }}></div>
-                    <div className="col-md-6 col-sm-6 col-xs-6" style={{ "width": "620px" }}>
-                        <div id="wall">
-                            {this.state.divs}
-                        </div>
-                    </div>
-                    <div className="col-md-4 col-sm-4 col-xs-4" style={{ "width": "310px" }}>
-                        <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
+            <div style={{ "margin-top": "50px" }}>
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-10">
+                    <div className="themeA-container">
+                        <div className="row">
+                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                <div id="wall">
+                                    {this.state.divs}
+                                </div>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
-                        </div>
-                        <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
+                                </div>
+                                <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
-                        </div>
-
-                        {/*
-                        <div>
-                            <div data-ng-include data-src="'/assets/app/views/utilities/hotArticlesUtility.html'"></div>
-                        </div>
-                        <div id="right-sidebar" ui-scrollfix="+{{rightSidebarTop}}">
-                            <div>
-                                <div data-ng-include data-src="'/assets/app/views/utilities/recommendedArticlesUtility.html'"></div>
+                                </div>
                             </div>
                         </div>
-                        */}
                     </div>
-
+                </div>
+                <div className="col-md-1">
                 </div>
             </div>
         )
