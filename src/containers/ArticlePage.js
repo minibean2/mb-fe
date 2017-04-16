@@ -128,7 +128,7 @@ export default class ArticlePage extends Component {
                         <li>
                             <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
                         </li>
-                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(res.res.preview)}</div></li>
+                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(res.res.body)}</div></li>
                         <li>
                             <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
                         </li>
