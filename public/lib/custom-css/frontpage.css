@@ -99,7 +99,8 @@
     position: fixed;
     z-index: 100;
     display: inline-block;
-    margin-left: 80px;
+    /*margin-left: 80px;*/
+    margin-left: 5%;
 }
 
 #main-logo a {
@@ -131,7 +132,8 @@
 #main-menu {
     position: relative;
     /*top: 30px;*/
-    left: 250px;
+    /*left: 250px;*/
+    left: 25%;
     height: 50px
 }
 
