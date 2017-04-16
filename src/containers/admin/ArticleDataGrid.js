@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
-import configData from '../../config.js';
+import config from '../../config';
 import ReactDataGrid from 'react-data-grid';
 
 const { Editors, Toolbar, Formatters } = require('react-data-grid-addons');
@@ -84,7 +84,7 @@ export default class ArticleDataGrid extends Component {
                         console.log(ev);
                         console.log(args);
                         console.log(rows[args.rowIdx]);
-                        $.get(configData.url + "api/article/delete/" + rows[args.rowIdx]._id).done((res) => {
+                        $.get(config.API_URL + "api/article/delete/" + rows[args.rowIdx]._id).done((res) => {
                             mi.getAllArticles();
                             mi.setState();
 
@@ -109,7 +109,7 @@ export default class ArticleDataGrid extends Component {
 
     getAllArticles() {
         featuredArray = [];
-        $.get(configData.url + "api/articles").done((res) => {
+        $.get(config.API_URL + "api/articles").done((res) => {
             console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
                 res.res[i].id = i;
@@ -122,7 +122,6 @@ export default class ArticleDataGrid extends Component {
             }
             dataObject = res.res;
             console.log(featuredArray);
-           
 
             rows = res.res;
             console.log(rows);
@@ -130,57 +129,43 @@ export default class ArticleDataGrid extends Component {
         });
     }
 
-   
-    onRowSelect(rows) { 
-        console.log("selectedindex---",featuredArray, rows);
+    onRowSelect(rows) {
+        console.log("selectedindex---", featuredArray, rows);
         featuredArray.push(rows[0].rowIdx);
         console.log(dataObject);
-        console.log(rows,"featuredArray--",featuredArray); var articleIdList = [];
-       
+        console.log(rows, "featuredArray--", featuredArray); var articleIdList = [];
         console.log(featuredArray);
-       
-         
-        
     }
 
-    onRowsDeselected(rows){
-            console.log(rows);
-            var index = featuredArray.indexOf(rows[0].rowIdx);
-            featuredArray.splice(index,1);
-            console.log("index",index);
-            
-             console.log(featuredArray);
-           
-            
+    onRowsDeselected(rows) {
+        console.log(rows);
+        var index = featuredArray.indexOf(rows[0].rowIdx);
+        featuredArray.splice(index, 1);
+        console.log("index", index);
+        console.log(featuredArray);
     }
 
-    savefeatured(){
-        console.log("cheeeeeeeeeee");
-         var articleObject = {}; 
-            var articleIdList = [];
+    savefeatured() {
+        var articleObject = {};
+        var articleIdList = [];
 
-            for (let i = 0; i < dataObject.length; i++) {
-                for (let j = 0; j < featuredArray.length; j++) {
-                      if((dataObject[i].id - 1) == featuredArray[j]){
-                          articleIdList.push(dataObject[i-1]._id); 
-                     }
+        for (let i = 0; i < dataObject.length; i++) {
+            for (let j = 0; j < featuredArray.length; j++) {
+                if ((dataObject[i].id - 1) == featuredArray[j]) {
+                    articleIdList.push(dataObject[i - 1]._id);
                 }
-             
-              
             }
-            articleObject.articles = articleIdList;
+        }
+        articleObject.articles = articleIdList;
 
-         $.post(configData.url + "api/update/featured", articleObject).done((res) => {
-                    console.log("success");
-                   
-
-                }); 
+        $.post(config.API_URL + "api/update/featured", articleObject).done((res) => {
+            console.log("success");
+        });
     }
 
     render() {
 
         return (
-
             <div style={{ "margin-top": "80px" }}>
                 <div className="col-md-1">
                 </div>
@@ -188,20 +173,20 @@ export default class ArticleDataGrid extends Component {
                     <div className="themeA-container">
                         <div className="row">
 
-                        <div className="col-md-12" style={{
-                            "margin-top": "5px",
-                            "textAlign": "right",
-                            "marginBottom": "16px",
-                            "marginTop": "15px"
-                        }}>
-                            <button className="btn btn-default" style={{"margin-right":"13px"}} onClick={this.createArticle}>Create Article</button>
-                            <button
-                                        className="btn btn-default" onClick={this.savefeatured.bind()}>
-                                        Save featured
+                            <div className="col-md-12" style={{
+                                "margin-top": "5px",
+                                "textAlign": "right",
+                                "marginBottom": "16px",
+                                "marginTop": "15px"
+                            }}>
+                                <button className="btn btn-default" style={{ "margin-right": "13px" }} onClick={this.createArticle}>Create Article</button>
+                                <button
+                                    className="btn btn-default" onClick={this.savefeatured.bind()}>
+                                    Save featured
                                     </button>
-                        </div>
-                        
-                        <div className="col-md-12">
+                            </div>
+
+                            <div className="col-md-12">
 
                                 <ReactDataGrid
                                     rowKey="id"

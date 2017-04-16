@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import InfiniteScroll from 'react-infinite-scroll-component';
-import configData from '../config.js';
+import config from '../config';
+import constants from '../constants';
+
 var Slider = require('react-slick');
 var $ = require('jquery');
 var moment = require('moment');
@@ -71,30 +73,6 @@ export default class ArticlePage extends Component {
         this.refs.input.value = val
     }
 
-    categoriesClick(value) {
-        var arr = [];
-        this.state = { divs: arr };
-        this.count = 0;
-        if (value == "All articles") {
-
-            $.get(configData.url + "api/articles").done((res) => {
-                this.res = res.res;
-                this.generateDivs();
-            });
-        } else {
-
-            $.get(configData.url + "api/article/category/" + value).done((res) => {
-                console.log(res);
-
-                this.state = { divs: divs };
-                arr = res.res;
-                this.res = arr;
-
-                this.generateDivs();
-            });
-        }
-    }
-
     showBody(value) {
         if (value != null && value != "") {
             return (
@@ -106,7 +84,7 @@ export default class ArticlePage extends Component {
     generateDivs() {
 
         let moreDivs = [];
-        $.get(configData.url + "api/article?articleId=" + this.articleId).done((res) => {
+        $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
             res.res.post_date = moment(res.res.post_date).format("MMM D, YYYY");
             moreDivs.push(
                 <div className="general-box article-box-main">
@@ -136,26 +114,23 @@ export default class ArticlePage extends Component {
                             <div style={{ "margin": "20px 0", "font-size": "16px" }}>
                                 <div className="padding10" style={{ "border-top": "1px solid #eee" }}></div>
                                 分享連結:&nbsp;
-                                <input type='text' name='article-link' id='article-link' value={configData.url + 'article/' + this.articleId}></input>
+                                <input type='text' name='article-link' id='article-link' value={config.API_URL + 'article/' + this.articleId}></input>
                                 {/*<a style={{"margin-left":"5px","padding":"2px 7px","font-size":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
                             </div>
                         </li>
                     </ul>
                 </div >
             );
-
         });
 
         setTimeout(() => {
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-        }, 500);
-
+        }, 1000);
     }
 
     render() {
 
         return (
-
             <div style={{ "margin-top": "50px" }}>
                 <div className="col-md-1">
                 </div>

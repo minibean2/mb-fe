@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
-import configData from '../config.js';
+import config from '../config';
+import constants from '../constants';
+
 var Slider = require('react-slick');
 var $ = require('jquery');
 var moment = require('moment');
@@ -59,7 +61,7 @@ export default class HomePage extends Component {
         this.pageSize = 5;
         this.scrollThreshold = 0.5;
 
-        $.get(configData.url + "api/categories").done((res) => {
+        $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
 
             this.categories = res;
@@ -88,22 +90,19 @@ export default class HomePage extends Component {
         var arr = [];
         this.state = { divs: arr, img: [] };
         this.count = 0;
-        if (value == "All articles") {
-
-            // $.get(configData.url+"api/articles").done((res) => {
+        if (value == constants.CATEGORIES_ALL) {
+            // $.get(config.API_URL + "api/articles").done((res) => {
             // this.res = res.res;
             this.state = { divs: [] };
-            this.count = 0;
             this.generateDivs();
             //});
         } else {
-            $.get(configData.url + "api/article/category/" + value).done((res) => {
+            $.get(config.API_URL + "api/article/category/" + value).done((res) => {
                 console.log(res);
                 this.flag = 1;
                 this.state = { divs: divs };
                 arr = res.res;
                 this.res = arr;
-
                 this.generateCatDivs();
             });
         }
@@ -114,15 +113,11 @@ export default class HomePage extends Component {
         this.state = { divs: arr };
         this.count = 0;
         console.log(articleId);
-        $.get(configData.url + "api/article?articleId=" + articleId).done((res) => {
-            console.log(res);
-
+        $.get(config.API_URL + "api/article?articleId=" + articleId).done((res) => {
             this.state = { divs: divs };
             arr.push(res.res);
             console.log(arr);
             this.res = arr;
-            console.log(this.res);
-
             this.generateDivs();
         });
     }
@@ -141,9 +136,10 @@ export default class HomePage extends Component {
                 </li>
             );
         }
+
         setTimeout(() => {
             this.htmlCategories = menu;
-        }, 500);
+        }, 1000);
     }
 
     generateCatDivs() {
@@ -152,10 +148,10 @@ export default class HomePage extends Component {
 
         let moreDivs = [];
         for (let i = 0; i < this.res.length; i++) {
-            if(this.res[i].post_date != undefined){
-                          this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
-                    }
-           
+            if (this.res[i].post_date != undefined) {
+                this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
+            }
+
             var articleItem = this.res[i];
             moreDivs.push(
                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
@@ -181,8 +177,8 @@ export default class HomePage extends Component {
             );
 
             if (articleItem.featured === true) {
-		 if(items.length == 1){
-                    if(items[0].imageUrl == ""){
+                if (items.length == 1) {
+                    if (items[0].imageUrl == "") {
                         items = [];
                     }
                 }
@@ -192,9 +188,7 @@ export default class HomePage extends Component {
             this.count++;
         }
 
-       
-            this.setState({ divs: this.state.divs.concat(moreDivs) });
-       
+        this.setState({ divs: this.state.divs.concat(moreDivs) });
     }
 
     showBody(value) {
@@ -206,20 +200,20 @@ export default class HomePage extends Component {
     }
 
     generateDivs() {
-        
+
         if (this.flag == 0) {
             console.log(this.state.divs);
             console.log(this.count);
 
             let moreDivs = [];
             let img = [];
-            $.get(configData.url + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
+            $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
-                    if(res.res[i].post_date != undefined){
-                         res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");     
+                    if (res.res[i].post_date != undefined) {
+                        res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
                     }
-                   
+
                     var articleItem = res.res[i];
                     moreDivs.push(
                         <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
@@ -245,8 +239,8 @@ export default class HomePage extends Component {
                     );
 
                     if (articleItem.featured === true) {
-			if(items.length == 1){
-                            if(items[0].imageUrl == ""){
+                        if (items.length == 1) {
+                            if (items[0].imageUrl == "") {
                                 items = [];
                             }
                         }
@@ -259,7 +253,7 @@ export default class HomePage extends Component {
 
             setTimeout(() => {
                 this.setState({ divs: this.state.divs.concat(moreDivs) });
-            }, 500);
+            }, 1000);
         }
     }
 
@@ -271,6 +265,17 @@ export default class HomePage extends Component {
             )
         }
     }
+
+    /*
+    componentDidMount () {
+        var el = ReactDOM.findDOMNode(this.refs.chartComp);
+        console.log(el);
+        d3Chart.create(el, {
+            width: '500',
+            height: '300'
+        }, this.getChartState(), this.getAccessState);
+    }
+    */
 
     render() {
         var settings = {
@@ -337,7 +342,7 @@ export default class HomePage extends Component {
                                                 <div className="selected-item">
                                                     <a className="nav-item"
                                                         style={{ "color": "#324fe1", "font-weight": "bold" }}
-                                                        onClick={this.categoryClick.bind(this, 'All articles')}>所有文章</a>
+                                                        onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
                                                 </div>
                                             </li>
                                             {this.htmlCategories}

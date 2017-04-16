@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react'
-import {Link, browserHistory} from 'react-router'
+import React, { Component, PropTypes } from 'react'
+import { Link, browserHistory } from 'react-router'
 var Select = require('react-select');
 import Dropdown from 'react-dropdown'
-import configData from '../../config.js';
+import config from '../../config';
 import TinyMCE from 'react-tinymce';
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
@@ -12,7 +12,7 @@ var $ = require('jquery');
 const rows = [];
 var options = [];
 var selectedOption = {};
-var cat = {"id": "0", "name": ""};
+var cat = { "id": "0", "name": "" };
 var htmlBody = "";
 var publishedValue = true;
 var featuredValue = true;
@@ -25,12 +25,12 @@ export default class CreateArticle extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {published: true, featured: true, date: moment()};
-        $.get(configData.url + "api/categories").done((res) => {
+        this.state = { published: true, featured: true, date: moment() };
+        $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
             this.categories = res;
             for (var i = 0; i < this.categories.length; i++) {
-                options.push({"value": this.categories[i]._id, "label": this.categories[i].name});
+                options.push({ "value": this.categories[i]._id, "label": this.categories[i].name });
             }
             const defaultOption = options[0];
             this.setState();
@@ -68,7 +68,7 @@ export default class CreateArticle extends Component {
         if (selectedOption == {}) {
             selectedOption = options[0].value;
         }
-        cat = {"id": selectedOption.value, "name": selectedOption.label};
+        cat = { "id": selectedOption.value, "name": selectedOption.label };
 
         var data = {
             title: $(".title").val(),
@@ -89,10 +89,9 @@ export default class CreateArticle extends Component {
         //data.created_date = currentDate;
 
         console.log("data----", data);
-        $.post(configData.url + "api/article/save", data).done((res) => {
+        $.post(config.API_URL + "api/article/save", data).done((res) => {
             console.log("lead...........");
             browserHistory.push('/articleGrid');
-
         });
     }
 
@@ -130,15 +129,15 @@ export default class CreateArticle extends Component {
 
         return (
 
-            <div style={{"margin-top": "72px"}}>
+            <div style={{ "margin-top": "72px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-md-1" style={{"margin-top": "5px"}}>
+                            <div className="col-md-1" style={{ "margin-top": "5px" }}>
                             </div>
-                            <div className="col-md-10" style={{"margin-top": "5px"}}>
+                            <div className="col-md-10" style={{ "margin-top": "5px" }}>
                                 <div className="general-box">
                                     <div className="col-md-12">
                                         <h1>Create Article </h1>
@@ -150,7 +149,7 @@ export default class CreateArticle extends Component {
                                         </div>
                                         <div className="col-md-8">
                                             <input type="text" className="form-control title col-md-8"
-                                                   name="title"/>
+                                                name="title" />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -159,7 +158,7 @@ export default class CreateArticle extends Component {
                                         </div>
                                         <div className="col-md-8">
                                             <input type="text" className="form-control preview col-md-8"
-                                                   name="preview"/>
+                                                name="preview" />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -168,7 +167,7 @@ export default class CreateArticle extends Component {
                                         </div>
                                         <div className="col-md-8">
                                             <input type="text" className="form-control thumbnailUrl col-md-8"
-                                                   name="thumbnailUrl"/>
+                                                name="thumbnailUrl" />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -176,7 +175,7 @@ export default class CreateArticle extends Component {
                                             <label>Image Url :</label>
                                         </div>
                                         <div className="col-md-8">
-                                            <input type="text" className="form-control imgUrl col-md-8" name="imgUrl"/>
+                                            <input type="text" className="form-control imgUrl col-md-8" name="imgUrl" />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -185,7 +184,7 @@ export default class CreateArticle extends Component {
                                         </div>
                                         <div className="col-md-8">
                                             <Dropdown options={options} onChange={this.categoryChange}
-                                                      value={defaultOption}/>
+                                                value={defaultOption} />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -194,7 +193,7 @@ export default class CreateArticle extends Component {
                                         </div>
                                         <div className="col-md-8">
                                             <DatePicker dateFormat="DD-MM-YYYY" selected={this.state.date}
-                                                        onChange={this.dateChange.bind(this)}/>
+                                                onChange={this.dateChange.bind(this)} />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
@@ -204,12 +203,12 @@ export default class CreateArticle extends Component {
 
                                             <div className="col-md-6">
                                                 <input type="checkbox" checked={this.state.published}
-                                                       onChange={this.publishedChangeChk.bind(this, this.state.published)}/>&nbsp;&nbsp;
+                                                    onChange={this.publishedChangeChk.bind(this, this.state.published)} />&nbsp;&nbsp;
                                                 Published
                                             </div>
                                             <div className="col-md-6">
                                                 <input type="checkbox" checked={this.state.featured}
-                                                       onChange={this.featuredChangeChk.bind(this, this.state.featured)}/>&nbsp;&nbsp;
+                                                    onChange={this.featuredChangeChk.bind(this, this.state.featured)} />&nbsp;&nbsp;
                                                 Featured
                                             </div>
                                         </div>
@@ -258,10 +257,10 @@ export default class CreateArticle extends Component {
                                         </div>
                                     </div>
                                     <input name="image" type="file" id="upload" onchange=""
-                                           style={{"display": "none"}}/>
-                                    <div className="form-group  col-md-12" style={{"textAlign": "right"}}>
+                                        style={{ "display": "none" }} />
+                                    <div className="form-group  col-md-12" style={{ "textAlign": "right" }}>
                                         <button
-                                            className="btn btn-default" style={{"marginRight": "10px"}}
+                                            className="btn btn-default" style={{ "marginRight": "10px" }}
                                             onClick={this.backPage.bind()}>
                                             Close
                                         </button>
@@ -271,9 +270,9 @@ export default class CreateArticle extends Component {
                                         </button>
                                     </div>
 
-                                    <div className="col-md-1" style={{"margin-top": "5px"}}>
+                                    <div className="col-md-1" style={{ "margin-top": "5px" }}>
                                     </div>
-                                    <div className="col-md-12" style={{"margin-top": "5px"}}>
+                                    <div className="col-md-12" style={{ "margin-top": "5px" }}>
                                     </div>
                                 </div>
                             </div>
