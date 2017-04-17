@@ -205,11 +205,12 @@ export default class HomePage extends Component {
             console.log(this.state.divs);
             console.log(this.count);
 
-            let moreDivs = [];
+            
             let img = [];
             $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
-                for (let i = 0; i < 6; i++) {
+                let moreDivs = [];
+                for (let i = 0; i < res.res.length; i++) {
                     
                      if(res.res[i] != undefined){
                                var articleItem = res.res[i];
@@ -281,21 +282,14 @@ export default class HomePage extends Component {
 
     render() {
         var settings = {
-            className: '',
-            adaptiveHeight: true,
-            variableWidth: false,
-            dots: true,
-            arrows: true,
-            pauseOnHover: false,
-            infinite: true,
-            slidesToShow: 1,
-            initialSlide: 0,
-            speed: 500,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 1000,
-            swipe: true,
-            rtl: false,
+              dots: true,
+              arrows: true,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 1,
+              autoplay:true,
+              slidesToScroll: 1
+          
         };
 
         let values = 0;
