@@ -201,10 +201,13 @@ export default class HomePage extends Component {
                                                     <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                                 </Link>
                                                 <h6>
+                                                    {/*}
                                                     <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
                                                         {articleItem.category.name}
                                                     </a>
-                                                    <font className="admin-visible-field">{articleItem.post_date}</font>
+                                                    */}
+                                                    <span className="tag">{articleItem.category.name}</span>
+                                                    <font className="view-count">{articleItem.post_date}</font>
                                                     <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                                 </h6>
                                                 <p>{this.showBody(articleItem.preview)}...</p>
@@ -257,10 +260,13 @@ export default class HomePage extends Component {
                                                 <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                             </Link>
                                             <h6>
+                                                {/*}
                                                 <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
                                                     {articleItem.category.name}
                                                 </a>
-                                                <font className="admin-visible-field">{articleItem.post_date}</font>
+                                                */}
+                                                <span className="tag">{articleItem.category.name}</span>
+                                                <font className="view-count">{articleItem.post_date}</font>
                                                 <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                             </h6>
                                             <p>{this.showBody(articleItem.preview)}...</p>
