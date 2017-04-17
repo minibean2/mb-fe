@@ -137,9 +137,9 @@ export default class HomePage extends Component {
             );
         }
 
-        setTimeout(() => {
+      
             this.htmlCategories = menu;
-        }, 100);
+      
     }
 
     generateCatDivs() {
@@ -148,11 +148,8 @@ export default class HomePage extends Component {
 
         let moreDivs = [];
         for (let i = 0; i < this.res.length; i++) {
-            if (this.res[i].post_date != undefined) {
-                this.res[i].post_date = moment(this.res[i].post_date).format("MMM D, YYYY");
-            }
-
-            var articleItem = this.res[i];
+            if(this.res[i] != undefined){
+                 var articleItem = this.res[i];
             moreDivs.push(
                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                     <ul className="allpost-wrapper">
@@ -186,6 +183,9 @@ export default class HomePage extends Component {
             }
 
             this.count++;
+            }
+
+           
         }
 
         this.setState({ divs: this.state.divs.concat(moreDivs) });
@@ -210,11 +210,9 @@ export default class HomePage extends Component {
             $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                 console.log(res);
                 for (let i = 0; i < 6; i++) {
-                    if (res.res[i].post_date != undefined) {
-                        res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
-                    }
-
-                    var articleItem = res.res[i];
+                    
+                     if(res.res[i] != undefined){
+                               var articleItem = res.res[i];
                     moreDivs.push(
                         <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                             <ul className="allpost-wrapper">
@@ -248,13 +246,17 @@ export default class HomePage extends Component {
                     }
 
                     this.count++;
-                }
-            });
 
-            setTimeout(() => {
-                this.setState({ divs: this.state.divs.concat(moreDivs) });
-            }, 100);
-        }
+                     }
+                 
+                }
+               
+                  this.setState({ divs: this.state.divs.concat(moreDivs) });
+                 
+            });
+	 }
+           
+      
     }
 
     showBody(value) {

@@ -160,6 +160,7 @@ export default class ArticleDataGrid extends Component {
 
         $.post(config.API_URL + "api/update/featured", articleObject).done((res) => {
             console.log("success");
+            $(".msgShow").toggle(true);
         });
     }
 
@@ -185,7 +186,9 @@ export default class ArticleDataGrid extends Component {
                                     Save featured
                                     </button>
                             </div>
-
+                            <div className="col-md-12"> 
+                                 <label className="msgShow" style={{ "display": "none", "color": "green" }}>featured saved successfully</label>
+                            </div>
                             <div className="col-md-12">
 
                                 <ReactDataGrid
