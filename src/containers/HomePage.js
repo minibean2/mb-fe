@@ -139,7 +139,7 @@ export default class HomePage extends Component {
 
         setTimeout(() => {
             this.htmlCategories = menu;
-        }, 1000);
+        }, 100);
     }
 
     generateCatDivs() {
@@ -253,7 +253,7 @@ export default class HomePage extends Component {
 
             setTimeout(() => {
                 this.setState({ divs: this.state.divs.concat(moreDivs) });
-            }, 1000);
+            }, 100);
         }
     }
 

@@ -125,7 +125,7 @@ export default class ArticlePage extends Component {
 
         setTimeout(() => {
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-        }, 1000);
+        }, 100);
     }
 
     render() {
