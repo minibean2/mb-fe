@@ -85,30 +85,32 @@ export default class ArticlePage extends Component {
 
         let moreDivs = [];
         $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
+            var article = res.res;
+            article.post_date = moment(article.post_date).format("MMM D, YYYY");
 
             moreDivs.push(
                 <div className="general-box article-box-main">
                     <ul className="article-detail-wrapper">
                         <li>
-                            <Link to={'/categoryId=' + res.res.category.id}>
-                                <img className="scCatMiniThumbnail" src={res.res.thumbnailUrl} />
+                            <Link to={'/categoryId=' + article.category.id}>
+                                <img className="scCatMiniThumbnail" src={article.thumbnailUrl} />
                             </Link>
                             <div style={{ "margin-left": "10px", "width": "60%" }}>
-                                <Link className="scCatName" to={'/categoryId=' + res.res.category.id}>{res.res.category.name}</Link>
+                                <Link className="scCatName" to={'/categoryId=' + article.category.id}>{article.category.name}</Link>
                                 <h6>
-                                    <font className="admin-visible-field">{res.res.post_date}</font>
+                                    <font className="view-count">{article.post_date}</font>
                                 </h6>
                             </div>
                         </li>
                         <li>
-                            <font className="scTitle">{res.res.title}</font>
+                            <font className="scTitle">{article.title}</font>
                         </li>
                         <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
+                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
                         </li>
-                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(res.res.body)}</div></li>
+                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(article.body)}</div></li>
                         <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{res.res.nov}</span>
+                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
                         </li>
                         <li>
                             <div style={{ "margin": "20px 0", "font-size": "16px" }}>
@@ -122,12 +124,8 @@ export default class ArticlePage extends Component {
                 </div >
             );
 
-
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-
         });
-
-
     }
 
     render() {

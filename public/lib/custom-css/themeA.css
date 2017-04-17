@@ -1956,7 +1956,7 @@ a:focus {
 .allpost-wrapper a {
     color: black;
 }
-.allpost-wrapper a.tag {
+.allpost-wrapper .tag {
     color: #008ee3;
     font-weight: normal;
     float: left;
@@ -2773,8 +2773,8 @@ span.notif-count {
     top: -1px;
 }
 .view-count img, .like-count img {
-    width: 14px; 
-    height: 14px; 
+    width: 32px; 
+    height: auto; 
     float: none; 
     margin-right: 5px;
     vertical-align: text-bottom; 

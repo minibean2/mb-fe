@@ -148,6 +148,8 @@ export default class HomePage extends Component {
         for (let i = 0; i < this.res.length; i++) {
             if (this.res[i] != undefined) {
                 var articleItem = this.res[i];
+                articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
+
                 moreDivs.push(
                     <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                         <ul className="allpost-wrapper">
@@ -158,10 +160,13 @@ export default class HomePage extends Component {
                                         <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                     </Link>
                                     <h6>
+                                        {/*}
                                         <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
                                             {articleItem.category.name}
                                         </a>
-                                        <font className="admin-visible-field">{articleItem.post_date}</font>
+                                        */}
+                                        <span className="tag">{articleItem.category.name}</span>
+                                        <font className="view-count">{articleItem.post_date}</font>
                                         <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                     </h6>
                                     <p>{this.showBody(articleItem.preview)}...</p>
@@ -209,6 +214,8 @@ export default class HomePage extends Component {
 
                     if (res.res[i] != undefined) {
                         var articleItem = res.res[i];
+                        articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
+
                         moreDivs.push(
                             <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                                 <ul className="allpost-wrapper">
@@ -219,10 +226,13 @@ export default class HomePage extends Component {
                                                 <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                             </Link>
                                             <h6>
+                                                {/*
                                                 <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
                                                     {articleItem.category.name}
                                                 </a>
-                                                <font className="admin-visible-field">{articleItem.post_date}</font>
+                                                */}
+                                                <span className="tag">{articleItem.category.name}</span>
+                                                <font className="view-count">{articleItem.post_date}</font>
                                                 <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
                                             </h6>
                                             <p>{this.showBody(articleItem.preview)}...</p>
