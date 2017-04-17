@@ -85,7 +85,7 @@ export default class ArticlePage extends Component {
 
         let moreDivs = [];
         $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
-           
+
             moreDivs.push(
                 <div className="general-box article-box-main">
                     <ul className="article-detail-wrapper">
@@ -124,10 +124,10 @@ export default class ArticlePage extends Component {
 
 
             this.setState({ divs: this.state.divs.concat(moreDivs) });
-      
+
         });
 
-        
+
     }
 
     render() {

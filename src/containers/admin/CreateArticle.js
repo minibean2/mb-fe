@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
-var Select = require('react-select');
 import Dropdown from 'react-dropdown'
 import config from '../../config';
 import TinyMCE from 'react-tinymce';
+
+var Select = require('react-select');
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
-require('react-datepicker/dist/react-datepicker.css');
 var $ = require('jquery');
+require('react-datepicker/dist/react-datepicker.css');
 
 const rows = [];
 var options = [];
