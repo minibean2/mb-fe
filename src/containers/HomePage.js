@@ -104,6 +104,8 @@ export default class HomePage extends Component {
         var arr = [];
         this.state = { divs: arr, img: [] };
         this.count = 0;
+        this.apiFlag = 0;
+        $(".msgShow").toggle(false);
         if (value == constants.CATEGORIES_ALL) {
 
             this.catId = 0;
@@ -165,15 +167,19 @@ export default class HomePage extends Component {
     generateDivs() {
 
         let moreDivs = [];
+	 if(this.apiFlag == 1){
+                $(".spinner").toggle(false);
+                 $(".msgShow").toggle(true);
+                
+             }else{
+                 $(".spinner").toggle(true);
+                 $(".msgShow").toggle(false);
+             } 
         if (this.catId == 0) {
             if (this.flag == 0) {
                 console.log(this.state.divs);
                 console.log(this.count);
-                if (this.apiFlag == 1) {
-                    $(".spinner").toggle(false);
-                } else {
-                    $(".spinner").toggle(true);
-                }
+               
                 let img = [];
                 $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                     console.log(res);
@@ -243,6 +249,9 @@ export default class HomePage extends Component {
             $.get(config.API_URL + "api/article/category/" + this.catId + "?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
                 let moreDivs = [];
                 console.log(res);
+		if(res.res.length == 0){
+                    this.apiFlag = 1;       
+                }
                 for (let i = 0; i < res.res.length; i++) {
                     if (res.res[i] != undefined) {
                         if (res.res[i].post_date != undefined) {
@@ -403,6 +412,7 @@ export default class HomePage extends Component {
                                         </InfiniteScroll>
                                     </div>
                                 </div>
+                                <label className="msgShow" style={{ "display": "none",}}>No Article</label>
 
                             </div>
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
