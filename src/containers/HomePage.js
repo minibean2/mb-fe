@@ -65,7 +65,7 @@ export default class HomePage extends Component {
         this.catId = urlArr[urlArr.length - 1];
 
         this.pageSize = constants.INFINITE_SCROLL_PAGE_SIZE;
-        this.scrollThreshold = 0.5;
+        this.scrollThreshold = constants.INFINITE_SCROLL_THRESHOLD;
 
         $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
@@ -168,15 +168,77 @@ export default class HomePage extends Component {
         } else {
             $(".spinner").toggle(true);
             $(".stopLoadingMsg").toggle(false);
-       
 
-        if (this.catId == 0) {
-            if (this.flag == 0) {
-                console.log(this.state.divs);
-                console.log(this.count);
 
-                let img = [];
-                $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
+            if (this.catId == 0) {
+                if (this.flag == 0) {
+                    console.log(this.state.divs);
+                    console.log(this.count);
+
+                    let img = [];
+                    $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
+                        console.log(res);
+                        let moreDivs = [];
+                        if (res.res.length == 0) {
+                            this.stopLoading = true;
+                        }
+
+                        for (let i = 0; i < res.res.length; i++) {
+                            var articleItem = res.res[i];
+                            if (articleItem != undefined) {
+                                if (articleItem.post_date != undefined) {
+                                    articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
+                                }
+
+                                moreDivs.push(
+                                    <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
+                                        <ul className="allpost-wrapper">
+                                            <li>
+                                                <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                                <div>
+                                                    <Link to={'/article/' + articleItem._id}>
+                                                        <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
+                                                    </Link>
+                                                    <h6>
+                                                        {/*}
+                                                    <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
+                                                        {articleItem.category.name}
+                                                    </a>
+                                                    */}
+                                                        <span className="tag">{articleItem.category.name}</span>
+                                                        <font className="view-count">{articleItem.post_date}</font>
+                                                        <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
+                                                    </h6>
+                                                    <p>{this.showBody(articleItem.preview)}...</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                );
+
+                                if (articleItem.featured === true) {
+                                    if (items.length == 1) {
+                                        if (items[0].imageUrl == "") {
+                                            items = [];
+                                        }
+                                    }
+                                    items.push(articleItem);
+                                }
+
+                                this.count++;
+
+                            }
+
+                        }
+
+                        this.setState({ divs: this.state.divs.concat(moreDivs) });
+                    });
+                }
+            } else {
+                let moreDivsCat = [];
+                console.log(this.catCount);
+
+                $.get(config.API_URL + "api/article/category/" + this.catId + "?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
                     console.log(res);
                     let moreDivs = [];
                     if (res.res.length == 0) {
@@ -190,7 +252,7 @@ export default class HomePage extends Component {
                                 articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
                             }
 
-                            moreDivs.push(
+                            moreDivsCat.push(
                                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
                                         <li>
@@ -201,10 +263,10 @@ export default class HomePage extends Component {
                                                 </Link>
                                                 <h6>
                                                     {/*}
-                                                    <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
-                                                        {articleItem.category.name}
-                                                    </a>
-                                                    */}
+                                                <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
+                                                    {articleItem.category.name}
+                                                </a>
+                                                */}
                                                     <span className="tag">{articleItem.category.name}</span>
                                                     <font className="view-count">{articleItem.post_date}</font>
                                                     <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
@@ -225,74 +287,12 @@ export default class HomePage extends Component {
                                 items.push(articleItem);
                             }
 
-                            this.count++;
-
+                            this.catCount++;
                         }
-
                     }
-
-                    this.setState({ divs: this.state.divs.concat(moreDivs) });
+                    this.setState({ divs: this.state.divs.concat(moreDivsCat) });
                 });
             }
-        } else {
-            let moreDivsCat = [];
-            console.log(this.catCount);
-
-            $.get(config.API_URL + "api/article/category/" + this.catId + "?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
-                console.log(res);
-                let moreDivs = [];
-                if (res.res.length == 0) {
-                    this.stopLoading = true;
-                }
-
-                for (let i = 0; i < res.res.length; i++) {
-                    var articleItem = res.res[i];
-                    if (articleItem != undefined) {
-                        if (articleItem.post_date != undefined) {
-                            articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
-                        }
-
-                        moreDivsCat.push(
-                            <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
-                                <ul className="allpost-wrapper">
-                                    <li>
-                                        <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
-                                        <div>
-                                            <Link to={'/article/' + articleItem._id}>
-                                                <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
-                                            </Link>
-                                            <h6>
-                                                {/*}
-                                                <a className="tag" onClick={this.categoryClick.bind(this, articleItem.category.id)}>
-                                                    {articleItem.category.name}
-                                                </a>
-                                                */}
-                                                <span className="tag">{articleItem.category.name}</span>
-                                                <font className="view-count">{articleItem.post_date}</font>
-                                                <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
-                                            </h6>
-                                            <p>{this.showBody(articleItem.preview)}...</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        );
-
-                        if (articleItem.featured === true) {
-                            if (items.length == 1) {
-                                if (items[0].imageUrl == "") {
-                                    items = [];
-                                }
-                            }
-                            items.push(articleItem);
-                        }
-
-                        this.catCount++;
-                    }
-                }
-                this.setState({ divs: this.state.divs.concat(moreDivsCat) });
-            });
-          }  
         }
     }
 
@@ -330,81 +330,98 @@ export default class HomePage extends Component {
         articleImgs = (
             items.map(function (object, i) {
                 return <div style={{ "position": "relative", "width": "100%" }}>
-                    <Link to={'/article/' + object._id}><img key={i}
-                        style={{
-                            "width": "100%",
-                            "height": "300px"
-                        }}
-                        src={object.imageUrl} /><span
+                    <Link to={'/article/' + object._id}>
+                        <img key={i}
+                            style={{
+                                "width": "100%",
+                                "height": "300px"
+                            }}
+                            src={object.imageUrl} />
+                        <span
                             style={{
                                 "position": "absolute",
-                                "top": "147px",
+                                "bottom": "15px",
+                                "left": "15px",
+                                "width": "90%",
+                                "fontSize": "20px",
+                                "color": "white",
+                                "zIndex": "10"
+                            }}>
+                            {object.title}
+                        </span>
+                        <img
+                            style={{
+                                "position": "absolute",
+                                "top": "0",
                                 "left": "0",
                                 "width": "100%",
-                                "fontSize": "20px"
-                            }}>{object.title}</span></Link></div>
-            })
+                                "height": "300px"
+                            }} 
+                            src="../lib/images/general/gradient_black_30.png" />
+                    </Link>
+                </div>
+                    })
         )
 
         console.log("articleImgs ", articleImgs);
 
         return (
             <div style={{ "margin-top": "50px" }}>
-                <div className="col-md-1">
-                </div>
-                <div className="col-md-10">
-                    <div className="themeA-container">
-                        <div className="row">
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                <div className="general-box top-box article-index-box">
-                                    <div id="nav-subbar" style={{ "margin": "0px" }}>
-                                        <ul className="nav-menu">
-                                            <li>
-                                                <div className="index-title">
-                                                    <img style={{ "width": "auto", "height": "26px" }}
-                                                        src="../lib/images/general/titles/hot_articles.png" />
-                                                </div>
-                                            </li>
-                                            <li className="index-item">
-                                                <div className="selected-item">
-                                                    <a className="nav-item"
-                                                        style={{ "color": "#324fe1", "font-weight": "bold" }}
-                                                        onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
-                                                </div>
-                                            </li>
-                                            {this.htmlCategories}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                <div>
-                                    <div>
-                                        <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
-                                            <Slider {...settings}>
-                                                {articleImgs}
-                                            </Slider>
+                        <div className="col-md-1">
+                        </div>
+                        <div className="col-md-10">
+                            <div className="themeA-container">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                        <div className="general-box top-box article-index-box">
+                                            <div id="nav-subbar" style={{ "margin": "0px" }}>
+                                                <ul className="nav-menu">
+                                                    <li>
+                                                        <div className="index-title">
+                                                            <img style={{ "width": "auto", "height": "26px" }}
+                                                                src="../lib/images/general/titles/hot_articles.png" />
+                                                        </div>
+                                                    </li>
+                                                    <li className="index-item">
+                                                        <div className="selected-item">
+                                                            <a className="nav-item"
+                                                                style={{ "color": "#324fe1", "font-weight": "bold" }}
+                                                                onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
+                                                        </div>
+                                                    </li>
+                                                    {this.htmlCategories}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div>
-                                    <div className="general-box">
-                                        <InfiniteScroll
-                                            scrollThreshold={this.scrollThreshold}
-                                            next={this.generateDivs}
-                                            hasMore={true}
-                                            loader={<div><img className="center-img spinner" style={{ "display": "none" }} src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
-                                            {this.state.divs}
-                                        </InfiniteScroll>
+                                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                        <div>
+                                            <div>
+                                                <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
+                                                    <Slider {...settings}>
+                                                        {articleImgs}
+                                                    </Slider>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div className="general-box">
+                                                <InfiniteScroll
+                                                    scrollThreshold={this.scrollThreshold}
+                                                    next={this.generateDivs}
+                                                    hasMore={true}
+                                                    loader={<div><img className="center-img spinner" style={{ "display": "none" }} src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
+                                                    {this.state.divs}
+                                                </InfiniteScroll>
+                                            </div>
+                                        </div>
+                                        <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
+
                                     </div>
-                                </div>
-                                <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
-
-                            </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                {/*
+                                    <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                        {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
@@ -412,22 +429,22 @@ export default class HomePage extends Component {
 
                                 </div>
                                 */}
-                                <div className="pull-right">
-                                    <div id="fb-btn-set">
-                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
-                                            target="_blank"><span>小萌豆 miniBean</span></a>
-                                        <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
-                                            allowTransparency="true"
-                                            src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                        <div className="pull-right">
+                                            <div id="fb-btn-set">
+                                                <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
+                                                    target="_blank"><span>小萌豆 miniBean</span></a>
+                                                <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
+                                                    allowTransparency="true"
+                                                    src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div className="col-md-1">
+                        </div>
                     </div>
-                </div>
-                <div className="col-md-1">
-                </div>
-            </div>
-        )
+                    )
     }
 }
