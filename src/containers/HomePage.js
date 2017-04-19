@@ -64,7 +64,7 @@ export default class HomePage extends Component {
         urlArr = url.split("/");
         this.catId = urlArr[urlArr.length - 1];
 
-        this.pageSize = 5;
+        this.pageSize = constants.INFINITE_SCROLL_PAGE_SIZE;
         this.scrollThreshold = 0.5;
 
         $.get(config.API_URL + "api/categories").done((res) => {
