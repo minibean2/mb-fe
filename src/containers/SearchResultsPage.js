@@ -44,7 +44,7 @@ const marginLeft = {
 const divs = [];
 const data = [];
 
-export default class ArticlePage extends Component {
+export default class SearchResultsPage extends Component {
 
     constructor(props) {
         super(props);

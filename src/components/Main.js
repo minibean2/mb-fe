@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
+import config from '../config';
+
 var $ = require('jquery');
 
 var adminLoginPage = "login";
@@ -110,11 +112,11 @@ export default class Main extends Component {
                                 <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png" /></a>
                             </li>
 
-                            <form method="post" action="/search">
+                            <form method="post" action={config.API_URL + "api/search"}>
                                 <div id="main-search-box" name="main-search-box" className="pull-left">
                                     <a id="main-search-wrapper">
                                         <div className="input-group innerB main-search">
-                                            <input type="text" name="searchfield" id="searchfield"
+                                            <input type="text" name="searchKey" id="searchKey"
                                                 className="form-control" placeholder="" />
                                             <div className="input-group-btn">
                                                 <button id="submit-search" name="submit" className="btn btn-default"
