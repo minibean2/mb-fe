@@ -168,7 +168,7 @@ export default class HomePage extends Component {
         } else {
             $(".spinner").toggle(true);
             $(".stopLoadingMsg").toggle(false);
-        }
+       
 
         if (this.catId == 0) {
             if (this.flag == 0) {
@@ -292,6 +292,7 @@ export default class HomePage extends Component {
                 }
                 this.setState({ divs: this.state.divs.concat(moreDivsCat) });
             });
+          }  
         }
     }
 
