@@ -58,12 +58,11 @@ export default class HomePage extends Component {
         this.count = 0;
         this.flag = 0;
         this.catId = 0;
-        this.apiFlag = 0;
+        this.stopLoading = false;
         var url = window.location.href;
         var urlArr = [];
         urlArr = url.split("/");
         this.catId = urlArr[urlArr.length - 1];
-
 
         this.pageSize = 5;
         this.scrollThreshold = 0.5;
@@ -76,7 +75,6 @@ export default class HomePage extends Component {
             console.log(this.catId);
             if (this.catId != "" && this.catId != null) {
                 this.categoryClick(this.catId);
-
             } else {
                 $(".spinner").toggle(true);
                 this.catId = 0;
@@ -104,20 +102,17 @@ export default class HomePage extends Component {
         var arr = [];
         this.state = { divs: arr, img: [] };
         this.count = 0;
-        this.apiFlag = 0;
-        $(".msgShow").toggle(false);
+        this.stopLoading = false;
+        $(".stopLoadingMsg").toggle(false);
         if (value == constants.CATEGORIES_ALL) {
-
             this.catId = 0;
             this.count = 0;
             this.state = { divs: [] };
             this.generateDivs();
-
         } else {
             this.catCount = 0;
             this.catId = value;
             this.generateDivs();
-
         }
     }
 
@@ -167,36 +162,34 @@ export default class HomePage extends Component {
     generateDivs() {
 
         let moreDivs = [];
-	 if(this.apiFlag == 1){
-                $(".spinner").toggle(false);
-                 $(".msgShow").toggle(true);
-                
-             }else{
-                 $(".spinner").toggle(true);
-                 $(".msgShow").toggle(false);
-             } 
+        if (this.stopLoading) {
+            $(".spinner").toggle(false);
+            $(".stopLoadingMsg").toggle(true);
+        } else {
+            $(".spinner").toggle(true);
+            $(".stopLoadingMsg").toggle(false);
+        }
+
         if (this.catId == 0) {
             if (this.flag == 0) {
                 console.log(this.state.divs);
                 console.log(this.count);
-               
+
                 let img = [];
                 $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
                     console.log(res);
                     let moreDivs = [];
-
                     if (res.res.length == 0) {
-                        this.apiFlag = 1;
+                        this.stopLoading = true;
                     }
+
                     for (let i = 0; i < res.res.length; i++) {
-
-                        if (res.res[i] != undefined) {
-
-                            if (res.res[i].post_date != undefined) {
-                                res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                        var articleItem = res.res[i];
+                        if (articleItem != undefined) {
+                            if (articleItem.post_date != undefined) {
+                                articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
                             }
 
-                            var articleItem = res.res[i];
                             moreDivs.push(
                                 <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
@@ -243,22 +236,22 @@ export default class HomePage extends Component {
             }
         } else {
             let moreDivsCat = [];
-            console.log("jjjkkk00000");
             console.log(this.catCount);
 
             $.get(config.API_URL + "api/article/category/" + this.catId + "?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
-                let moreDivs = [];
                 console.log(res);
-		if(res.res.length == 0){
-                    this.apiFlag = 1;       
+                let moreDivs = [];
+                if (res.res.length == 0) {
+                    this.stopLoading = true;
                 }
+
                 for (let i = 0; i < res.res.length; i++) {
-                    if (res.res[i] != undefined) {
-                        if (res.res[i].post_date != undefined) {
-                            res.res[i].post_date = moment(res.res[i].post_date).format("MMM D, YYYY");
+                    var articleItem = res.res[i];
+                    if (articleItem != undefined) {
+                        if (articleItem.post_date != undefined) {
+                            articleItem.post_date = moment(articleItem.post_date).format("MMM D, YYYY");
                         }
 
-                        var articleItem = res.res[i];
                         moreDivsCat.push(
                             <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
                                 <ul className="allpost-wrapper">
@@ -296,16 +289,10 @@ export default class HomePage extends Component {
 
                         this.catCount++;
                     }
-
-
                 }
                 this.setState({ divs: this.state.divs.concat(moreDivsCat) });
             });
         }
-
-
-
-
     }
 
     showBody(value) {
@@ -412,16 +399,18 @@ export default class HomePage extends Component {
                                         </InfiniteScroll>
                                     </div>
                                 </div>
-                                <label className="msgShow" style={{ "display": "none",}}>No Article</label>
+                                <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
 
                             </div>
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
+                                */}
                                 <div className="pull-right">
                                     <div id="fb-btn-set">
                                         <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"

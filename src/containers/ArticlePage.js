@@ -145,12 +145,14 @@ export default class ArticlePage extends Component {
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
+                                */}
                             </div>
                         </div>
                     </div>
