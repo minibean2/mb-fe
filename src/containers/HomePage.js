@@ -169,7 +169,6 @@ export default class HomePage extends Component {
             $(".spinner").toggle(true);
             $(".stopLoadingMsg").toggle(false);
 
-
             if (this.catId == 0) {
                 if (this.flag == 0) {
                     console.log(this.state.divs);
@@ -191,7 +190,7 @@ export default class HomePage extends Component {
                                 }
 
                                 moreDivs.push(
-                                    <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
+                                    <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
                                         <ul className="allpost-wrapper">
                                             <li>
                                                 <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
@@ -226,9 +225,7 @@ export default class HomePage extends Component {
                                 }
 
                                 this.count++;
-
                             }
-
                         }
 
                         this.setState({ divs: this.state.divs.concat(moreDivs) });
@@ -253,7 +250,7 @@ export default class HomePage extends Component {
                             }
 
                             moreDivsCat.push(
-                                <div style={{ "border-bottom": "#bcbcbc solid thin" }}>
+                                <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
                                         <li>
                                             <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
@@ -356,72 +353,72 @@ export default class HomePage extends Component {
                                 "left": "0",
                                 "width": "100%",
                                 "height": "300px"
-                            }} 
+                            }}
                             src="../lib/images/general/gradient_black_30.png" />
                     </Link>
                 </div>
-                    })
+            })
         )
 
         console.log("articleImgs ", articleImgs);
 
         return (
             <div style={{ "margin-top": "50px" }}>
-                        <div className="col-md-1">
-                        </div>
-                        <div className="col-md-10">
-                            <div className="themeA-container">
-                                <div className="row">
-                                    <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                        <div className="general-box top-box article-index-box">
-                                            <div id="nav-subbar" style={{ "margin": "0px" }}>
-                                                <ul className="nav-menu">
-                                                    <li>
-                                                        <div className="index-title">
-                                                            <img style={{ "width": "auto", "height": "26px" }}
-                                                                src="../lib/images/general/titles/hot_articles.png" />
-                                                        </div>
-                                                    </li>
-                                                    <li className="index-item">
-                                                        <div className="selected-item">
-                                                            <a className="nav-item"
-                                                                style={{ "color": "#324fe1", "font-weight": "bold" }}
-                                                                onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
-                                                        </div>
-                                                    </li>
-                                                    {this.htmlCategories}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                        <div>
-                                            <div>
-                                                <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
-                                                    <Slider {...settings}>
-                                                        {articleImgs}
-                                                    </Slider>
+                <div className="col-md-1">
+                </div>
+                <div className="col-md-10">
+                    <div className="themeA-container">
+                        <div className="row">
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                <div className="general-box top-box article-index-box">
+                                    <div id="nav-subbar" style={{ "margin": "0px" }}>
+                                        <ul className="nav-menu">
+                                            <li>
+                                                <div className="index-title">
+                                                    <img style={{ "width": "auto", "height": "26px" }}
+                                                        src="../lib/images/general/titles/hot_articles.png" />
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div className="general-box">
-                                                <InfiniteScroll
-                                                    scrollThreshold={this.scrollThreshold}
-                                                    next={this.generateDivs}
-                                                    hasMore={true}
-                                                    loader={<div><img className="center-img spinner" style={{ "display": "none" }} src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
-                                                    {this.state.divs}
-                                                </InfiniteScroll>
-                                            </div>
-                                        </div>
-                                        <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
-
+                                            </li>
+                                            <li className="index-item">
+                                                <div className="selected-item">
+                                                    <a className="nav-item"
+                                                        style={{ "color": "#324fe1", "font-weight": "bold" }}
+                                                        onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
+                                                </div>
+                                            </li>
+                                            {this.htmlCategories}
+                                        </ul>
                                     </div>
-                                    <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                        {/*
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                <div>
+                                    <div>
+                                        <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
+                                            <Slider {...settings}>
+                                                {articleImgs}
+                                            </Slider>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div className="general-box">
+                                        <InfiniteScroll
+                                            scrollThreshold={this.scrollThreshold}
+                                            next={this.generateDivs}
+                                            hasMore={true}
+                                            loader={<div><img className="center-img spinner" style={{ "display": "none" }} src="../lib/images/general/animated/gray-spinner.gif" /></div>}>
+                                            {this.state.divs}
+                                        </InfiniteScroll>
+                                    </div>
+                                </div>
+                                <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
+
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                                {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
                                 </div>
@@ -429,22 +426,22 @@ export default class HomePage extends Component {
 
                                 </div>
                                 */}
-                                        <div className="pull-right">
-                                            <div id="fb-btn-set">
-                                                <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
-                                                    target="_blank"><span>小萌豆 miniBean</span></a>
-                                                <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
-                                                    allowTransparency="true"
-                                                    src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
-                                            </div>
-                                        </div>
+                                <div className="pull-right">
+                                    <div id="fb-btn-set">
+                                        <a className="fb-link-btn" href="https://www.facebook.com/minibean.com.hk"
+                                            target="_blank"><span>小萌豆 miniBean</span></a>
+                                        <iframe className="fb-like-btn" frameBorder="0" scrolling="no"
+                                            allowTransparency="true"
+                                            src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fminibean.com.hk&amp;send=false&amp;layout=button_count&amp;width=305&amp;action=like&amp;colorscheme=light&amp;font&amp;height=30&amp;locale=zh_HK&amp;show_faces=0"></iframe>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-1">
-                        </div>
                     </div>
-                    )
+                </div>
+                <div className="col-md-1">
+                </div>
+            </div>
+        )
     }
 }

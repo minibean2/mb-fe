@@ -11,7 +11,7 @@ export default class Login extends Component {
         this.state = { msg: [] };
     }
 
-    LoginFunction() {
+    login() {
         var self = this;
 
         localStorage.setItem('token', "");
@@ -68,14 +68,14 @@ export default class Login extends Component {
                                             <label>Password :</label>
                                         </div>
                                         <div className="col-md-8">
-                                            <input type="text" className="form-control password col-md-8"
+                                            <input type="password" className="form-control password col-md-8"
                                                 name="password" />
                                         </div>
                                     </div>
                                     <div className="form-group col-md-12" style={{ "textAlign": "right" }}>
                                         <label className="msgShow" style={{ "display": "none", "color": "red" }}>invalid
                                             username and password</label>
-                                        <button className="btn btn-primary" onClick={this.LoginFunction}>LogIn</button>
+                                        <button className="btn btn-primary" onClick={this.login}>Log In</button>
                                     </div>
                                 </div>
                             </div>

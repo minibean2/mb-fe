@@ -145,7 +145,7 @@ export default class ArticleDataGrid extends Component {
         console.log(featuredArray);
     }
 
-    savefeatured() {
+    saveFeatured() {
         var articleObject = {};
         var articleIdList = [];
 
@@ -173,18 +173,18 @@ export default class ArticleDataGrid extends Component {
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-
                             <div className="col-md-12" style={{
                                 "margin-top": "5px",
                                 "textAlign": "right",
                                 "marginBottom": "16px",
                                 "marginTop": "15px"
                             }}>
-                                <button className="btn btn-default" style={{ "margin-right": "13px" }} onClick={this.createArticle}>Create Article</button>
                                 <button
-                                    className="btn btn-default" onClick={this.savefeatured.bind()}>
-                                    Save featured
-                                    </button>
+                                    className="btn btn-default" style={{ "margin-right": "13px" }}
+                                    onClick={this.createArticle}>Create Article</button>
+                                <button
+                                    className="btn btn-default"
+                                    onClick={this.saveFeatured.bind()}>Save featured</button>
                             </div>
                             <div className="col-md-12">
                                 <label className="msgShow" style={{ "display": "none", "color": "green" }}>featured saved successfully</label>

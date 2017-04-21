@@ -45,6 +45,16 @@ export default class Main extends Component {
         this.refs.input.value = val
     }
 
+    search() {
+        var self = this;
+
+        var searchKey = $("#searchKey").val();
+        if (searchKey != null && searchKey.length > 0) {
+            console.log('searchKey=' + searchKey);
+            browserHistory.push('/searchResults/' + searchKey);
+        }
+    }
+
     logOut() {
         console.log("logOut");
         localStorage.setItem('token', "");
@@ -112,34 +122,32 @@ export default class Main extends Component {
                                 <a href="/"><img src="../lib/images/frontpage/icon_mainMenu_home.png" /></a>
                             </li>
 
-                            <form method="post" action={config.API_URL + "api/search"}>
-                                <div id="main-search-box" name="main-search-box" className="pull-left">
-                                    <a id="main-search-wrapper">
-                                        <div className="input-group innerB main-search">
-                                            <input type="text" name="searchKey" id="searchKey"
-                                                className="form-control" placeholder="" />
-                                            <div className="input-group-btn">
-                                                <button id="submit-search" name="submit" className="btn btn-default"
-                                                    type="submit">
-                                                    <i className="fa fa-search"></i>
-                                                </button>
-                                            </div>
+                            <div id="main-search-box" name="main-search-box" className="pull-left">
+                                <a id="main-search-wrapper">
+                                    <div className="input-group innerB main-search">
+                                        <input type="text" name="searchKey" id="searchKey"
+                                            className="form-control" placeholder="" />
+                                        <div className="input-group-btn">
+                                            <button id="submit-search" className="btn btn-default" type="submit" onClick={this.search}>
+                                                <i className="fa fa-search"></i>
+                                            </button>
                                         </div>
-                                    </a>
-
-                                    <div className="row">
-                                        <ul style={{
-                                            "top": "23px",
-                                            "left": "5px",
-                                            "overflow-y": "scroll",
-                                            "max-height": "345px",
-                                            "width": "260px"
-                                        }}
-                                            className="dropdown-menu chat media-list hide">
-                                        </ul>
                                     </div>
+                                </a>
+
+                                <div className="row">
+                                    <ul style={{
+                                        "top": "23px",
+                                        "left": "5px",
+                                        "overflow-y": "scroll",
+                                        "max-height": "345px",
+                                        "width": "260px"
+                                    }}
+                                        className="dropdown-menu chat media-list hide">
+                                    </ul>
                                 </div>
-                            </form>
+                            </div>
+
                         </ul>
                     </div>
                 </div>

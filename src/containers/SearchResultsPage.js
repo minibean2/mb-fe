@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import config from '../config';
 import constants from '../constants';
 
-var Slider = require('react-slick');
 var $ = require('jquery');
 var moment = require('moment');
 
@@ -51,12 +49,10 @@ export default class SearchResultsPage extends Component {
         var url = window.location.href;
         var urlArr = [];
         urlArr = url.split("/");
-        this.articleId = urlArr[urlArr.length - 1];
+        this.searchKey = urlArr[urlArr.length - 1];
 
         this.state = { divs: divs };
-        this.htmlCategories = [];
         this.generateDivs = this.generateDivs.bind(this);
-        this.count = 0;
         this.generateDivs();
     }
 
@@ -69,62 +65,38 @@ export default class SearchResultsPage extends Component {
     }
 
     setInputValue = (val) => {
-
         this.refs.input.value = val
-    }
-
-    showBody(value) {
-        if (value != null && value != "") {
-            return (
-                <span dangerouslySetInnerHTML={{ __html: value }}></span>
-            )
-        }
     }
 
     generateDivs() {
 
         let moreDivs = [];
-        $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
-            var article = res.res;
-            if (article.post_date != undefined) {
-                article.post_date = moment(article.post_date).format("MMM D, YYYY");
+        $.get(config.API_URL + "api/search?key=" + this.searchKey).done((res) => {
+            console.log(res);
+            let moreDivs = [];
+            if (res.res.length == 0) {
+                this.stopLoading = true;
             }
 
-            moreDivs.push(
-                <div className="general-box article-box-main">
-                    <ul className="article-detail-wrapper">
-                        <li>
-                            <Link to={'/category/' + article.category.id}>
-                                <img className="scCatMiniThumbnail" src={article.thumbnailUrl} />
-                            </Link>
-                            <div style={{ "margin-left": "10px", "width": "60%" }}>
-                                <Link className="scCatName" to={'/category/' + article.category.id}>{article.category.name}</Link>
-                                <h6>
-                                    <font className="view-count">{article.post_date}</font>
-                                </h6>
-                            </div>
-                        </li>
-                        <li>
-                            <font className="scTitle">{article.title}</font>
-                        </li>
-                        <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
-                        </li>
-                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(article.body)}</div></li>
-                        <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
-                        </li>
-                        <li>
-                            <div style={{ "margin": "20px 0", "font-size": "16px" }}>
-                                <div className="padding10" style={{ "border-top": "1px solid #eee" }}></div>
-                                分享連結:&nbsp;
-                                <input type='text' name='article-link' id='article-link' value={config.API_URL + 'article/' + this.articleId}></input>
-                                {/*<a style={{"margin-left":"5px","padding":"2px 7px","font-size":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
-                            </div>
-                        </li>
-                    </ul>
-                </div >
-            );
+            for (let i = 0; i < res.res.length; i++) {
+                var searchResult = res.res[i];
+                if (searchResult != undefined) {
+                    moreDivs.push(
+                        <div style={{ "paddingBottom": "15px" }} key={'searchResult-'+searchResult.title}>
+                            <ul className="allpost-wrapper">
+                                <div>
+                                    <a href={searchResult.url}>
+                                        <h4 style={{ "color": "#324fe1" }}>{searchResult.title}</h4>
+                                    </a>
+                                    <h6>
+                                        <span className="tag">{searchResult.desc}</span>
+                                    </h6>
+                                </div>
+                            </ul>
+                        </div>
+                    );
+                }
+            }
 
             this.setState({ divs: this.state.divs.concat(moreDivs) });
         });
@@ -140,7 +112,12 @@ export default class SearchResultsPage extends Component {
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
-                                <div id="wall">
+                                <div className="general-box">
+                                    <div style={{ "paddingBottom": "10px" }}>
+                                        <div>
+                                            <h4 style={{ "paddingLeft": "25px" }}>Search: <i>{unescape(this.searchKey)}</i></h4>
+                                        </div>
+                                    </div>
                                     {this.state.divs}
                                 </div>
                             </div>

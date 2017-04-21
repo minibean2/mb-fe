@@ -16,7 +16,7 @@ export default
         <Route path="/" component={HomePage} />
         <Route path="/category/:id" component={HomePage} />
         <Route path="/article/:id" component={ArticlePage} />
-        <Route path="/search/:key" component={SearchResultsPage} />
+        <Route path="/searchResults/:key" component={SearchResultsPage} />
         <Route path="/login" component={AdminLogin} />
         <Route path="/articleGrid" component={AdminArticleDataGrid} />
         <Route path="/createArticle" component={AdminCreateArticle} />
