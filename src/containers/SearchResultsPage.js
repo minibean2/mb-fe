@@ -88,7 +88,7 @@ export default class SearchResultsPage extends Component {
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
-                                <div className="general-box" style={{ "minHeight": "600px" }}>
+                                <div className="general-box" style={{ "minHeight": "500px" }}>
                                     <div style={{ "paddingBottom": "10px" }}>
                                         <div>
                                             <h4 style={{ "paddingLeft": "25px" }}>Search: <i>{unescape(this.searchKey)}</i></h4>
