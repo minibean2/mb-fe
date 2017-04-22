@@ -67,6 +67,8 @@ export default class HomePage extends Component {
         this.pageSize = constants.INFINITE_SCROLL_PAGE_SIZE;
         this.scrollThreshold = constants.INFINITE_SCROLL_THRESHOLD;
 
+        this.setfeaturedImg();
+
         $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
 
@@ -159,6 +161,23 @@ export default class HomePage extends Component {
         }
     }
 
+    setfeaturedImg(){
+            $.get(config.API_URL + "api/articles").done((res) => {
+                    
+                    for (let i = 0; i < res.res.length; i++) {
+                           if (res.res[i].featured === true) {
+                                    if (items.length == 1) {
+                                        if (items[0].imageUrl == "") {
+                                            items = [];
+                                        }
+                                    }
+                                    items.push(res.res[i]);
+                                }  
+                    }
+                    
+            });
+    }
+
     generateDivs() {
 
         let moreDivs = [];
@@ -215,14 +234,7 @@ export default class HomePage extends Component {
                                     </div>
                                 );
 
-                                if (articleItem.featured === true) {
-                                    if (items.length == 1) {
-                                        if (items[0].imageUrl == "") {
-                                            items = [];
-                                        }
-                                    }
-                                    items.push(articleItem);
-                                }
+                               
 
                                 this.count++;
                             }
@@ -275,14 +287,7 @@ export default class HomePage extends Component {
                                 </div>
                             );
 
-                            if (articleItem.featured === true) {
-                                if (items.length == 1) {
-                                    if (items[0].imageUrl == "") {
-                                        items = [];
-                                    }
-                                }
-                                items.push(articleItem);
-                            }
+                          
 
                             this.catCount++;
                         }
