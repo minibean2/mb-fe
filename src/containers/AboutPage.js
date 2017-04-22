@@ -15,6 +15,12 @@ export default class AboutPage extends Component {
         this.state = { divs: divs };
     }
 
+    componentDidMount() {
+        console.log('componentDidMount...');
+
+        window.scrollTo(0, 0);
+    }
+
     render() {
         console.log('render...');
 

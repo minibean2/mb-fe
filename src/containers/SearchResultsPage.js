@@ -66,6 +66,8 @@ export default class SearchResultsPage extends Component {
 
     componentDidMount() {
         console.log('componentDidMount...');
+
+        window.scrollTo(0, 0);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -79,13 +81,13 @@ export default class SearchResultsPage extends Component {
         console.log('render...');
 
         return (
-            <div style={{ "margin-top": "50px" }}>
+            <div style={{ "marginTop": "50px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 <div className="general-box" style={{ "minHeight": "600px" }}>
                                     <div style={{ "paddingBottom": "10px" }}>
                                         <div>
@@ -95,7 +97,7 @@ export default class SearchResultsPage extends Component {
                                     {this.state.divs}
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 

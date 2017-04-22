@@ -75,39 +75,39 @@ export default class Main extends Component {
                     "overflow": "hidden",
                     "position": "fixed",
                     "top": "0px",
-                    "background-color": "#36648B",
+                    "backgroundColor": "#36648B",
                     "height": "50px",
                     "width": "100%",
-                    "padding-top": "20px",
-                    "font-size": "16px",
+                    "paddingTop": "20px",
+                    "fontSize": "16px",
                     "zIndex": "1"
                 }}>
                     <Link to="/articleGrid" style={{
                         "float": "left",
                         "color": "white",
-                        "margin-left": "50px",
-                        "margin-right": "15px"
+                        "marginLeft": "50px",
+                        "marginRight": "15px"
                     }}>All Articles</Link>
 
                     <Link to="/createArticle" style={{
                         "float": "left",
                         "color": "white",
-                        "margin-left": "15px",
-                        "margin-right": "15px"
+                        "marginLeft": "15px",
+                        "marginRight": "15px"
                     }}>Create Article</Link>
 
                     <Link to="/imgUpload" style={{
                         "float": "left",
                         "color": "white",
-                        "margin-left": "15px",
-                        "margin-right": "15px"
+                        "marginLeft": "15px",
+                        "marginRight": "15px"
                     }}>Upload Image</Link>
 
                     <Link onClick={this.logOut.bind()} style={{
                         "float": "right",
                         "color": "white",
-                        "margin-left": "15px",
-                        "margin-right": "50px"
+                        "marginLeft": "15px",
+                        "marginRight": "50px"
                     }}>Log Out </Link>
 
                 </div>
@@ -161,7 +161,7 @@ export default class Main extends Component {
         footer = (
             <div id="footer-menu" className="footer-menu">
                 <div className="pull-right" style={{
-                    "margin-top": "2px"
+                    "marginTop": "2px"
                 }}>
                     <Link to="/about" style={{
                         "fontSize": "12px",

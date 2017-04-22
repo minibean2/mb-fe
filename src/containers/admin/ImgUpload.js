@@ -45,9 +45,9 @@ export default class ImgUpload extends Component {
             console.log(arr[0]);
             console.log(arr[1]);
             menu.push(<a className="col-md-12"
-                         style={{"font-size": "17px"}}>{config.API_URL + arr[0].substring(1, arr[0].length)}</a>);
+                         style={{"fontSize": "17px"}}>{config.API_URL + arr[0].substring(1, arr[0].length)}</a>);
             menu.push(<a className="col-md-12"
-                         style={{"font-size": "17px"}}>{config.API_URL + arr[1].substring(1, arr[1].length)}
+                         style={{"fontSize": "17px"}}>{config.API_URL + arr[1].substring(1, arr[1].length)}
                 <hr></hr>
             </a>);
         }

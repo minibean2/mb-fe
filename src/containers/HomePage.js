@@ -138,7 +138,7 @@ export default class HomePage extends Component {
                 <li className="index-item">
                     <div className="selected-item">
                         <a className="nav-item"
-                            style={{ "color": "#324fe1", "font-weight": "bold" }}
+                            style={{ "color": "#324fe1", "fontWeight": "bold" }}
                             onClick={this.categoryClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
                     </div>
                 </li>
@@ -363,13 +363,13 @@ export default class HomePage extends Component {
         console.log("articleImgs ", articleImgs);
 
         return (
-            <div style={{ "margin-top": "50px" }}>
+            <div style={{ "marginTop": "50px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 <div className="general-box top-box article-index-box">
                                     <div id="nav-subbar" style={{ "margin": "0px" }}>
                                         <ul className="nav-menu">
@@ -382,7 +382,7 @@ export default class HomePage extends Component {
                                             <li className="index-item">
                                                 <div className="selected-item">
                                                     <a className="nav-item"
-                                                        style={{ "color": "#324fe1", "font-weight": "bold" }}
+                                                        style={{ "color": "#324fe1", "fontWeight": "bold" }}
                                                         onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
                                                 </div>
                                             </li>
@@ -392,7 +392,7 @@ export default class HomePage extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 <div>
                                     <div>
                                         <div className="general-box">
@@ -417,7 +417,7 @@ export default class HomePage extends Component {
                                 <label className="stopLoadingMsg" style={{ "display": "none", }}></label>
 
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 

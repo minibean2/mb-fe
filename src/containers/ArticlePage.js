@@ -97,7 +97,7 @@ export default class ArticlePage extends Component {
                             <Link to={'/category/' + article.category.id}>
                                 <img className="scCatMiniThumbnail" src={article.thumbnailUrl} />
                             </Link>
-                            <div style={{ "margin-left": "10px", "width": "60%" }}>
+                            <div style={{ "marginLeft": "10px", "width": "60%" }}>
                                 <Link className="scCatName" to={'/category/' + article.category.id}>{article.category.name}</Link>
                                 <h6>
                                     <font className="view-count">{article.post_date}</font>
@@ -108,18 +108,18 @@ export default class ArticlePage extends Component {
                             <font className="scTitle">{article.title}</font>
                         </li>
                         <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
+                            <span className="view-count" style={{ "marginRight": "10px" }}><img className="view-icon" style={{ "verticalAlign": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
                         </li>
-                        <li><div style={{ "font-size": "16px", "width": "100%;" }}>{this.showBody(article.body)}</div></li>
+                        <li><div style={{ "fontSize": "16px", "width": "100%" }}>{this.showBody(article.body)}</div></li>
                         <li>
-                            <span className="view-count" style={{ "margin-right": "10px" }}><img className="view-icon" style={{ "vertical-align": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
+                            <span className="view-count" style={{ "marginRight": "10px" }}><img className="view-icon" style={{ "verticalAlign": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
                         </li>
                         <li>
-                            <div style={{ "margin": "20px 0", "font-size": "16px" }}>
-                                <div className="padding10" style={{ "border-top": "1px solid #eee" }}></div>
+                            <div style={{ "margin": "20px 0", "fontSize": "16px" }}>
+                                <div className="padding10" style={{ "borderTop": "1px solid #eee" }}></div>
                                 分享連結:&nbsp;
-                                <input type='text' name='article-link' id='article-link' value={config.API_URL + 'article/' + this.articleId}></input>
-                                {/*<a style={{"margin-left":"5px","padding":"2px 7px","font-size":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
+                                <input type='text' name='article-link' id='article-link' defaultValue={config.API_URL + 'article/' + this.articleId}></input>
+                                {/*<a style={{"marginLeft":"5px","padding":"2px 7px","fontSize":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
                             </div>
                         </li>
                     </ul>
@@ -133,18 +133,18 @@ export default class ArticlePage extends Component {
     render() {
 
         return (
-            <div style={{ "margin-top": "50px" }}>
+            <div style={{ "marginTop": "50px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 <div id="wall">
                                     {this.state.divs}
                                 </div>
                             </div>
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12" style={{ "marginTop": "5px" }}>
                                 {/*
                                 <div id="articles-slider" className="general-box" style={{ "height": "180px" }}>
 
