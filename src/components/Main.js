@@ -63,13 +63,14 @@ export default class Main extends Component {
     }
 
     render() {
-        let userMessage;
+        let header, footer;
+
         if (this.page == adminLoginPage) {
-            userMessage = (
+            header = (
                 <span></span>
             )
         } else if (adminPages.indexOf(this.page) != -1) {
-            userMessage = (
+            header = (
                 <div style={{
                     "overflow": "hidden",
                     "position": "fixed",
@@ -112,10 +113,11 @@ export default class Main extends Component {
                 </div>
             )
         } else {
-            userMessage = (
+            header = (
                 <div id="header-menu" className="col-md-12 row">
-                    <div className="col-md-3 col-sm-3 col-xs-3" id="main-logo"><a href="/">
-                        <img src="../lib/images/logo-2.png" /></a></div>
+                    <div className="col-md-3 col-sm-3 col-xs-3" id="main-logo">
+                        <a href="/"><img src="../lib/images/logo-2.png" /></a>
+                    </div>
                     <div id="main-menu">
                         <ul>
                             <li className="col-md-1 col-sm-1 col-xs-1">
@@ -135,6 +137,7 @@ export default class Main extends Component {
                                     </div>
                                 </a>
 
+                                {/*}
                                 <div className="row">
                                     <ul style={{
                                         "top": "23px",
@@ -146,6 +149,7 @@ export default class Main extends Component {
                                         className="dropdown-menu chat media-list hide">
                                     </ul>
                                 </div>
+                                */}
                             </div>
 
                         </ul>
@@ -154,9 +158,23 @@ export default class Main extends Component {
             )
         }
 
+        footer = (
+            <div id="footer-menu" className="footer-menu">
+                <div className="pull-right" style={{
+                    "margin-top": "2px"
+                }}>
+                    <Link to="/about" style={{
+                        "fontSize": "12px",
+                        "color": "white"
+                    }}>About</Link>
+                </div>
+            </div>
+        )
+
         return (
             <div>
-                {userMessage}
+                {header}
+                {footer}
             </div>
         )
     }

@@ -5,6 +5,7 @@ import App from './containers/App'
 import HomePage from './containers/HomePage'
 import ArticlePage from './containers/ArticlePage'
 import SearchResultsPage from './containers/SearchResultsPage'
+import AboutPage from './containers/AboutPage'
 
 import AdminArticleDataGrid from './containers/admin/ArticleDataGrid'
 import AdminCreateArticle from './containers/admin/CreateArticle'
@@ -17,6 +18,7 @@ export default
         <Route path="/category/:id" component={HomePage} />
         <Route path="/article/:id" component={ArticlePage} />
         <Route path="/searchResults/:key" component={SearchResultsPage} />
+        <Route path="/about" component={AboutPage} />
         <Route path="/login" component={AdminLogin} />
         <Route path="/articleGrid" component={AdminArticleDataGrid} />
         <Route path="/createArticle" component={AdminCreateArticle} />

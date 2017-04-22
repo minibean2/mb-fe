@@ -331,7 +331,7 @@ export default class HomePage extends Component {
                         <img key={i}
                             style={{
                                 "width": "100%",
-                                "height": "300px"
+                                "height": "250px"
                             }}
                             src={object.imageUrl} />
                         <span
@@ -352,7 +352,7 @@ export default class HomePage extends Component {
                                 "top": "0",
                                 "left": "0",
                                 "width": "100%",
-                                "height": "300px"
+                                "height": "250px"
                             }}
                             src="../lib/images/general/gradient_black_30.png" />
                     </Link>
@@ -395,7 +395,7 @@ export default class HomePage extends Component {
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12" style={{ "margin-top": "5px" }}>
                                 <div>
                                     <div>
-                                        <div className="general-box" style={{ "height": "300px", "width": "100%" }}>
+                                        <div className="general-box">
                                             <Slider {...settings}>
                                                 {articleImgs}
                                             </Slider>
