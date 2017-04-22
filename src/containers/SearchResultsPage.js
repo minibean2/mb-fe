@@ -6,69 +6,30 @@ import constants from '../constants';
 var $ = require('jquery');
 var moment = require('moment');
 
-const GITHUB_REPO = 'https://github.com/reactjs/redux'
-const margin = {
-    margin: 0
-}
-const oneImg = {
-    width: 100,
-    height: 26
-}
-const sliderImg = {
-    width: 100
-}
-const setWidth = {
-    width: 210
-}
-const setColorFont = {
-    color: "Yellow",
-
-}
-const setHeight = {
-    height: 100,
-
-}
-const width500 = {
-    width: 500
-}
-const getColor = {
-    color: "red"
-}
-
-const marginLeft = {
-    marginLeft: 10
-}
-
 const divs = [];
-const data = [];
 
 export default class SearchResultsPage extends Component {
 
     constructor(props) {
         super(props);
+
+        this.searchKey = "";
+        this.state = { divs: divs };
+        this.generateDivs = this.generateDivs.bind(this);
+
+        this.setSearchKey();
+        this.generateDivs();
+    }
+
+    setSearchKey() {
         var url = window.location.href;
         var urlArr = [];
         urlArr = url.split("/");
         this.searchKey = urlArr[urlArr.length - 1];
-
-        this.state = { divs: divs };
-        this.generateDivs = this.generateDivs.bind(this);
-        this.generateDivs();
-    }
-
-    getDivs = () => {
-        return this.divs;
-    }
-
-    getInputValue = () => {
-        return this.refs.input.value
-    }
-
-    setInputValue = (val) => {
-        this.refs.input.value = val
     }
 
     generateDivs() {
+        console.log('generateDivs...');
 
         let moreDivs = [];
         $.get(config.API_URL + "api/search?key=" + this.searchKey).done((res) => {
@@ -82,7 +43,7 @@ export default class SearchResultsPage extends Component {
                 var searchResult = res.res[i];
                 if (searchResult != undefined) {
                     moreDivs.push(
-                        <div style={{ "paddingBottom": "15px" }} key={'searchResult-'+searchResult.title}>
+                        <div style={{ "paddingBottom": "15px" }} key={'searchResult-' + searchResult.title}>
                             <ul className="allpost-wrapper">
                                 <div>
                                     <a href={searchResult.url}>
@@ -98,11 +59,24 @@ export default class SearchResultsPage extends Component {
                 }
             }
 
-            this.setState({ divs: this.state.divs.concat(moreDivs) });
+            //this.setState({ divs: this.state.divs.concat(moreDivs) });
+            this.setState({ divs: moreDivs });
         });
     }
 
+    componentDidMount() {
+        console.log('componentDidMount...');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps...');
+        
+        this.setSearchKey();
+        this.generateDivs();
+    }
+
     render() {
+        console.log('render...');
 
         return (
             <div style={{ "margin-top": "50px" }}>
