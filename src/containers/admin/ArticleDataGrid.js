@@ -167,20 +167,20 @@ export default class ArticleDataGrid extends Component {
     render() {
 
         return (
-            <div style={{ "margin-top": "80px" }}>
+            <div style={{ "marginTop": "80px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
                             <div className="col-md-12" style={{
-                                "margin-top": "5px",
+                                "marginTop": "5px",
                                 "textAlign": "right",
                                 "marginBottom": "16px",
                                 "marginTop": "15px"
                             }}>
                                 <button
-                                    className="btn btn-default" style={{ "margin-right": "13px" }}
+                                    className="btn btn-default" style={{ "marginRight": "13px" }}
                                     onClick={this.createArticle}>Create Article</button>
                                 <button
                                     className="btn btn-default"

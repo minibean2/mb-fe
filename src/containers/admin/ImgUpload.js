@@ -108,14 +108,14 @@ export default class ImgUpload extends Component {
 
         return (
 
-            <div style={{"margin-top": "72px"}}>
+            <div style={{"marginTop": "72px"}}>
                 <div className="themeA-container">
                     <div className="row">
-                        <div className="col-md-2" style={{"margin-top": "5px"}}>
+                        <div className="col-md-2" style={{"marginTop": "5px"}}>
 
 
                         </div>
-                        <div className="col-md-8" style={{"margin-top": "5px"}}>
+                        <div className="col-md-8" style={{"marginTop": "5px"}}>
                             <div className="general-box">
                                 <div className="col-md-12">
                                     <h1>Images Upload</h1>
@@ -139,12 +139,12 @@ export default class ImgUpload extends Component {
 
                             </div>
                         </div>
-                        <div className="col-md-2" style={{"margin-top": "5px"}}>
+                        <div className="col-md-2" style={{"marginTop": "5px"}}>
 
 
                         </div>
 
-                        <div className="col-md-12" style={{"margin-top": "5px"}}>
+                        <div className="col-md-12" style={{"marginTop": "5px"}}>
 
                         </div>
 

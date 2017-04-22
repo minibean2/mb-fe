@@ -130,15 +130,15 @@ export default class CreateArticle extends Component {
 
         return (
 
-            <div style={{ "margin-top": "72px" }}>
+            <div style={{ "marginTop": "72px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-md-1" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-1" style={{ "marginTop": "5px" }}>
                             </div>
-                            <div className="col-md-10" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-10" style={{ "marginTop": "5px" }}>
                                 <div className="general-box">
                                     <div className="col-md-12">
                                         <h1>Create Article </h1>
@@ -271,9 +271,9 @@ export default class CreateArticle extends Component {
                                         </button>
                                     </div>
 
-                                    <div className="col-md-1" style={{ "margin-top": "5px" }}>
+                                    <div className="col-md-1" style={{ "marginTop": "5px" }}>
                                     </div>
-                                    <div className="col-md-12" style={{ "margin-top": "5px" }}>
+                                    <div className="col-md-12" style={{ "marginTop": "5px" }}>
                                     </div>
                                 </div>
                             </div>

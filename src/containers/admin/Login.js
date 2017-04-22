@@ -40,15 +40,15 @@ export default class Login extends Component {
     render() {
 
         return (
-            <div style={{ "margin-top": "72px" }}>
+            <div style={{ "marginTop": "72px" }}>
                 <div className="col-md-1">
                 </div>
                 <div className="col-md-10">
                     <div className="themeA-container">
                         <div className="row">
-                            <div className="col-md-3" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-3" style={{ "marginTop": "5px" }}>
                             </div>
-                            <div className="col-md-6" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-6" style={{ "marginTop": "5px" }}>
                                 <div className="general-box" style={{ "marginTop": "100px" }}>
                                     <div className="col-md-12" style={{ "textAlign": "center " }}>
                                         <h1>LOGIN</h1>
@@ -79,9 +79,9 @@ export default class Login extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-3" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-3" style={{ "marginTop": "5px" }}>
                             </div>
-                            <div className="col-md-12" style={{ "margin-top": "5px" }}>
+                            <div className="col-md-12" style={{ "marginTop": "5px" }}>
                             </div>
                         </div>
                     </div>
