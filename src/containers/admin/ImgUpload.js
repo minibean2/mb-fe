@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react'
-import {Link, browserHistory} from 'react-router'
+import React, { Component, PropTypes } from 'react'
+import { Link, browserHistory } from 'react-router'
 import DropzoneComponent from 'react-dropzone-component';
 import config from '../../config';
 
@@ -8,13 +8,14 @@ var $ = require('jquery');
 const rows = [];
 
 const urlList = [];
+
 var componentConfig = {
     iconFiletypes: ['.jpg', '.png', '.gif'],
     showFiletypeIcon: true,
     postUrl: config.API_URL + 'api/image/upload'
 };
 
-var djsConfig = {addRemoveLinks: true}
+var djsConfig = { addRemoveLinks: true }
 
 //var eventHandlers = { addedfile: (file) => console.log(file) }
 var callbackArray = [
@@ -30,7 +31,7 @@ export default class ImgUpload extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {file: '', imagePreviewUrl: '', menu: []};
+        this.state = { file: '', imagePreviewUrl: '', menu: [] };
     }
 
     urlListTag() {
@@ -44,17 +45,16 @@ export default class ImgUpload extends Component {
             arr = urlList[i].split(',');
             console.log(arr[0]);
             console.log(arr[1]);
-            menu.push(<a className="col-md-12"
-                         style={{"fontSize": "17px"}}>{config.API_URL + arr[0].substring(1, arr[0].length)}</a>);
-            menu.push(<a className="col-md-12"
-                         style={{"fontSize": "17px"}}>{config.API_URL + arr[1].substring(1, arr[1].length)}
+            menu.push(<a className="col-md-12" key={i + "-0"}
+                style={{ "fontSize": "17px" }}>{config.API_URL + arr[0].substring(1, arr[0].length)}</a>);
+            menu.push(<a className="col-md-12" key={i + "-1"}
+                style={{ "fontSize": "17px" }}>{config.API_URL + arr[1].substring(1, arr[1].length)}
                 <hr></hr>
             </a>);
         }
 
-        mi.setState({menu: menu});
+        mi.setState({ menu: menu });
     }
-
 
     render() {
 
@@ -85,7 +85,6 @@ export default class ImgUpload extends Component {
                 urlList.push(response.url_300 + "," + response.url_600);
                 console.log(urlList);
                 this.urlListTag();
-
             },
             complete: (data) => console.log(data),
             canceled: null,
@@ -105,54 +104,42 @@ export default class ImgUpload extends Component {
             queuecomplete: null
         }
 
-
         return (
 
-            <div style={{"marginTop": "72px"}}>
+            <div style={{ "marginTop": "72px" }}>
                 <div className="themeA-container">
                     <div className="row">
-                        <div className="col-md-2" style={{"marginTop": "5px"}}>
-
+                        <div className="col-md-2" style={{ "marginTop": "5px" }}>
 
                         </div>
-                        <div className="col-md-8" style={{"marginTop": "5px"}}>
+                        <div className="col-md-8" style={{ "marginTop": "5px" }}>
                             <div className="general-box">
                                 <div className="col-md-12">
                                     <h1>Images Upload</h1>
-
                                 </div>
-
                                 <div className="form-group col-md-12">
                                     <DropzoneComponent config={componentConfig}
-                                                       eventHandlers={eventHandlers}
-                                                       djsConfig={djsConfig}/>,
+                                        eventHandlers={eventHandlers}
+                                        djsConfig={djsConfig} />,
                                 </div>
                                 <hr></hr>
                                 <div className="form-group col-md-12">
-                                    <label className="msgShow" style={{"display": "none", "color": "green"}}>Image
-                                        Upload successfully</label>
+                                    <label className="msgShow" style={{ "display": "none", "color": "green" }}>Image Upload successfully</label>
                                 </div>
                                 <div className="form-group col-md-12">
                                     {this.state.menu}
                                 </div>
-
-
                             </div>
                         </div>
-                        <div className="col-md-2" style={{"marginTop": "5px"}}>
-
-
-                        </div>
-
-                        <div className="col-md-12" style={{"marginTop": "5px"}}>
+                        <div className="col-md-2" style={{ "marginTop": "5px" }}>
 
                         </div>
+                        <div className="col-md-12" style={{ "marginTop": "5px" }}>
 
-
+                        </div>
                     </div>
                 </div>
             </div>
-
         )
     }
 }
