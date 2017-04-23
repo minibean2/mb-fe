@@ -158,7 +158,7 @@ export default class ArticleDataGrid extends Component {
         }
         articleObject.articles = articleIdList;
 
-        $.post(config.API_URL + "api/update/featured", articleObject).done((res) => {
+        $.post(config.API_URL + "api/featured-articles/update", articleObject).done((res) => {
             console.log("success");
             $(".msgShow").toggle(true);
         });

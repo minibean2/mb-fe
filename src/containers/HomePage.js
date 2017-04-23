@@ -147,11 +147,8 @@ export default class HomePage extends Component {
             );
         }
 
-
         this.htmlCategories = menu;
-
     }
-
 
     showBody(value) {
         if (value != null && value != "") {
@@ -161,21 +158,13 @@ export default class HomePage extends Component {
         }
     }
 
-    setfeaturedImg(){
-            $.get(config.API_URL + "api/articles").done((res) => {
-                    
-                    for (let i = 0; i < res.res.length; i++) {
-                           if (res.res[i].featured === true) {
-                                    if (items.length == 1) {
-                                        if (items[0].imageUrl == "") {
-                                            items = [];
-                                        }
-                                    }
-                                    items.push(res.res[i]);
-                                }  
-                    }
-                    
-            });
+    setfeaturedImg() {
+        $.get(config.API_URL + "api/featured-articles").done((res) => {
+            items = [];
+            for (let i = 0; i < res.res.length; i++) {
+                items.push(res.res[i]);
+            }
+        });
     }
 
     generateDivs() {
@@ -234,7 +223,7 @@ export default class HomePage extends Component {
                                     </div>
                                 );
 
-                               
+
 
                                 this.count++;
                             }
@@ -287,7 +276,7 @@ export default class HomePage extends Component {
                                 </div>
                             );
 
-                          
+
 
                             this.catCount++;
                         }

@@ -166,7 +166,7 @@ export default class Main extends Component {
                     <Link to="/about" style={{
                         "fontSize": "12px",
                         "color": "white"
-                    }}>About</Link>
+                    }}>關於 miniBean 小萌豆</Link>
                 </div>
             </div>
         )
