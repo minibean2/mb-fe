@@ -107,13 +107,13 @@ export default class ArticlePage extends Component {
                         <li>
                             <font className="scTitle">{article.title}</font>
                         </li>
-                        <li>
+                        {/*<li>
                             <span className="view-count" style={{ "marginRight": "10px" }}><img className="view-icon" style={{ "verticalAlign": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
-                        </li>
+                        </li>*/}
                         <li><div style={{ "fontSize": "16px", "width": "100%" }}>{this.showBody(article.body)}</div></li>
-                        <li>
+                        {/*<li>
                             <span className="view-count" style={{ "marginRight": "10px" }}><img className="view-icon" style={{ "verticalAlign": "sub" }} src="../lib/images/general/icons/view.png" />{article.nov}</span>
-                        </li>
+                        </li>*/}
                         <li>
                             <div style={{ "margin": "20px 0", "fontSize": "16px" }}>
                                 <div className="padding10" style={{ "borderTop": "1px solid #eee" }}></div>

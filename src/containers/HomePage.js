@@ -214,7 +214,7 @@ export default class HomePage extends Component {
                                                     */}
                                                         <span className="tag">{articleItem.category.name}</span>
                                                         <font className="view-count">{articleItem.post_date}</font>
-                                                        <span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>
+                                                        {/*<span className="view-count" style={marginLeft}><img className="view-icon" src="../lib/images/general/icons/view.png" />{articleItem.nov}</span>*/}
                                                     </h6>
                                                     <p>{this.showBody(articleItem.preview)}...</p>
                                                 </div>
