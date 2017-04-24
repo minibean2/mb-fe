@@ -36,26 +36,36 @@ export default class SearchResultsPage extends Component {
             console.log(res);
             let moreDivs = [];
             if (res.res.length == 0) {
-                this.stopLoading = true;
-            }
-
-            for (let i = 0; i < res.res.length; i++) {
-                var searchResult = res.res[i];
-                if (searchResult != undefined) {
-                    moreDivs.push(
-                        <div style={{ "paddingBottom": "15px" }} key={'searchResult-' + searchResult.title}>
-                            <ul className="allpost-wrapper">
-                                <div>
-                                    <a href={searchResult.url}>
-                                        <h4 style={{ "color": "#324fe1" }}>{searchResult.title}</h4>
-                                    </a>
-                                    <h6>
-                                        <span className="tag">{searchResult.desc}</span>
-                                    </h6>
-                                </div>
-                            </ul>
-                        </div>
-                    );
+                moreDivs.push(
+                    <div style={{ "paddingBottom": "15px" }} key={'noResult'}>
+                        <ul className="allpost-wrapper">
+                            <div>
+                                <h4>
+                                    <span className="tag">沒有搜尋結果</span>
+                                </h4>
+                            </div>
+                        </ul>
+                    </div>
+                );
+            } else {
+                for (let i = 0; i < res.res.length; i++) {
+                    var searchResult = res.res[i];
+                    if (searchResult != undefined) {
+                        moreDivs.push(
+                            <div style={{ "paddingBottom": "15px" }} key={'searchResult-' + searchResult.title}>
+                                <ul className="allpost-wrapper">
+                                    <div>
+                                        <a href={searchResult.url}>
+                                            <h4 style={{ "color": "#324fe1" }}>{searchResult.title}</h4>
+                                        </a>
+                                        <h6>
+                                            <span className="tag">{searchResult.desc}</span>
+                                        </h6>
+                                    </div>
+                                </ul>
+                            </div>
+                        );
+                    }
                 }
             }
 
@@ -91,7 +101,7 @@ export default class SearchResultsPage extends Component {
                                 <div className="general-box" style={{ "minHeight": "500px" }}>
                                     <div style={{ "paddingBottom": "10px" }}>
                                         <div>
-                                            <h4 style={{ "paddingLeft": "25px" }}>Search: <i>{unescape(this.searchKey)}</i></h4>
+                                            <h4 style={{ "paddingLeft": "25px" }}>搜尋: {unescape(this.searchKey)}</h4>
                                         </div>
                                     </div>
                                     {this.state.divs}
