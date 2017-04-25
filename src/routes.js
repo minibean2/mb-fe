@@ -9,6 +9,7 @@ import AboutPage from './containers/AboutPage'
 
 import AdminArticleDataGrid from './containers/admin/ArticleDataGrid'
 import AdminCreateArticle from './containers/admin/CreateArticle'
+import AdminEditArticle from './containers/admin/EditArticle'
 import AdminImgUpload from './containers/admin/ImgUpload'
 import AdminLogin from './containers/admin/Login'
 
@@ -22,5 +23,6 @@ export default
         <Route path="/login" component={AdminLogin} />
         <Route path="/articleGrid" component={AdminArticleDataGrid} />
         <Route path="/createArticle" component={AdminCreateArticle} />
+        <Route path="/editArticle/:id" component={AdminEditArticle}/> 
         <Route path="/imgUpload" component={AdminImgUpload} />
     </Route>

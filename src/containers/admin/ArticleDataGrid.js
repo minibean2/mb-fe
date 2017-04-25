@@ -92,6 +92,23 @@ export default class ArticleDataGrid extends Component {
 
                     }
                 }
+            },
+            {
+                key: 'Edit',
+                name: ' ',
+                width: 80,
+                resizable: true,
+                formatter: <a>Edit</a>,
+                events: {
+                    onClick: function (ev, args) {
+                        console.log('The user double clicked on title column');
+                        console.log(ev);
+                        console.log(args);
+                        console.log(rows[args.rowIdx]);
+                        browserHistory.push('/EditArticle/'+rows[args.rowIdx]._id);
+
+                    }
+                }
             }
 
         ];
