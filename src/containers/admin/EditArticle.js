@@ -41,16 +41,17 @@ export default class CreateArticle extends Component {
             htmlBody = res.res.body;
             cat = res.res.category;
             selectedOption = { "value": res.res.category.id, "label": res.res.category.name };
-            defaultOption = res.res.category.id;
+            //defaultOption = res.res.category.id;
               
 
-            this.setState({ featured: res.res.featured, published:res.res.published, date:moment(res.res.post_date)});
+            this.setState({ featured: res.res.featured, published:res.res.published, date:moment(res.res.post_date), defaultOption:res.res.category.id});
             this.setState();
         });
 
        
         $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
+            options = [];
             this.categories = res;
             for (var i = 0; i < this.categories.length; i++) {
                 options.push({ "value": this.categories[i]._id, "label": this.categories[i].name });
@@ -62,9 +63,15 @@ export default class CreateArticle extends Component {
     }
 
     categoryChange(val) {
-        console.log(val);
+         var self = this;
+         self.setState({
+            defaultOption: val.value
+        });
         selectedOption = val;
+       
     }
+   
+
 
     handleEditorChange = (e) => {
         console.log('Content was updated:', e.target.getContent());
@@ -208,9 +215,9 @@ export default class CreateArticle extends Component {
                                            
                                                <Select
                                                   name="form-field-name"
-                                                  value={defaultOption}
+                                                  value={this.state.defaultOption}
                                                   options={options}
-                                                  onChange={this.categoryChange}
+                                                  onChange={this.categoryChange.bind(this)}
                                                 />
                                         </div>
                                     </div>
