@@ -69,6 +69,10 @@ export default class Main extends Component {
             header = (
                 <span></span>
             )
+
+            footer = (
+                <span></span>
+            )
         } else if (adminPages.indexOf(this.page) != -1) {
             header = (
                 <div style={{
@@ -111,6 +115,10 @@ export default class Main extends Component {
                     }}>Log Out </Link>
 
                 </div>
+            )
+
+            footer = (
+                <span></span>
             )
         } else {
             header = (
@@ -156,20 +164,20 @@ export default class Main extends Component {
                     </div>
                 </div>
             )
-        }
 
-        footer = (
-            <div id="footer-menu" className="footer-menu">
-                <div className="pull-right" style={{
-                    "marginTop": "2px"
-                }}>
-                    <Link to="/about" style={{
-                        "fontSize": "12px",
-                        "color": "white"
-                    }}>關於 miniBean 小萌豆</Link>
+            footer = (
+                <div id="footer-menu" className="footer-menu">
+                    <div className="pull-right" style={{
+                        "marginTop": "2px"
+                    }}>
+                        <Link to="/about" style={{
+                            "fontSize": "12px",
+                            "color": "white"
+                        }}>關於 miniBean 小萌豆</Link>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
 
         return (
             <div>

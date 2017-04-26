@@ -55,16 +55,17 @@ export default class ArticleDataGrid extends Component {
                 key: 'categoryName',
                 name: 'Category',
                 editable: true,
-                width: 120,
+                width: 100,
                 resizable: true
             },
             {
                 key: 'title',
                 name: 'Title',
                 editable: true,
-                width: 200,
+                width: 400,
                 resizable: true
             },
+            /*
             {
                 key: 'preview',
                 name: 'Preview',
@@ -72,10 +73,11 @@ export default class ArticleDataGrid extends Component {
                 width: 300,
                 resizable: true
             },
+            */
             {
                 key: 'delete',
                 name: ' ',
-                width: 80,
+                width: 65,
                 resizable: true,
                 formatter: <a onClick={this.deleteClick.bind(this)}>Delete</a>,
                 events: {
@@ -96,7 +98,7 @@ export default class ArticleDataGrid extends Component {
             {
                 key: 'Edit',
                 name: ' ',
-                width: 80,
+                width: 65,
                 resizable: true,
                 formatter: <a>Edit</a>,
                 events: {

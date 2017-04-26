@@ -111,7 +111,7 @@ export default class CreateArticle extends Component {
         
 
         console.log("data----", data);
-        $.post(config.API_URL + "api/update/article/"+articleId, data).done((res) => {
+        $.post(config.API_URL + "api/article/update/"+articleId, data).done((res) => {
             console.log("lead...........");
             browserHistory.push('/articleGrid');
         });
