@@ -32,7 +32,7 @@ export default class CreateArticle extends Component {
         urlArr = url.split("/");
         articleId = urlArr[urlArr.length - 1];
 
-        this.state = { published: false,featured:false, date: moment() };
+        this.state = { published: false, featured: false, date: moment() };
         $.get(config.API_URL + "api/article?articleId=" + articleId).done((res) => {
             $(".title").val(res.res.title);
             $(".preview").val(res.res.preview);
@@ -42,14 +42,14 @@ export default class CreateArticle extends Component {
             cat = res.res.category;
             selectedOption = { "value": res.res.category.id, "label": res.res.category.name };
             //defaultOption = res.res.category.id;
-              postDate = moment(res.res.post_date);
-              featuredValue = res.res.featured;
-              publishedValue = res.res.published;
-            this.setState({ featured: res.res.featured, published:res.res.published, date:moment(res.res.post_date), defaultOption:res.res.category.id});
+            postDate = moment(res.res.post_date);
+            featuredValue = res.res.featured;
+            publishedValue = res.res.published;
+            this.setState({ featured: res.res.featured, published: res.res.published, date: moment(res.res.post_date), defaultOption: res.res.category.id });
             this.setState();
         });
 
-       
+
         $.get(config.API_URL + "api/categories").done((res) => {
             console.log(res);
             options = [];
@@ -57,22 +57,19 @@ export default class CreateArticle extends Component {
             for (var i = 0; i < this.categories.length; i++) {
                 options.push({ "value": this.categories[i]._id, "label": this.categories[i].name });
             }
-         
+
             this.setState();
         });
 
     }
 
     categoryChange(val) {
-         var self = this;
-         self.setState({
+        var self = this;
+        self.setState({
             defaultOption: val.value
         });
         selectedOption = val;
-       
     }
-   
-
 
     handleEditorChange = (e) => {
         console.log('Content was updated:', e.target.getContent());
@@ -103,7 +100,7 @@ export default class CreateArticle extends Component {
         cat = { "id": selectedOption.value, "name": selectedOption.label };
 
         var data = {
-            articleId:articleId,
+            articleId: articleId,
             title: $(".title").val(),
             preview: $(".preview").val(),
             thumbnailUrl: $(".thumbnailUrl").val(),
@@ -116,10 +113,8 @@ export default class CreateArticle extends Component {
             created_date: new Date()
         };
 
-        
-
         console.log("data----", data);
-        $.post(config.API_URL + "api/article/update/"+articleId, data).done((res) => {
+        $.post(config.API_URL + "api/article/update/" + articleId, data).done((res) => {
             console.log("lead...........");
             browserHistory.push('/articleGrid');
         });
@@ -213,20 +208,20 @@ export default class CreateArticle extends Component {
                                             <label>Category :</label>
                                         </div>
                                         <div className="col-md-8">
-                                           
-                                               <Select
-                                                  name="form-field-name"
-                                                  value={this.state.defaultOption}
-                                                  options={options}
-                                                  onChange={this.categoryChange.bind(this)}
-                                                />
+
+                                            <Select
+                                                name="form-field-name"
+                                                value={this.state.defaultOption}
+                                                options={options}
+                                                onChange={this.categoryChange.bind(this)}
+                                            />
                                         </div>
                                     </div>
                                     <div className="form-group  col-md-12">
                                         <div className="col-md-4">
                                             <label>Posted Date :</label>
                                         </div>
-                                         <div className="col-md-8">
+                                        <div className="col-md-8">
                                             <DatePicker dateFormat="DD-MM-YYYY" selected={this.state.date}
                                                 onChange={this.dateChange.bind(this)} />
                                         </div>
@@ -235,7 +230,6 @@ export default class CreateArticle extends Component {
                                         <div className="col-md-4">
                                         </div>
                                         <div className="col-md-8">
-
                                             <div className="col-md-6">
                                                 <input type="checkbox" checked={this.state.published}
                                                     onChange={this.publishedChangeChk.bind(this, this.state.published)} />&nbsp;&nbsp;
@@ -248,7 +242,6 @@ export default class CreateArticle extends Component {
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div className="form-group col-md-12">
                                         <div className="col-md-12">
@@ -283,7 +276,6 @@ export default class CreateArticle extends Component {
                                                             });
                                                         }
                                                     }
-
                                                 }}
 
                                                 file_picker_callback={this.file_picker_callback}
@@ -301,7 +293,7 @@ export default class CreateArticle extends Component {
                                         </button>
                                         <button
                                             className="btn btn-default save-article" onClick={this.editArticle.bind()}>
-                                            Edit
+                                            Save
                                         </button>
                                     </div>
 
@@ -317,9 +309,7 @@ export default class CreateArticle extends Component {
                 </div>
                 <div className="col-md-1">
                 </div>
-
             </div>
-
         )
     }
 }

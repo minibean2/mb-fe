@@ -5,9 +5,9 @@ import config from '../../config';
 
 var $ = require('jquery');
 
-const rows = [];
+var rows = [];
 
-const urlList = [];
+var urlList = [];
 
 var componentConfig = {
     iconFiletypes: ['.jpg', '.png', '.gif'],

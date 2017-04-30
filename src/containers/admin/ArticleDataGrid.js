@@ -32,7 +32,7 @@ export default class ArticleDataGrid extends Component {
             {
                 key: '_id',
                 name: 'ID',
-                width: 100,
+                width: 50,
                 resizable: true
             },
             /*
@@ -91,7 +91,6 @@ export default class ArticleDataGrid extends Component {
                             mi.setState();
 
                         });
-
                     }
                 }
             },
@@ -108,7 +107,6 @@ export default class ArticleDataGrid extends Component {
                         console.log(args);
                         console.log(rows[args.rowIdx]);
                         browserHistory.push('/EditArticle/'+rows[args.rowIdx]._id);
-
                     }
                 }
             }
