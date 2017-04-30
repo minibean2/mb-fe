@@ -44,12 +44,8 @@ export default class ImgUpload extends Component {
             arr = urlList[i].split(',');
             console.log(arr[0]);
             console.log(arr[1]);
-            menu.push(<a className="col-md-12" key={i + "-0"}
-                style={{ "fontSize": "17px" }}>{config.API_URL + arr[0].substring(1, arr[0].length)}</a>);
-            menu.push(<a className="col-md-12" key={i + "-1"}
-                style={{ "fontSize": "17px" }}>{config.API_URL + arr[1].substring(1, arr[1].length)}
-                <hr></hr>
-            </a>);
+            menu.push(<a href={arr[0]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrl300-" + i} >{arr[0]}</a>);
+            menu.push(<a href={arr[1]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrl600-" + i}>{arr[1]}</a>);
         }
 
         mi.setState({ menu: menu });
@@ -81,7 +77,7 @@ export default class ImgUpload extends Component {
             sending: null,
             success: (file, response) => {
                 console.log(response);
-                urlList.push(response.url_300 + "," + response.url_600);
+                urlList.push(response.res.url_300 + "," + response.res.url_600);
                 console.log(urlList);
                 this.urlListTag();
             },
@@ -119,11 +115,11 @@ export default class ImgUpload extends Component {
                                 <div className="form-group col-md-12">
                                     <DropzoneComponent config={componentConfig}
                                         eventHandlers={eventHandlers}
-                                        djsConfig={djsConfig} />,
+                                        djsConfig={djsConfig} />
                                 </div>
                                 <hr></hr>
                                 <div className="form-group col-md-12">
-                                    <label className="msgShow" style={{ "display": "none", "color": "green" }}>Image Uploaded successfully</label>
+                                    <label className="msgShow" style={{ "display": "none", "color": "green" }}>Image upload successful</label>
                                 </div>
                                 <div className="form-group col-md-12">
                                     {this.state.menu}
