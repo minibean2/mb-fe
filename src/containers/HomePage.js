@@ -137,7 +137,7 @@ export default class HomePage extends Component {
         let menu = [];
         for (let i = 0; i < this.categories.length; i++) {
             menu.push(
-                <li className="index-item">
+                <li className="index-item" key={"category-" + i}>
                     <div className="selected-item">
                         <a className="nav-item"
                             style={{ "color": "#324fe1", "fontWeight": "bold" }}
@@ -198,7 +198,7 @@ export default class HomePage extends Component {
                                 }
 
                                 moreDivs.push(
-                                    <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
+                                    <div style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-"+articleItem._id}>
                                         <ul className="allpost-wrapper">
                                             <li>
                                                 <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
@@ -322,7 +322,7 @@ export default class HomePage extends Component {
             items.map(function (object, i) {
                 return <div style={{ "position": "relative", "width": "100%" }}>
                     <Link to={'/article/' + object._id}>
-                        <img key={i}
+                        <img key={"sliderImage-" + i}
                             style={{
                                 "width": "100%",
                                 "height": "250px"

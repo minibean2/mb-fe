@@ -1,16 +1,16 @@
-import React, {Component, PropTypes} from 'react'
-import {connect} from 'react-redux'
-import {browserHistory} from 'react-router'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import Main from '../components/Main'
 //import { resetErrorMessage } from '../actions'
 
 class App extends Component {
     render() {
-        const {children, inputValue} = this.props
+        const { children, inputValue } = this.props
         return (
             <div>
                 <Main value={inputValue}
-                      onChange={this.handleChange}/>
+                    onChange={this.handleChange} />
                 {children}
             </div>
         )
