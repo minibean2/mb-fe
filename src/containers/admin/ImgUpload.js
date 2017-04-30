@@ -37,7 +37,6 @@ export default class ImgUpload extends Component {
     urlListTag() {
         var mi = this;
         $(".msgShow").toggle(true);
-        this.htmlCategories = [];
         let menu = [];
         for (let i = 0; i < urlList.length; i++) {
             console.log(urlList[i]);
@@ -117,6 +116,19 @@ export default class ImgUpload extends Component {
                                 <div className="col-md-12">
                                     <h1>Images Upload</h1>
                                 </div>
+                                {/*<div className="form-group col-md-12">
+                                    <form method="post" encType="multipart/form-data" action={config.API_URL + "api/image/upload2"}>
+                                        <p>
+                                            <input type="text" name="title" placeholder="optional title" />
+                                        </p>
+                                        <p>
+                                            <input type="file" name="imageFile" />
+                                        </p>
+                                        <p>
+                                            <input type="submit" />
+                                        </p>
+                                    </form>
+                                </div>*/}
                                 <div className="form-group col-md-12">
                                     <DropzoneComponent config={componentConfig}
                                         eventHandlers={eventHandlers}
@@ -124,7 +136,7 @@ export default class ImgUpload extends Component {
                                 </div>
                                 <hr></hr>
                                 <div className="form-group col-md-12">
-                                    <label className="msgShow" style={{ "display": "none", "color": "green" }}>Image Upload successfully</label>
+                                    <label className="msgShow" style={{ "display": "none", "color": "green" }}>Image Uploaded successfully</label>
                                 </div>
                                 <div className="form-group col-md-12">
                                     {this.state.menu}
