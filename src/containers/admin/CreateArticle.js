@@ -257,7 +257,7 @@ export default class CreateArticle extends Component {
                                             />
                                         </div>
                                     </div>
-                                    <input name="image" type="file" id="upload" onchange=""
+                                    <input name="image" type="file" id="upload" onChange=""
                                         style={{ "display": "none" }} />
                                     <div className="form-group  col-md-12" style={{ "textAlign": "right" }}>
                                         <button
