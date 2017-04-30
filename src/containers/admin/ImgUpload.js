@@ -116,19 +116,6 @@ export default class ImgUpload extends Component {
                                 <div className="col-md-12">
                                     <h1>Images Upload</h1>
                                 </div>
-                                {/*<div className="form-group col-md-12">
-                                    <form method="post" encType="multipart/form-data" action={config.API_URL + "api/image/upload2"}>
-                                        <p>
-                                            <input type="text" name="title" placeholder="optional title" />
-                                        </p>
-                                        <p>
-                                            <input type="file" name="imageFile" />
-                                        </p>
-                                        <p>
-                                            <input type="submit" />
-                                        </p>
-                                    </form>
-                                </div>*/}
                                 <div className="form-group col-md-12">
                                     <DropzoneComponent config={componentConfig}
                                         eventHandlers={eventHandlers}
