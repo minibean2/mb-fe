@@ -44,8 +44,8 @@ export default class ImgUpload extends Component {
             arr = urlList[i].split(',');
             console.log(arr[0]);
             console.log(arr[1]);
-            menu.push(<a href={arr[0]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrl300-" + i} >{arr[0]}</a>);
-            menu.push(<a href={arr[1]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrl600-" + i}>{arr[1]}</a>);
+            menu.push(<a href={arr[0]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrlThumb-" + i} >{arr[0]}</a>);
+            menu.push(<a href={arr[1]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrlFull-" + i}>{arr[1]}</a>);
         }
 
         mi.setState({ menu: menu });
@@ -77,7 +77,7 @@ export default class ImgUpload extends Component {
             sending: null,
             success: (file, response) => {
                 console.log(response);
-                urlList.push(response.res.url_300 + "," + response.res.url_600);
+                urlList.push(response.res.url_thumb + "," + response.res.url_full);
                 console.log(urlList);
                 this.urlListTag();
             },
