@@ -31,23 +31,30 @@ export default class ArticleDataGrid extends Component {
                 key: 'title',
                 name: 'Title',
                 editable: true,
-                width: 200,
+                width: 150,
                 resizable: true
             },
             {
                 key: 'categoryName',
                 name: 'Category',
                 editable: true,
-                width: 200,
+                width: 150,
                 resizable: true
             },
             {
-                key: 'created_date',
-                name: 'Created Date',
-                editable: true,
-                width: 200,
-                resizable: true
-            },
+	        key: 'created_date',
+	        name: 'Created Date',
+	        editable: true,
+	        width: 200,
+	        resizable: true
+	      },
+	      {
+	        key: 'post_date',
+	        name: 'Posted Date',
+	        editable: true,
+	        width: 200,
+	        resizable: true
+	      },
             {
                 key: 'preview',
                 name: 'Preview',

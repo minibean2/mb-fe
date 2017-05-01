@@ -153,7 +153,7 @@ export default class DashboardPage extends Component {
                                 </h4>
                                 <div>
                                     <h6>
-                                        <a className="tag">{this.res[i].category.name}</a>
+                                        <a className="tag" onClick={this.categoriesClick.bind(this, this.res[i].category.id)}>{this.res[i].category.name}</a>
                                         <font className="admin-visible-field">{this.res[i].created_date}</font>
                                         <span className="view-count" style={marginLeft}><img className="view-icon"
                                                                                              src="view.png"/>view</span>
@@ -215,7 +215,7 @@ export default class DashboardPage extends Component {
                                             to={'/article/' + res.res[i]._id}>{res.res[i].title}</Link></h4>
                                         <div>
                                             <h6>
-                                                <a className="tag">{res.res[i].category.name}</a>
+                                                <a className="tag" onClick={this.categoriesClick.bind(this, res.res[i].category.id)}>{res.res[i].category.name}</a>
                                                 <font className="admin-visible-field">{res.res[i].created_date}</font>
                                                 <span className="view-count" style={marginLeft}><img
                                                     className="view-icon" src="view.png"/>view</span>
@@ -296,8 +296,7 @@ export default class DashboardPage extends Component {
                                         <Slider {...settings}>
                                             <div>
                                                 {items.map(function (object, i) {
-                                                    return <div style={{"position": "relative", "width": "100%"}}><a
-                                                        href="#"><img key={i}
+                                                    return <div style={{"position": "relative", "width": "100%"}}><Link to={'/article/' + object._id}><img key={i}
                                                                       style={{"width": "100%", "height": "180px"}}
                                                                       src={object.imageUrl}/><span style={{
                                                         "position": "absolute",
@@ -305,7 +304,7 @@ export default class DashboardPage extends Component {
                                                         "left": "0",
                                                         "width": "100%",
                                                         "fontSize": "20px"
-                                                    }}>{object.title}</span></a></div>
+                                                    }}>{object.title}</span></Link></div>
                                                 })}
                                             </div>
                                         </Slider>

@@ -4,6 +4,9 @@ var Select = require('react-select');
 import Dropdown from 'react-dropdown'
 import configData from '../config.js';
 import TinyMCE from 'react-tinymce';
+var DatePicker = require('react-datepicker');
+var moment = require('moment');
+require('react-datepicker/dist/react-datepicker.css');
 var $ = require('jquery');
 
 const rows = [];
@@ -14,6 +17,7 @@ var htmlBody = "";
 var publishedValue = true;
 var featuredValue = true;
 const defaultOption = "";
+var postDate = moment();
 
 const rowGetter = rowNumber => rows[rowNumber];
 
@@ -21,7 +25,7 @@ export default class CreateArticle extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {published: true, featured: true};
+        this.state = {published: true, featured: true,date:moment()};
         $.get(configData.url + "api/categories").done((res) => {
             console.log(res);
             this.categories = res;
@@ -75,6 +79,7 @@ export default class CreateArticle extends Component {
             category: cat,
             featured: featuredValue,
             published: publishedValue,
+            post_date:postDate._d,
             created_date: new Date()
         };
 
@@ -111,6 +116,15 @@ export default class CreateArticle extends Component {
         featuredValue = !this.state.featured;
     }
 
+     dateChange(date) {
+       var self = this;
+          self.setState({
+            date: date
+          });
+        postDate = date;
+          
+        console.log(date);
+        }
     render() {
 
         return (
@@ -167,6 +181,14 @@ export default class CreateArticle extends Component {
                                     <div className="col-md-8">
                                         <Dropdown options={options} onChange={this.categoryChange}
                                                   value={defaultOption}/>
+                                    </div>
+                                </div>
+                                 <div className="form-group  col-md-12">
+                                    <div className="col-md-4">
+                                        <label>Posted Date :</label>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <DatePicker selected={this.state.date} onChange={this.dateChange.bind(this)} />
                                     </div>
                                 </div>
                                 <div className="form-group  col-md-12">
