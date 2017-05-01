@@ -331,6 +331,14 @@ export default class DashboardPage extends Component {
                             </div>
 
                         </div>
+                          <div className="col-md-3" style={{"margin-top": "5px"}}>
+                            <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                               
+                            </div>
+                            <div id="articles-slider" className="general-box" style={{"height": "90px"}}>
+                               
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
