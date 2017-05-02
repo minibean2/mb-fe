@@ -23,6 +23,6 @@ export default
         <Route path="/login" component={AdminLogin} />
         <Route path="/articleGrid" component={AdminArticleDataGrid} />
         <Route path="/createArticle" component={AdminCreateArticle} />
-        <Route path="/editArticle/:id" component={AdminEditArticle}/> 
+        <Route path="/editArticle" component={AdminEditArticle}/> 
         <Route path="/imgUpload" component={AdminImgUpload} />
     </Route>
