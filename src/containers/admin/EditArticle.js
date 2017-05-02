@@ -29,8 +29,8 @@ export default class CreateArticle extends Component {
 
         var url = window.location.href;
         var urlArr = [];
-        urlArr = url.split("/");
-        articleId = urlArr[urlArr.length - 1];
+        urlArr = url.split("=");
+        articleId = urlArr[1];
 
         this.state = { published: false, featured: false, date: moment() };
         $.get(config.API_URL + "api/article?articleId=" + articleId).done((res) => {
