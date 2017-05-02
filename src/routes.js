@@ -17,7 +17,7 @@ export default
     <Route path="/user" component={App}>
         <Route path="/" component={HomePage} />
         <Route path="/category/:id" component={HomePage} />
-        <Route path="/article/:id" component={ArticlePage} />
+        <Route path="/article" component={ArticlePage} />
         <Route path="/searchResults/:key" component={SearchResultsPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={AdminLogin} />

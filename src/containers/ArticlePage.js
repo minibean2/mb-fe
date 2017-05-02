@@ -50,8 +50,8 @@ export default class ArticlePage extends Component {
         super(props);
         var url = window.location.href;
         var urlArr = [];
-        urlArr = url.split("/");
-        this.articleId = urlArr[urlArr.length - 1];
+        urlArr = url.split("=");
+        this.articleId = urlArr[1];
 
         this.state = { divs: divs };
         this.htmlCategories = [];

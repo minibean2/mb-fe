@@ -201,9 +201,9 @@ export default class HomePage extends Component {
                                     <div style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-"+articleItem._id}>
                                         <ul className="allpost-wrapper">
                                             <li>
-                                                <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                                <Link to={'/article?articleId=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                                                 <div>
-                                                    <Link to={'/article/' + articleItem._id}>
+                                                    <Link to={'/article?articleId=' + articleItem._id}>
                                                         <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                                     </Link>
                                                     <h6>
@@ -254,9 +254,9 @@ export default class HomePage extends Component {
                                 <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
                                         <li>
-                                            <Link to={'/article/' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                            <Link to={'/article?articleId=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                                             <div>
-                                                <Link to={'/article/' + articleItem._id}>
+                                                <Link to={'/article?articleId=' + articleItem._id}>
                                                     <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                                 </Link>
                                                 <h6>
@@ -276,7 +276,7 @@ export default class HomePage extends Component {
                                 </div>
                             );
 
-
+                          
 
                             this.catCount++;
                         }
@@ -321,7 +321,7 @@ export default class HomePage extends Component {
         articleImgs = (
             items.map(function (object, i) {
                 return <div style={{ "position": "relative", "width": "100%" }}>
-                    <Link to={'/article/' + object._id}>
+                    <Link to={'/article?articleId=' + object._id}>
                         <img key={"sliderImage-" + i}
                             style={{
                                 "width": "100%",
