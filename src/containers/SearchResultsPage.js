@@ -24,8 +24,8 @@ export default class SearchResultsPage extends Component {
     setSearchKey() {
         var url = window.location.href;
         var urlArr = [];
-        urlArr = url.split("/");
-        this.searchKey = urlArr[urlArr.length - 1];
+        urlArr = url.split("=");
+        this.searchKey = urlArr[1];
     }
 
     generateDivs() {

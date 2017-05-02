@@ -51,7 +51,7 @@ export default class Main extends Component {
         var searchKey = $("#searchKey").val();
         if (searchKey != null && searchKey.length > 0) {
             console.log('searchKey=' + searchKey);
-            browserHistory.push('/searchResults/' + searchKey);
+            browserHistory.push('/searchResults?key=' + searchKey);
         }
     }
 
