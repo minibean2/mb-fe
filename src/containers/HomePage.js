@@ -61,8 +61,8 @@ export default class HomePage extends Component {
         this.stopLoading = false;
         var url = window.location.href;
         var urlArr = [];
-        urlArr = url.split("/");
-        this.catId = urlArr[urlArr.length - 1];
+        urlArr = url.split("=");
+        this.catId = urlArr[1];
 
         this.pageSize = constants.INFINITE_SCROLL_PAGE_SIZE;
         this.scrollThreshold = constants.INFINITE_SCROLL_THRESHOLD;
@@ -123,7 +123,7 @@ export default class HomePage extends Component {
         this.state = { divs: arr };
         this.count = 0;
         console.log(articleId);
-        $.get(config.API_URL + "api/article?articleId=" + articleId).done((res) => {
+        $.get(config.API_URL + "api/article?id=" + articleId).done((res) => {
             this.state = { divs: divs };
             arr.push(res.res);
             console.log(arr);
@@ -201,9 +201,9 @@ export default class HomePage extends Component {
                                     <div style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-"+articleItem._id}>
                                         <ul className="allpost-wrapper">
                                             <li>
-                                                <Link to={'/article?articleId=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                                <Link to={'/article?id=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                                                 <div>
-                                                    <Link to={'/article?articleId=' + articleItem._id}>
+                                                    <Link to={'/article?id=' + articleItem._id}>
                                                         <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                                     </Link>
                                                     <h6>
@@ -254,9 +254,9 @@ export default class HomePage extends Component {
                                 <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
                                         <li>
-                                            <Link to={'/article?articleId=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
+                                            <Link to={'/article?id=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
                                             <div>
-                                                <Link to={'/article?articleId=' + articleItem._id}>
+                                                <Link to={'/article?id=' + articleItem._id}>
                                                     <h4 style={{ "color": "#324fe1" }}>{articleItem.title}</h4>
                                                 </Link>
                                                 <h6>
@@ -321,7 +321,7 @@ export default class HomePage extends Component {
         articleImgs = (
             items.map(function (object, i) {
                 return <div style={{ "position": "relative", "width": "100%" }}>
-                    <Link to={'/article?articleId=' + object._id}>
+                    <Link to={'/article?id=' + object._id}>
                         <img key={"sliderImage-" + i}
                             style={{
                                 "width": "100%",

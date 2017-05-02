@@ -106,7 +106,7 @@ export default class ArticleDataGrid extends Component {
                         console.log(ev);
                         console.log(args);
                         console.log(rows[args.rowIdx]);
-                        browserHistory.push('/EditArticle?articleId='+rows[args.rowIdx]._id);
+                        browserHistory.push('/EditArticle?id='+rows[args.rowIdx]._id);
                     }
                 }
             }

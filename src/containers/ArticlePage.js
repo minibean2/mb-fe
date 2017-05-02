@@ -84,7 +84,7 @@ export default class ArticlePage extends Component {
     generateDivs() {
 
         let moreDivs = [];
-        $.get(config.API_URL + "api/article?articleId=" + this.articleId).done((res) => {
+        $.get(config.API_URL + "api/article?id=" + this.articleId).done((res) => {
             var article = res.res;
             if (article.post_date != undefined) {
                 article.post_date = moment(article.post_date).format("MMM D, YYYY");
@@ -94,11 +94,11 @@ export default class ArticlePage extends Component {
                 <div className="general-box article-box-main" key={this.articleId}>
                     <ul className="article-detail-wrapper">
                         <li>
-                            <Link to={'/category/' + article.category.id}>
+                            <Link to={'/category?id=' + article.category.id}>
                                 <img className="scCatMiniThumbnail" src={article.thumbnailUrl} />
                             </Link>
                             <div style={{ "marginLeft": "10px", "width": "60%" }}>
-                                <Link className="scCatName" to={'/category/' + article.category.id}>{article.category.name}</Link>
+                                <Link className="scCatName" to={'/category?id=' + article.category.id}>{article.category.name}</Link>
                                 <h6>
                                     <font className="view-count">{article.post_date}</font>
                                 </h6>
@@ -118,7 +118,7 @@ export default class ArticlePage extends Component {
                             <div style={{ "margin": "20px 0", "fontSize": "16px" }}>
                                 <div className="padding10" style={{ "borderTop": "1px solid #eee" }}></div>
                                 分享連結:&nbsp;
-                                <input type='text' name='article-link' id='article-link' defaultValue={config.SITE_URL + 'article/' + this.articleId}></input>
+                                <input type='text' name='article-link' id='article-link' defaultValue={config.SITE_URL + 'article?id=' + this.articleId}></input>
                                 {/*<a style={{"marginLeft":"5px","padding":"2px 7px","fontSize":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
                             </div>
                         </li>

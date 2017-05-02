@@ -33,7 +33,7 @@ export default class CreateArticle extends Component {
         articleId = urlArr[1];
 
         this.state = { published: false, featured: false, date: moment() };
-        $.get(config.API_URL + "api/article?articleId=" + articleId).done((res) => {
+        $.get(config.API_URL + "api/article?id=" + articleId).done((res) => {
             $(".title").val(res.res.title);
             $(".preview").val(res.res.preview);
             $(".thumbnailUrl").val(res.res.thumbnailUrl);

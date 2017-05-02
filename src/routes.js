@@ -16,7 +16,7 @@ import AdminLogin from './containers/admin/Login'
 export default
     <Route path="/user" component={App}>
         <Route path="/" component={HomePage} />
-        <Route path="/category/:id" component={HomePage} />
+        <Route path="/category" component={HomePage} />
         <Route path="/article" component={ArticlePage} />
         <Route path="/searchResults" component={SearchResultsPage} />
         <Route path="/about" component={AboutPage} />
