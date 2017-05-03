@@ -4,11 +4,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import config from '../config';
 import constants from '../constants';
 
-var Slider = require('react-slick');
+// Fix: http://stackoverflow.com/a/34130767
+var Slider = require('react-slick').default;
+
 var $ = require('jquery');
 var moment = require('moment');
 
-const GITHUB_REPO = 'https://github.com/reactjs/redux'
 const margin = {
     margin: 0
 }
@@ -198,7 +199,7 @@ export default class HomePage extends Component {
                                 }
 
                                 moreDivs.push(
-                                    <div style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-"+articleItem._id}>
+                                    <div style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-" + articleItem._id}>
                                         <ul className="allpost-wrapper">
                                             <li>
                                                 <Link to={'/article?id=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
@@ -276,7 +277,7 @@ export default class HomePage extends Component {
                                 </div>
                             );
 
-                          
+
 
                             this.catCount++;
                         }
@@ -320,7 +321,7 @@ export default class HomePage extends Component {
 
         articleImgs = (
             items.map(function (object, i) {
-                return <div style={{ "position": "relative", "width": "100%" }}>
+                return <div style={{ "position": "relative", "width": "100%" }} key={"slider-image-" + i}>
                     <Link to={'/article?id=' + object._id}>
                         <img key={"sliderImage-" + i}
                             style={{
