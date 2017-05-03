@@ -4,11 +4,11 @@ import Dropdown from 'react-dropdown'
 import config from '../../config';
 import TinyMCE from 'react-tinymce';
 
-var Select = require('react-select');
+require('react-datepicker/dist/react-datepicker.css');
+
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
 var $ = require('jquery');
-require('react-datepicker/dist/react-datepicker.css');
 
 const rows = [];
 var options = [];

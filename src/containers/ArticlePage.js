@@ -1,45 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import config from '../config';
 import constants from '../constants';
 
-var Slider = require('react-slick');
 var $ = require('jquery');
 var moment = require('moment');
-
-const GITHUB_REPO = 'https://github.com/reactjs/redux'
-const margin = {
-    margin: 0
-}
-const oneImg = {
-    width: 100,
-    height: 26
-}
-const sliderImg = {
-    width: 100
-}
-const setWidth = {
-    width: 210
-}
-const setColorFont = {
-    color: "Yellow",
-
-}
-const setHeight = {
-    height: 100,
-
-}
-const width500 = {
-    width: 500
-}
-const getColor = {
-    color: "red"
-}
-
-const marginLeft = {
-    marginLeft: 10
-}
 
 const divs = [];
 const data = [];

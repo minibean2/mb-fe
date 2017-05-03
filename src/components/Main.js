@@ -107,12 +107,12 @@ export default class Main extends Component {
                         "marginRight": "15px"
                     }}>Upload Image</Link>
 
-                    <Link onClick={this.logOut.bind()} style={{
+                    <a onClick={this.logOut.bind()} style={{
                         "float": "right",
                         "color": "white",
                         "marginLeft": "15px",
                         "marginRight": "50px"
-                    }}>Log Out </Link>
+                    }}>Log Out</a>
 
                 </div>
             )
