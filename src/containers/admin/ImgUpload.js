@@ -44,8 +44,8 @@ export default class ImgUpload extends Component {
             arr = urlList[i].split(',');
             console.log(arr[0]);
             console.log(arr[1]);
-            menu.push(<a href={arr[0]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrlThumb-" + i} >{arr[0]}</a>);
-            menu.push(<a href={arr[1]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }} key={"imageUrlFull-" + i}>{arr[1]}</a>);
+            menu.push(<div key={"imageUrlThumb-" + i}><a href={arr[0]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }}>{arr[0]}</a></div>);
+            menu.push(<div key={"imageUrlFull-" + i}><a href={arr[1]} target="_blank" className="col-md-12" style={{ "fontSize": "12px" }}>{arr[1]}</a></div>);
         }
 
         mi.setState({ menu: menu });

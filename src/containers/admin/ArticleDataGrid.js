@@ -196,9 +196,9 @@ export default class ArticleDataGrid extends Component {
                                 "marginBottom": "16px",
                                 "marginTop": "15px"
                             }}>
-                                <button
+                                {/*<button
                                     className="btn btn-default" style={{ "marginRight": "13px" }}
-                                    onClick={this.createArticle}>Create Article</button>
+                                    onClick={this.createArticle}>Create Article</button>*/}
                                 <button
                                     className="btn btn-default"
                                     onClick={this.saveFeatured.bind()}>Save featured</button>
