@@ -89,7 +89,7 @@ export default class Main extends Component {
                     <Link to="/articleGrid" style={{
                         "float": "left",
                         "color": "white",
-                        "marginLeft": "50px",
+                        "marginLeft": "5%",
                         "marginRight": "15px"
                     }}>All Articles</Link>
 
@@ -111,7 +111,7 @@ export default class Main extends Component {
                         "float": "right",
                         "color": "white",
                         "marginLeft": "15px",
-                        "marginRight": "50px"
+                        "marginRight": "5%"
                     }}>Log Out</a>
 
                 </div>
