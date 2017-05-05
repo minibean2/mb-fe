@@ -17,6 +17,8 @@
     "lodash": "^4.16.1",
     "normalizr": "~3.0.2",
     "react": "~15.4.2",
+    "react-bootstrap": "^0.31.0",
+    "react-confirm-dialog": "^1.0.5",	
     "react-data-grid": "~2.0.19",
     "react-data-grid-addons": "~2.0.19",
     "react-datepicker": "~0.44.0",
@@ -24,6 +26,7 @@
     "react-dropdown": "~1.2.1",
     "react-dropzone-component": "~1.4.1",
     "react-infinite-scroll-component": "~2.2.2",
+
     "react-redux": "~4.4.5",
     "react-router": "~2.6.1",
     "react-router-redux": "~4.0.5",
