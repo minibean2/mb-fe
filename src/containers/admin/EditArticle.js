@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import Dropdown from 'react-dropdown'
-import config from '../../config';
+import config from '../RootConfig';
 import TinyMCE from 'react-tinymce';
 
 require('react-datepicker/dist/react-datepicker.css');

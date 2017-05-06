@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
-import config from '../config';
+import config from './RootConfig';
 import constants from '../constants';
 
 // Fix: http://stackoverflow.com/a/34130767

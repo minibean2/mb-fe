@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
-import config from '../../config';
+import config from '../RootConfig';
 
 var $ = require('jquery');
 

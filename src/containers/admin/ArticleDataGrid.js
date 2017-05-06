@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
-import config from '../../config';
+import config from '../RootConfig';
 import ReactDataGrid from 'react-data-grid';
 import ConfirmLink from 'react-confirm-dialog';
 import {Modal, Button} from 'react-bootstrap';
