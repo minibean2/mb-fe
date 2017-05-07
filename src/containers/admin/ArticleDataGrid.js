@@ -3,7 +3,7 @@ import { Link, browserHistory } from 'react-router'
 import config from '../RootConfig';
 import ReactDataGrid from 'react-data-grid';
 import ConfirmLink from 'react-confirm-dialog';
-import {Modal, Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 
 const { Editors, Toolbar, Formatters } = require('react-data-grid-addons');
@@ -84,17 +84,21 @@ export default class ArticleDataGrid extends Component {
                 name: ' ',
                 width: 65,
                 resizable: true,
-                formatter:  <ConfirmLink action={this.deleteClick} actionArgs={this}>
-        			<a href="#">Delete</a>
-      		           </ConfirmLink>,
+                formatter: <ConfirmLink
+                    action={this.deleteClick}
+                    actionArgs={this}
+                    confirmMessage="Delete this article?"
+                    confirmText="Yes"
+                    cancelText="No">
+                    <a href="#">Delete</a>
+                </ConfirmLink>,
                 events: {
                     onClick: function (ev, args) {
-                       
                         console.log('The user double clicked on title column');
                         console.log(ev);
                         console.log(args);
                         console.log(rows[args.rowIdx]);
-                       deleteRowId = rows[args.rowIdx]._id;
+                        deleteRowId = rows[args.rowIdx]._id;
                     }
                 }
             },
@@ -110,7 +114,7 @@ export default class ArticleDataGrid extends Component {
                         console.log(ev);
                         console.log(args);
                         console.log(rows[args.rowIdx]);
-                        browserHistory.push('/EditArticle?id='+rows[args.rowIdx]._id);
+                        browserHistory.push('/EditArticle?id=' + rows[args.rowIdx]._id);
                     }
                 }
             }
@@ -122,8 +126,8 @@ export default class ArticleDataGrid extends Component {
 
         console.log(deleteRowId);
         $.get(config.API_URL + "api/article/delete/" + deleteRowId).done((res) => {
-                            self.getAllArticles();
-                            self.setState();
+            self.getAllArticles();
+            self.setState();
 
         });
     }
