@@ -37,9 +37,9 @@
     "redux-thunk": "~2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev":  "cross-env NODE_ENV=dev  react-scripts start",
+    "prod": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "react-scripts test"
+    "test":  "react-scripts test"
   }
 }
