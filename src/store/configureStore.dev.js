@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-
 import rootReducer from '../reducers'
-
 
 const configureStore = preloadedState => {
   const store = createStore(
@@ -11,10 +9,8 @@ const configureStore = preloadedState => {
     preloadedState,
     compose(
       applyMiddleware(thunk, createLogger()),
-
     )
   )
-
 
   return store
 }
