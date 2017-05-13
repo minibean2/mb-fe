@@ -1,8 +1,7 @@
-
 development
-#npm run dev
+# npm run dev
 
 production
-#npm run prod
-#go to "mb-fe/build" path
-#http-server -p 3000
+# npm run build
+# cd build
+# http-server -p 3000

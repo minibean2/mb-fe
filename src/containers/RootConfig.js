@@ -1,7 +1,6 @@
 const env = require('get-env')();
 //const env = process.env.NODE_ENV || 'dev';
-console.log("===============> " + process.env.NODE_ENV);
-console.log("===============> " + env);
+console.log("NODE_ENV=" + env);
 if (env === 'prod') {
     module.exports = require('../config_prod')
 } else {
