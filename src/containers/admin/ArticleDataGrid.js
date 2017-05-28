@@ -5,7 +5,6 @@ import ReactDataGrid from 'react-data-grid';
 import ConfirmLink from 'react-confirm-dialog';
 import { Modal, Button } from 'react-bootstrap';
 
-
 const { Editors, Toolbar, Formatters } = require('react-data-grid-addons');
 var $ = require('jquery');
 
@@ -22,6 +21,20 @@ var deleteRowId = 0;
 var self = "";
 const rowGetter = rowNumber => rows[rowNumber];
 
+// Custom Formatter component
+const BooleanFormatter = React.createClass({
+
+    render() {
+        const value = this.props.value ? 'Yes' : '';
+        const color = this.props.value ? 'green' : 'red';
+        return (
+            <div style={{ color: color }}>
+                {value}
+            </div>
+        );
+    }
+});
+
 export default class ArticleDataGrid extends Component {
 
     arrylist = [];
@@ -35,12 +48,26 @@ export default class ArticleDataGrid extends Component {
         var mi = this;
         columns = [
             {
+                key: 'published',
+                name: 'Published?',
+                width: 50,
+                resizable: false,
+                formatter: BooleanFormatter
+            },
+            {
+                key: 'featured',
+                name: 'Featured?',
+                width: 50,
+                resizable: false,
+                formatter: BooleanFormatter
+            },
+            /*
+            {
                 key: '_id',
                 name: 'ID',
                 width: 50,
                 resizable: true
             },
-            /*
             {
                 key: 'created_date',
                 name: 'Created Date',
@@ -139,7 +166,7 @@ export default class ArticleDataGrid extends Component {
 
     getAllArticles() {
         featuredArray = [];
-        $.get(config.API_URL + "api/articles").done((res) => {
+        $.get(config.API_URL + "api/articles?all=true").done((res) => {
             console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
                 res.res[i].id = i;
@@ -212,9 +239,9 @@ export default class ArticleDataGrid extends Component {
                                 {/*<button
                                     className="btn btn-default" style={{ "marginRight": "13px" }}
                                     onClick={this.createArticle}>Create Article</button>*/}
-                                <button
+                                {/*<button
                                     className="btn btn-default"
-                                    onClick={this.saveFeatured.bind()}>Save featured</button>
+                                    onClick={this.saveFeatured.bind()}>Save featured</button>*/}
                             </div>
                             <div className="col-md-12">
                                 <label className="msgShow" style={{ "display": "none", "color": "green" }}>featured saved successfully</label>
@@ -229,13 +256,14 @@ export default class ArticleDataGrid extends Component {
                                     rowHeight={50}
                                     minHeight={600}
                                     rowScrollTimeout={200}
-                                    rowSelection={{
-                                        onRowsSelected: this.onRowSelect,
-                                        onRowsDeselected: this.onRowsDeselected,
-                                        selectBy: {
-                                            indexes: featuredArray
-                                        }
-                                    }} />
+                                    //rowSelection={{
+                                    //    onRowsSelected: this.onRowSelect,
+                                    //    onRowsDeselected: this.onRowsDeselected,
+                                    //    selectBy: {
+                                    //        indexes: featuredArray
+                                    //    }
+                                    //}}
+                                />
                             </div>
 
                         </div>
