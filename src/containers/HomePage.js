@@ -135,9 +135,22 @@ export default class HomePage extends Component {
 
     categoriesFunction() {
         console.log(this.categories);
-        let menu = [];
-        for (let i = 0; i < this.categories.length; i++) {
-            menu.push(
+        let menu1 = [];
+        let menu2 = [];
+
+        menu1.push(
+            <li className="index-item">
+                <div className="selected-item">
+                    <a className="nav-item"
+                        style={{ "color": "#324fe1", "fontWeight": "bold" }}
+                        onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
+                </div>
+            </li>
+        );
+
+        for (let i = 0; i < Math.floor(this.categories.length/2); i++) {
+            console.log("===>menu1..."+i);
+            menu1.push(
                 <li className="index-item" key={"category-" + i}>
                     <div className="selected-item">
                         <a className="nav-item"
@@ -148,7 +161,30 @@ export default class HomePage extends Component {
             );
         }
 
-        this.htmlCategories = menu;
+        for (let i = Math.floor(this.categories.length/2); i < this.categories.length; i++) {
+            console.log("===>menu2..."+i);
+            menu2.push(
+                <li className="index-item" key={"category-" + i}>
+                    <div className="selected-item">
+                        <a className="nav-item"
+                            style={{ "color": "#324fe1", "fontWeight": "bold" }}
+                            onClick={this.categoryClick.bind(this, this.categories[i]._id)}>{this.categories[i].name}</a>
+                    </div>
+                </li>
+            );
+        }
+
+        let singleMenu = [];
+        singleMenu.push(
+            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                {menu1}
+            </div>,
+            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                {menu2}
+            </div>
+        );
+
+        this.htmlCategories = singleMenu;
     }
 
     showBody(value) {
@@ -372,13 +408,6 @@ export default class HomePage extends Component {
                                                 <div className="index-title">
                                                     <img style={{ "width": "auto", "height": "26px" }}
                                                         src="../lib/images/general/titles/hot_articles.png" />
-                                                </div>
-                                            </li>
-                                            <li className="index-item">
-                                                <div className="selected-item">
-                                                    <a className="nav-item"
-                                                        style={{ "color": "#324fe1", "fontWeight": "bold" }}
-                                                        onClick={this.categoryClick.bind(this, constants.CATEGORIES_ALL)}>{constants.CATEGORIES_ALL}</a>
                                                 </div>
                                             </li>
                                             {this.htmlCategories}
