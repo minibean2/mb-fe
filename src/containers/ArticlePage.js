@@ -51,10 +51,11 @@ export default class ArticlePage extends Component {
         let moreDivs = [];
         $.get(config.API_URL + "api/article?id=" + this.articleId).done((res) => {
             var article = res.res;
-            if (article.post_date != undefined) {
-                article.post_date = moment(article.post_date).format("MMM D, YYYY");
-            }
-
+	    if (article.post_date != null) {
+	            if (article.post_date != undefined) {
+	                article.post_date = moment(article.post_date).format("MMM D, YYYY");
+	            }
+	    }
             moreDivs.push(
                 <div key={res.res.category.id} className="general-box article-box-main" key={this.articleId}>
                     <ul className="article-detail-wrapper">

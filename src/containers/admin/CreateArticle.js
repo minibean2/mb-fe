@@ -34,7 +34,7 @@ export default class CreateArticle extends Component {
                 options.push({ "value": this.categories[i]._id, "label": this.categories[i].name });
             }
             const defaultOption = options[0];
-            this.setState();
+            this.setState({published: true, featured: true, date: moment()});
         });
 
     }

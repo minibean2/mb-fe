@@ -134,7 +134,7 @@ export default class ArticleDataGrid extends Component {
                 name: ' ',
                 width: 65,
                 resizable: true,
-                formatter: <a>Edit</a>,
+                formatter:<ConfirmLink><a>Edit</a></ConfirmLink>,
                 events: {
                     onClick: function (ev, args) {
                         console.log('The user double clicked on title column');
@@ -154,7 +154,7 @@ export default class ArticleDataGrid extends Component {
         console.log(deleteRowId);
         $.get(config.API_URL + "api/article/delete/" + deleteRowId).done((res) => {
             self.getAllArticles();
-            self.setState();
+            self.setState({selectedRows:[], selectedIndexes:[]});
 
         });
     }
@@ -182,7 +182,7 @@ export default class ArticleDataGrid extends Component {
 
             rows = res.res;
             console.log(rows);
-            this.setState();
+            this.setState({selectedRows:[], selectedIndexes:[]});
         });
     }
 

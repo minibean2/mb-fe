@@ -48,7 +48,7 @@ export default class CreateArticle extends Component {
             featuredValue = res.res.featured;
             publishedValue = res.res.published;
             this.setState({ featured: res.res.featured, published: res.res.published, date: moment(res.res.post_date), defaultOption: res.res.category.id });
-            this.setState();
+           // this.setState();
         });
 
 
