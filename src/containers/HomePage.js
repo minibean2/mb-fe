@@ -71,11 +71,11 @@ export default class HomePage extends Component {
         this.setfeaturedImg();
 
         $.get(config.API_URL + "api/categories").done((res) => {
-            console.log(res);
+            //console.log(res);
 
             this.categories = res;
             this.categoriesFunction();
-            console.log(this.catId);
+            //console.log(this.catId);
             if (this.catId != "" && this.catId != null) {
                 this.categoryClick(this.catId);
             } else {
@@ -100,7 +100,7 @@ export default class HomePage extends Component {
     }
 
     categoryClick(value) {
-        console.log(value);
+        //console.log(value);
         this.flag = 0;
         var arr = [];
         this.state = { divs: arr, img: [] };
@@ -123,23 +123,23 @@ export default class HomePage extends Component {
         var arr = [];
         this.state = { divs: arr };
         this.count = 0;
-        console.log(articleId);
+        //console.log(articleId);
         $.get(config.API_URL + "api/article?id=" + articleId).done((res) => {
             this.state = { divs: divs };
             arr.push(res.res);
-            console.log(arr);
+            //console.log(arr);
             this.res = arr;
             this.generateDivs();
         });
     }
 
     categoriesFunction() {
-        console.log(this.categories);
+        //console.log(this.categories);
         let menu1 = [];
         let menu2 = [];
 
         menu1.push(
-            <li className="index-item">
+            <li className="index-item" key="category-all">
                 <div className="selected-item">
                     <a className="nav-item"
                         style={{ "color": "#324fe1", "fontWeight": "bold" }}
@@ -174,10 +174,10 @@ export default class HomePage extends Component {
 
         let singleMenu = [];
         singleMenu.push(
-            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6" key="menu-1">
                 {menu1}
             </div>,
-            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+            <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6" key="menu-2">
                 {menu2}
             </div>
         );
@@ -214,12 +214,12 @@ export default class HomePage extends Component {
 
             if (this.catId == 0) {
                 if (this.flag == 0) {
-                    console.log(this.state.divs);
-                    console.log(this.count);
+                    //console.log(this.state.divs);
+                    //console.log(this.count);
 
                     let img = [];
                     $.get(config.API_URL + "api/articles?start=" + this.count + "&limit=" + this.pageSize).done((res) => {
-                        console.log(res);
+                        //console.log(res);
                         let moreDivs = [];
                         if (res.res.length == 0) {
                             this.stopLoading = true;
@@ -269,10 +269,10 @@ export default class HomePage extends Component {
                 }
             } else {
                 let moreDivsCat = [];
-                console.log(this.catCount);
+                //console.log(this.catCount);
 
                 $.get(config.API_URL + "api/article/category/" + this.catId + "?start=" + this.catCount + "&limit=" + this.pageSize).done((res) => {
-                    console.log(res);
+                    //console.log(res);
                     let moreDivs = [];
                     if (res.res.length == 0) {
                         this.stopLoading = true;
@@ -323,7 +323,7 @@ export default class HomePage extends Component {
     }
 
     showBody(value) {
-        console.log(value);
+        //console.log(value);
         if (value != null && value != "") {
             return (
                 <span dangerouslySetInnerHTML={{ __html: value }}></span>
@@ -389,7 +389,7 @@ export default class HomePage extends Component {
             })
         )
 
-        console.log("articleImgs ", articleImgs);
+        //console.log("articleImgs ", articleImgs);
 
         return (
             <div style={{ "marginTop": "50px" }}>

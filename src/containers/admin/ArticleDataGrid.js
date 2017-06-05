@@ -121,10 +121,10 @@ export default class ArticleDataGrid extends Component {
                 </ConfirmLink>,
                 events: {
                     onClick: function (ev, args) {
-                        console.log('The user double clicked on title column');
-                        console.log(ev);
-                        console.log(args);
-                        console.log(rows[args.rowIdx]);
+                        //console.log('The user double clicked on title column');
+                        //console.log(ev);
+                        //console.log(args);
+                        //console.log(rows[args.rowIdx]);
                         deleteRowId = rows[args.rowIdx]._id;
                     }
                 }
@@ -137,10 +137,10 @@ export default class ArticleDataGrid extends Component {
                 formatter:<ConfirmLink><a>Edit</a></ConfirmLink>,
                 events: {
                     onClick: function (ev, args) {
-                        console.log('The user double clicked on title column');
-                        console.log(ev);
-                        console.log(args);
-                        console.log(rows[args.rowIdx]);
+                        //console.log('The user double clicked on title column');
+                        //console.log(ev);
+                        //console.log(args);
+                        //console.log(rows[args.rowIdx]);
                         browserHistory.push('/EditArticle?id=' + rows[args.rowIdx]._id);
                     }
                 }
@@ -151,7 +151,7 @@ export default class ArticleDataGrid extends Component {
 
     deleteClick(value) {
 
-        console.log(deleteRowId);
+        //console.log(deleteRowId);
         $.get(config.API_URL + "api/article/delete/" + deleteRowId).done((res) => {
             self.getAllArticles();
             self.setState({selectedRows:[], selectedIndexes:[]});
@@ -167,7 +167,7 @@ export default class ArticleDataGrid extends Component {
     getAllArticles() {
         featuredArray = [];
         $.get(config.API_URL + "api/articles?all=true").done((res) => {
-            console.log(res.res);
+            //console.log(res.res);
             for (let i = 0; i < res.res.length; i++) {
                 res.res[i].id = i;
                 res.res[i].categoryName = res.res[i].category.name;
@@ -178,28 +178,28 @@ export default class ArticleDataGrid extends Component {
                 }
             }
             dataObject = res.res;
-            console.log(featuredArray);
+            //console.log(featuredArray);
 
             rows = res.res;
-            console.log(rows);
+            //console.log(rows);
             this.setState({selectedRows:[], selectedIndexes:[]});
         });
     }
 
     onRowSelect(rows) {
-        console.log("selectedindex---", featuredArray, rows);
+        //console.log("selectedindex---", featuredArray, rows);
         featuredArray.push(rows[0].rowIdx);
-        console.log(dataObject);
-        console.log(rows, "featuredArray--", featuredArray); var articleIdList = [];
-        console.log(featuredArray);
+        //console.log(dataObject);
+        //console.log(rows, "featuredArray--", featuredArray); var articleIdList = [];
+        //console.log(featuredArray);
     }
 
     onRowsDeselected(rows) {
-        console.log(rows);
+        //console.log(rows);
         var index = featuredArray.indexOf(rows[0].rowIdx);
         featuredArray.splice(index, 1);
-        console.log("index", index);
-        console.log(featuredArray);
+        //console.log("index", index);
+        //console.log(featuredArray);
     }
 
     saveFeatured() {
@@ -216,7 +216,7 @@ export default class ArticleDataGrid extends Component {
         articleObject.articles = articleIdList;
 
         $.post(config.API_URL + "api/featured-articles/update", articleObject).done((res) => {
-            console.log("success");
+            //console.log("success");
             $(".msgShow").toggle(true);
         });
     }

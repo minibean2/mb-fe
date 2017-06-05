@@ -29,11 +29,10 @@ export default class SearchResultsPage extends Component {
     }
 
     generateDivs() {
-        console.log('generateDivs...');
 
         let moreDivs = [];
         $.get(config.API_URL + "api/search?key=" + this.searchKey).done((res) => {
-            console.log(res);
+            //console.log(res);
             let moreDivs = [];
             if (res.res.length == 0) {
                 moreDivs.push(
@@ -75,21 +74,20 @@ export default class SearchResultsPage extends Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount...');
+        //console.log('componentDidMount...');
 
         window.scrollTo(0, 0);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps...');
+        //console.log('componentWillReceiveProps...');
 
         this.setSearchKey();
         this.generateDivs();
     }
 
     render() {
-        console.log('render...');
-
+        
         return (
             <div style={{ "marginTop": "50px" }}>
                 <div className="col-md-1">

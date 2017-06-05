@@ -16,13 +16,13 @@ export default class AboutPage extends Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount...');
+        //console.log('componentDidMount...');
 
         window.scrollTo(0, 0);
     }
 
     render() {
-        console.log('render...');
+        //console.log('render...');
 
         return (
             <div style={{ "marginTop": "50px" }}>

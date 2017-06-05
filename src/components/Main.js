@@ -20,10 +20,10 @@ export default class Main extends Component {
         urlArr = url.split("/");
         this.page = urlArr[urlArr.length - 1];
 
-        console.log("url=" + url);
-        console.log("this.page=" + this.page);
+        //console.log("url=" + url);
+        //console.log("this.page=" + this.page);
 
-        console.log(localStorage.getItem('token'));
+        //console.log(localStorage.getItem('token'));
         if (adminPages.indexOf(this.page) != -1) {
             if (localStorage.getItem('token') == "") {
                 browserHistory.push('/login');
@@ -49,13 +49,13 @@ export default class Main extends Component {
 
         var searchKey = $("#searchKey").val();
         if (searchKey != null && searchKey.length > 0) {
-            console.log('searchKey=' + searchKey);
+            //console.log('searchKey=' + searchKey);
             browserHistory.push('/searchResults?key=' + searchKey);
         }
     }
 
     logOut() {
-        console.log("logOut");
+        //console.log("logOut");
         localStorage.setItem('token', "");
         browserHistory.push('/login');
         location.reload();

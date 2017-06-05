@@ -21,7 +21,7 @@ export default class Login extends Component {
         };
 
         $.get(config.API_URL + "api/login?username=" + data.username + "&password=" + data.password).done((res) => {
-            console.log(res);
+            //console.log(res);
             localStorage.setItem('token', res.token);
             $(".msgShow").toggle(false);
             browserHistory.push('/articleGrid');
@@ -33,7 +33,7 @@ export default class Login extends Component {
             $(".msgShow").toggle(true);
         });
 
-        console.log(data);
+        //console.log(data);
         //browserHistory.push('/articleGrid');
     }
 
