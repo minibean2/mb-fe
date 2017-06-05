@@ -149,7 +149,6 @@ export default class HomePage extends Component {
         );
 
         for (let i = 0; i < Math.floor(this.categories.length/2); i++) {
-            console.log("===>menu1..."+i);
             menu1.push(
                 <li className="index-item" key={"category-" + i}>
                     <div className="selected-item">
@@ -162,7 +161,6 @@ export default class HomePage extends Component {
         }
 
         for (let i = Math.floor(this.categories.length/2); i < this.categories.length; i++) {
-            console.log("===>menu2..."+i);
             menu2.push(
                 <li className="index-item" key={"category-" + i}>
                     <div className="selected-item">
