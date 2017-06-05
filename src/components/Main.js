@@ -149,8 +149,8 @@ export default class Main extends Component {
                                     <ul style={{
                                         "top": "23px",
                                         "left": "5px",
-                                        "overflow-y": "scroll",
-                                        "max-height": "345px",
+                                        "overflowY": "scroll",
+                                        "maxHeight": "345px",
                                         "width": "260px"
                                     }}
                                         className="dropdown-menu chat media-list hide">

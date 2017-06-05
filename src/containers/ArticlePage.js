@@ -56,7 +56,7 @@ export default class ArticlePage extends Component {
             }
 
             moreDivs.push(
-                <div className="general-box article-box-main" key={this.articleId}>
+                <div key={res.res.category.id} className="general-box article-box-main" key={this.articleId}>
                     <ul className="article-detail-wrapper">
                         <li>
                             <Link to={'/category?id=' + article.category.id}>

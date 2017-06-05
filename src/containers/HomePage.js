@@ -288,7 +288,7 @@ export default class HomePage extends Component {
                             }
 
                             moreDivsCat.push(
-                                <div style={{ "borderBottom": "#bcbcbc solid thin" }}>
+                                <div key={i} style={{ "borderBottom": "#bcbcbc solid thin" }}>
                                     <ul className="allpost-wrapper">
                                         <li>
                                             <Link to={'/article?id=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
@@ -357,7 +357,7 @@ export default class HomePage extends Component {
 
         articleImgs = (
             items.map(function (object, i) {
-                return <div style={{ "position": "relative", "width": "100%" }} key={"slider-image-" + i}>
+                return <div key={i} style={{ "position": "relative", "width": "100%" }} key={"slider-image-" + i}>
                     <Link to={'/article?id=' + object._id}>
                         <img key={"sliderImage-" + i}
                             style={{
