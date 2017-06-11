@@ -53,7 +53,7 @@ export default class CreateArticle extends Component {
 
 
         $.get(config.API_URL + "api/categories").done((res) => {
-            console.log(res);
+            //console.log(res);
             options = [];
             this.categories = res;
             for (var i = 0; i < this.categories.length; i++) {
@@ -74,7 +74,7 @@ export default class CreateArticle extends Component {
     }
 
     handleEditorChange = (e) => {
-        console.log('Content was updated:', e.target.getContent());
+        //console.log('Content was updated:', e.target.getContent());
         htmlBody = e.target.getContent();
     }
 
@@ -95,7 +95,7 @@ export default class CreateArticle extends Component {
     }
 
     editArticle() {
-        console.log(selectedOption);
+        //console.log(selectedOption);
         if (selectedOption == {}) {
             selectedOption = options[0].value;
         }
@@ -115,9 +115,9 @@ export default class CreateArticle extends Component {
             created_date: new Date()
         };
 
-        console.log("data----", data);
+        //console.log("data----", data);
         $.post(config.API_URL + "api/article/update/" + articleId, data).done((res) => {
-            console.log("lead...........");
+            //console.log("lead...........");
             browserHistory.push('/articleGrid');
         });
     }
@@ -127,7 +127,7 @@ export default class CreateArticle extends Component {
     }
 
     publishedChangeChk(value) {
-        console.log(value);
+        //console.log(value);
         this.setState({
             published: !this.state.published
         })
@@ -149,7 +149,7 @@ export default class CreateArticle extends Component {
         });
         postDate = date;
 
-        console.log(date);
+        //console.log(date);
     }
 
     render() {

@@ -4,7 +4,6 @@
   "private": false,
   "description": "minibean FE",
   "devDependencies": {
-    "react-scripts": "~0.9.5",
     "redux-devtools": "~3.4.0",
     "redux-devtools-dock-monitor": "~1.1.2",
     "redux-devtools-log-monitor": "~1.0.11",
@@ -18,6 +17,7 @@
     "lodash": "^4.16.1",
     "normalizr": "~3.0.2",
     "react": "~15.4.2",
+    "react-scripts": "~0.9.5",
     "react-bootstrap": "^0.31.0",
     "react-confirm-dialog": "^1.0.5",
     "react-data-grid": "~2.0.19",

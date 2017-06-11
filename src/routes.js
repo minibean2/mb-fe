@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 import App from './containers/App'
 
 import HomePage from './containers/HomePage'
@@ -14,8 +14,8 @@ import AdminImgUpload from './containers/admin/ImgUpload'
 import AdminLogin from './containers/admin/Login'
 
 export default
-    <Route path="/user" component={App}>
-        <Route path="/" component={HomePage} />
+    <Route path="/" component={App}>
+        <IndexRoute component={HomePage} />
         <Route path="/category" component={HomePage} />
         <Route path="/article" component={ArticlePage} />
         <Route path="/searchResults" component={SearchResultsPage} />
@@ -23,6 +23,6 @@ export default
         <Route path="/login" component={AdminLogin} />
         <Route path="/articleGrid" component={AdminArticleDataGrid} />
         <Route path="/createArticle" component={AdminCreateArticle} />
-        <Route path="/editArticle" component={AdminEditArticle}/> 
+        <Route path="/editArticle" component={AdminEditArticle} />
         <Route path="/imgUpload" component={AdminImgUpload} />
     </Route>
