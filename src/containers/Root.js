@@ -1,14 +1,14 @@
-import React, { PropTypes } from 'react'
-import { Provider } from 'react-redux'
+import React, {PropTypes} from 'react'
+import {Provider} from 'react-redux'
 import routes from '../routes'
-import DevTools from './DevTools'
-import { Router, browserHistory } from 'react-router'
+//import DevTools from './DevTools'
+import {Router} from 'react-router'
 
-const Root = ({ store, history }) => (
+const Root = ({store, history}) => (
     <Provider store={store}>
         <div>
-            <Router history={browserHistory} routes={routes} />
-            <DevTools />
+            <Router history={history} routes={routes} />
+            
         </div>
     </Provider>
 )

@@ -5,7 +5,7 @@ import ReactDataGrid from 'react-data-grid';
 import ConfirmLink from 'react-confirm-dialog';
 import { Modal, Button } from 'react-bootstrap';
 
-const { Editors, Toolbar, Formatters } = require('react-data-grid-addons');
+//const { Editors, Toolbar, Formatters } = require('react-data-grid-addons');
 var $ = require('jquery');
 
 var moment = require('moment');
