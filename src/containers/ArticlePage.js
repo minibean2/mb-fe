@@ -83,8 +83,9 @@ export default class ArticlePage extends Component {
                         <li>
                             <div style={{ "margin": "20px 0", "fontSize": "16px" }}>
                                 <div className="padding10" style={{ "borderTop": "1px solid #eee" }}></div>
-                                分享連結:&nbsp;
-                                <input type='text' name='article-link' id='article-link' defaultValue={config.SITE_URL + 'article?id=' + this.articleId}></input>
+                                分享連結:&nbsp; 
+                                <input type='text' name='article-link' id='article-link' defaultValue={window.location.href}></input>
+                                {/*<input type='text' name='article-link' id='article-link' defaultValue={config.SITE_URL + 'article?id=' + this.articleId}></input>*/}
                                 {/*<a style={{"marginLeft":"5px","padding":"2px 7px","fontSize":"14px"}} className='toolsbox toolsbox-single' onclick='highlightLink("article-link")'><i className='glyphicon glyphicon-link'></i></a>*/}
                             </div>
                         </li>
