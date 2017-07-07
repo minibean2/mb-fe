@@ -286,7 +286,7 @@ export default class HomePage extends Component {
                             }
 
                             moreDivsCat.push(
-                                <div key={i} style={{ "borderBottom": "#bcbcbc solid thin" }}>
+                                <div key={i} style={{ "borderBottom": "#bcbcbc solid thin" }} key={"article-" + articleItem._id}>
                                     <ul className="allpost-wrapper">
                                         <li>
                                             <Link to={'/article?id=' + articleItem._id}><img src={articleItem.imageUrl} /></Link>
