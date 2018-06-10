@@ -1,4 +1,4 @@
 module.exports = Object.freeze({
-    SITE_URL: "http://minibean.com.hk/",
-    API_URL: "http://ec2-54-169-166-235.ap-southeast-1.compute.amazonaws.com:9000/"
+    SITE_URL: "https://minibean.com.hk/",
+    API_URL: "https://minibean.com.hk/"
 });
