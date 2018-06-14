@@ -6,7 +6,7 @@ import TinyMCE from 'react-tinymce';
 
 require('react-datepicker/dist/react-datepicker.css');
 
-var Select = require('react-select');
+import Select from 'react-select';
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
 var $ = require('jquery');
@@ -34,7 +34,7 @@ export default class CreateArticle extends Component {
         urlArr = url.split("=");
         articleId = urlArr[1];
 
-        this.state = { published: false, featured: false, date: moment() };
+        this.state = { published: false, featured: false, date: moment(), options:[] };
         $.get(config.API_URL + "api/article?id=" + articleId).done((res) => {
             $(".title").val(res.res.title);
             $(".preview").val(res.res.preview);
@@ -60,7 +60,7 @@ export default class CreateArticle extends Component {
                 options.push({ "value": this.categories[i]._id, "label": this.categories[i].name });
             }
 
-            this.setState();
+            this.setState({options : options});
         });
 
     }
@@ -97,7 +97,7 @@ export default class CreateArticle extends Component {
     editArticle() {
         //console.log(selectedOption);
         if (selectedOption == {}) {
-            selectedOption = options[0].value;
+            selectedOption = this.state.options[0].value;
         }
         cat = { "id": selectedOption.value, "name": selectedOption.label };
 
@@ -214,7 +214,7 @@ export default class CreateArticle extends Component {
                                             <Select
                                                 name="form-field-name"
                                                 value={this.state.defaultOption}
-                                                options={options}
+                                                options={this.state.options}
                                                 onChange={this.categoryChange.bind(this)}
                                             />
                                         </div>
